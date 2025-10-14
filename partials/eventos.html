@@ -5,29 +5,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Eventos • Código da Carne</title>
 
-  <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/eventos.css" />
 
-  <!-- JS -->
-  <script defer src="js/eventos.js"></script>
 </head>
 <body>
   <main class="container">
     <div class="page-layout">
-      <!-- COLUNA PRINCIPAL -->
       <div class="content-col">
         <header class="page-header">
           <h1>EVENTOS • CÓDIGO DA CARNE</h1>
           <p class="subtitle">Escolha um cardápio e personalize com adicionais.</p>
         </header>
 
-        <!-- PASSO 1 -->
         <section class="step" id="step-1">
           <div class="step-header">
             <div class="step-index">1</div>
@@ -37,7 +31,6 @@
             </div>
           </div>
 
-          <!-- Campos técnicos (mantidos, mas escondidos) -->
           <div style="display:none">
             <input id="input-pessoas" type="number" value="20" />
             <select id="select-local">
@@ -46,11 +39,9 @@
             </select>
           </div>
 
-          <!-- GRID DOS CARDS DO PASSO 1 -->
           <div class="menu-grid" id="menuGrid" role="radiogroup" aria-label="Seleção de cardápio"></div>
         </section>
 
-        <!-- PASSO 2 -->
         <section class="step" id="step-2" hidden>
           <div class="step-header">
             <div class="step-index">2</div>
@@ -126,7 +117,6 @@
           </div>
         </section>
 
-        <!-- PASSO 3 (resumo do markup principal) -->
         <section class="step" id="step-3" hidden>
           <div class="step-header">
             <div class="step-index">3</div>
@@ -198,7 +188,6 @@
           </form>
         </section>
 
-        <!-- PASSO 4 — TERMOS -->
         <section class="step" id="step-4" hidden>
           <div class="step-header">
             <div class="step-index">4</div>
@@ -229,7 +218,6 @@
         </section>
       </div>
 
-      <!-- SIDEBAR (RESUMO + NAVEGAÇÃO) -->
       <aside class="sidebar-col">
         <div class="summary-sticky">
           <div class="calc-summary">
@@ -247,7 +235,6 @@
             <div id="menu-itens-content" class="menu-itens-content"></div>
           </div>
 
-          <!-- Botões de navegação do wizard (AGORA COM ID CORRETO) -->
           <div class="sidebar-next" id="sidebar-next">
             <button class="btn btn-outline btn-sidebar-back" id="btn-prev-sidebar" hidden>Voltar</button>
             <button class="btn btn-primary btn-sidebar-next" id="btn-next-sidebar">Ir para Adicionais</button>
