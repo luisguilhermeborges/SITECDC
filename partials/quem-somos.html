@@ -1,0 +1,122 @@
+<!-- quem-somos.html -->
+<style>
+  /* Import de fontes dentro do próprio HTML (sem mexer no base.css) */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap');
+
+  /* Container visual da página */
+  .qs-hero{
+    text-align:center;
+    margin-bottom: clamp(16px, 3.5vw, 28px);
+  }
+
+  /* Títulos com presença */
+  .qs-hero h1{
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 4.5vw, 36px);
+    color: var(--topbar);
+    letter-spacing: 1.8px;
+    text-shadow: 0 2px 10px rgba(0,0,0,.08);
+    margin: 0 0 10px;
+  }
+
+  /* Texto introdutório (lead) */
+  .qs-lead{
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-weight: 500;
+    color: var(--text);
+    font-size: clamp(14px, 2.1vw, 17px);
+    line-height: 1.7;
+    text-transform: none;           /* sobrescreve CAPS globais */
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Grid de conteúdo com imagem */
+  .qs-block{
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(16px, 3vw, 32px);
+    align-items: center;
+  }
+  .qs-block.reverse{
+    grid-template-columns: .9fr 1.1fr;
+  }
+
+  /* Parágrafos de seção */
+  .qs-text p{
+    font-family: 'Roboto', system-ui, sans-serif;
+    color: var(--text);
+    font-weight: 400;
+    font-size: clamp(14px, 2vw, 17px);
+    line-height: 1.75;
+    text-transform: none;           /* sobrescreve CAPS globais */
+    margin: 0 0 12px;
+  }
+
+  /* Imagens com acabamento premium */
+  .qs-img{
+    width: 90%;
+    display: block;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    object-fit: cover;
+  }
+
+  /* Divisor sutil para respiração visual */
+  .qs-divider{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e6e6e6, transparent);
+    margin: clamp(16px, 3vw, 28px) 0;
+  }
+
+  /* Responsividade */
+  @media (max-width: 900px){
+    .qs-block,
+    .qs-block.reverse{
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="section qs-hero">
+  <h1>QUEM SOMOS</h1>
+  <p class="qs-lead">
+    A Código da Carne nasceu em 2015, resultado da visão empreendedora dos irmãos Gabriel e Gustavo Galindo. Tudo começou com uma ideia simples e direta: criar um clube de assinaturas exclusivo, onde apenas os clientes associados teriam acesso aos produtos oferecidos.
+  </p>
+</section>
+
+<section class="section">
+  <div class="qs-block">
+    <div class="qs-text">
+      <p>
+        Em 2017, a Código da Carne deu um passo importante em sua trajetória ao inaugurar a primeira loja física, no centro de Londrina, que se tornaria também a matriz da empresa. Nesse espaço, foram centralizadas diversas operações essenciais: a produção própria, o escritório administrativo, o Espaço Código, voltado para eventos e experiências gastronômicas, e a loja de varejo. A nova sede consolidou a identidade da marca e ampliou as possibilidades.
+      </p>
+      <p>
+        Com a estrutura de produção própria, a Código da Carne conquistou seu principal diferencial: a padronização. Esse controle de qualidade permitiu o lançamento de marcas próprias, que refletem o compromisso com a qualidade e a excelência.
+      </p>
+    </div>
+    <div>
+      <!-- renomeie o arquivo na pasta assets se necessário para casar com o caminho abaixo -->
+      <img class="qs-img" src="assets/gabrielgustavo1.jpg" alt="Fundadores da Código da Carne em frente ao escudo da marca">
+    </div>
+  </div>
+</section>
+
+<div class="qs-divider"></div>
+
+<section class="section">
+  <div class="qs-block reverse">
+    <div>
+      <img class="qs-img" src="assets/gabrielgustavo2.jpg" alt="Parrilla acesa na Código da Carne durante preparo">
+    </div>
+    <div class="qs-text">
+      <p>
+        Em 2020, em meio aos desafios da pandemia, a marca deu mais um passo ousado e inaugurou sua segunda unidade, no bairro Alphaville. Já em 2024, foi a vez de expandir para a terceira loja, na Gleba Palhano.
+      </p>
+      <p>
+        Atualmente, a Código da Carne atua em quatro frentes principais: o varejo, o atendimento B2B, voltado a restaurantes e hamburguerias, a realização de eventos e o clube de assinaturas, que mantém viva a essência do conceito original da marca.
+      </p>
+    </div>
+  </div>
+</section>

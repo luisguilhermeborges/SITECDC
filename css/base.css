@@ -1,0 +1,542 @@
+:root {
+    --topbar: #640404;
+    --header: #F2F2F2;
+    --bg: #FFFFFF;
+    --bg-soft: #F5F5DC;
+    --text: #000000;
+    --text-alt: #8A443F;
+    --radius: 16px;
+    --shadow: 0 6px 20px rgba(0,0,0,.08);
+
+    --topbar-h: clamp(56px, 8vw, 96px);
+    --header-h: clamp(48px, 6vw, 72px);
+    --container: 1200px;
+
+    --fz: clamp(12px, 1.4vw, 14px);
+    --fz-sm: clamp(11px, 1.2vw, 13px);
+    --fz-lg: clamp(14px, 1.6vw, 16px);
+}
+
+/* ------------------ Base ------------------ */
+* {
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    font-size: var(--fz);
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding-top: env(safe-area-inset-top, 0px);
+}
+.container {
+    width: min(var(--container), 100% - 32px);
+    margin-inline: auto;
+}
+h1, h2, h3 {
+    margin: 0 0 12px;
+    color: var(--text-alt);
+    font-size: var(--fz-lg);
+}
+p {
+    margin: 0 0 10px;
+    font-size: var(--fz);
+}
+.section {
+    padding-block: clamp(12px, 2vw, 16px);
+}
+.section--soft {
+    background: var(--bg-soft);
+}
+
+/* ------------------ Grid / Cards / Buttons ------------------ */
+.grid {
+    display: grid;
+    gap: clamp(12px, 2vw, 16px);
+}
+.grid--2 {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+}
+.grid--3 {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+}
+.card {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(12px,2vw,16px);
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: clamp(10px,1.6vw,12px) clamp(14px,2vw,16px);
+    border-radius: 999px;
+    text-decoration: none;
+    color: #111;
+    background: linear-gradient(180deg, #E6E6E6, #BFBFBF);
+    border: 1px solid #C9C9C9;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: var(--fz);
+}
+
+/* ------------------ Topbar / Header / Nav ------------------ */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--topbar-h);
+    min-height: var(--topbar-h);
+    background: var(--topbar);
+    color: #c29393ff;
+    box-shadow: 0 1px 0 rgba(0,0,0,.08);
+}
+.topbar__wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(8px,2vw,16px);
+}
+.btn--onbeef {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #111;
+    text-decoration: none;
+}
+.brand__logo-deitada {
+    height: clamp(18px, 7vw, 70px);
+    width: auto;
+    object-fit: contain;
+}
+.onbeef-logo {
+    height: clamp(20px, 5.5vw, 32px);
+    width: auto;
+    object-fit: contain;
+    transition: transform .2s, filter .2s;
+}
+.onbeef-logo:hover {
+    filter: brightness(1.1);
+    transform: scale(1.1);
+}
+.header {
+    position: sticky;
+    top: var(--topbar-h);
+    z-index: 40;
+    height: var(--header-h);
+    min-height: var(--header-h);
+    background: var(--header);
+    border-bottom: 1px solid #e6e6e6;
+}
+.header__wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(8px,2vw,16px);
+}
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.nav__toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: clamp(22px, 4.2vw, 28px);
+    cursor: pointer;
+    color: #222;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+.nav__list {
+    display: flex;
+    align-items: center;
+    gap: clamp(6px,1.2vw,12px);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.nav__link {
+    text-decoration: none;
+    color: #222;
+    padding: 6px 12px 2px 12px;
+    line-height: 1;
+    white-space: nowrap;
+    position: relative;
+    background: transparent;
+    border-radius: 0;
+    transition: filter .2s, color .2s;
+}
+.nav__link:hover {
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+}
+.nav__link::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    height: 3px;
+    background: transparent;
+    border-radius: 3px 3px 0 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform .2s, background .2s;
+}
+.nav__link.is-active::after {
+    background: var(--topbar);
+    transform: scaleX(1);
+}
+.nav__link.is-active {
+    color: #000;
+}
+
+/* Header em Poppins ExtraBold */
+.header,
+.header .nav__link {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    letter-spacing: .03em;
+}
+
+/* ------------------ Main & Footer ------------------ */
+main {
+    flex: 1 1 auto;
+    display: block;
+    padding-top: 0;
+    padding-bottom: clamp(24px, 4vw, 40px);
+    background: var(--bg);
+}
+.footer {
+    background: var(--header);
+    border-top: 1px solid #e6e6e6;
+}
+.footer__wrap {
+    padding-block: clamp(16px, 3vw, 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+.footer__socials {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.footer a {
+    color: var(--text-alt);
+    text-decoration: none;
+}
+
+/* ------------------ Carousel ------------------ */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: calc(75vh - var(--topbar-h) - var(--header-h));
+    max-height: 620px;
+    min-height: 300px;
+    overflow: hidden;
+    background: #000;
+}
+.carousel.fullbleed {
+    width: 100vw !important;
+    margin-inline: calc(50% - 50vw) !important;
+    border-radius: 0;
+    display: block;
+    margin-top: 12px;
+}
+@supports (width: 100svw) {
+    .carousel.fullbleed {
+        width: 100svw !important;
+        margin-inline: calc(50% - 50svw) !important;
+    }
+}
+.carousel__viewport {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.carousel__track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+    touch-action: pan-y;
+}
+.carousel__slide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #000;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+.carousel__track > .carousel__slide:nth-child(1) {
+    background-image: url("../assets/slide-clube.jpeg");
+}
+.carousel__track > .carousel__slide:nth-child(2) {
+    background-image: url("../assets/slide-produtos.jpeg");
+}
+.carousel__track > .carousel__slide:nth-child(3) {
+    background-image: url("../assets/slide-eventos.jpeg");
+}
+.carousel__track > .carousel__slide:nth-child(4) {
+    background-image: url("../assets/slide-lojas.jpeg");
+}
+.carousel__overlay {
+    position: absolute;
+    inset: auto 0 8% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    padding: 0 16px;
+}
+.carousel__overlay h2 {
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0,0,0,.55);
+    font-size: clamp(16px,3.5vw,28px);
+    margin: 0 0 6px 0;
+}
+.carousel__dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 3;
+}
+.carousel__dots button {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,.55);
+    cursor: pointer;
+    transition: transform .2s, background .2s;
+}
+.carousel__dots button[aria-selected="true"] {
+    background: #fff;
+    transform: scale(1.2);
+}
+.carousel__dots button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+.carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(.96);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.45);
+    background: color-mix(in srgb, var(--topbar) 40%, transparent);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s, filter .2s;
+    z-index: 4;
+    box-shadow: 0 4px 18px rgba(0,0,0,.25);
+}
+.carousel__arrow.is-prev {
+    left: 16px;
+}
+.carousel__arrow.is-next {
+    right: 16px;
+}
+.carousel:hover .carousel__arrow {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+}
+.carousel__arrow:hover {
+    filter: brightness(1.06);
+}
+.carousel__arrow:active {
+    transform: translateY(-50%) scale(.97);
+}
+.carousel__arrow:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+@media (max-width: 720px) {
+    .carousel__arrow {
+        display: none !important;
+    }
+    .carousel {
+        min-height: 260px;
+    }
+    .carousel__overlay {
+        inset: auto 0 6% 0;
+    }
+}
+
+/* ------------------ WhatsApp FAB ------------------ */
+.whatsapp-fab {
+    position: fixed;
+    right: clamp(12px, 2vw, 20px);
+    bottom: max(96px, env(safe-area-inset-bottom, 0px) + 8px);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.12);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s, filter .15s;
+}
+.whatsapp-fab img {
+    width: 28px;
+    height: 28px;
+    display: block;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.2));
+}
+.whatsapp-fab:hover {
+    transform: translateY(-1px) scale(1.03);
+}
+.whatsapp-fab:active {
+    transform: translateY(0) scale(.98);
+}
+.whatsapp-fab:focus-visible {
+    outline: 3px solid #128C7E;
+    outline-offset: 3px;
+}
+@media (max-width:720px) {
+    .whatsapp-fab {
+        width: 64px;
+        height: 64px;
+        right: clamp(10px,3vw,16px);
+        bottom: max(84px, env(safe-area-inset-bottom, 0px) + 8px);
+    }
+    .whatsapp-fab img {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media print {
+    .whatsapp-fab {
+        display: none !important;
+    }
+}
+
+/* ------------------ Mini Map ------------------ */
+.mini-map {
+    width: 100%;
+    height: 320px;
+    border: 1px solid #e6e6e6;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.mini-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    margin-top: -60px;
+    height: calc(100% + 60px);
+}
+@media (max-width: 720px) {
+    .mini-map {
+        height: 240px;
+    }
+}
+
+/* ------------------ Responsivo ------------------ */
+@media (max-width: 960px) {
+    .grid--3 {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+}
+@media (max-width: 720px) {
+    .grid--2, .grid--3 {
+        grid-template-columns: 1fr;
+    }
+    .nav__toggle {
+        display: inline-block;
+    }
+    .nav__list {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        background: #fff;
+        padding: 8px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        position: absolute;
+        right: 16px;
+        top: calc(var(--topbar-h) + var(--header-h) - 6px);
+        box-shadow: var(--shadow);
+        max-width: calc(100% - 32px);
+    }
+    .nav__list.is-open {
+        display: flex;
+    }
+    .nav__link {
+        padding: 12px 16px;
+    }
+}
+@media (max-width: 480px) {
+    .container {
+        width: min(var(--container), 100% - 24px);
+    }
+    .footer__socials {
+        gap: 12px;
+    }
+}
+
+/* Empilha (“um abaixo do outro”) só os campos de DADOS DO CLIENTE */
+.stack-client {
+    grid-template-columns: 1fr !important;
+}
+/* garante que inputs de data/hora ocupem 100% quando empilhados */
+.stack-client > * {
+    width: 100%;
+}
+.stack-client input,
+.stack-client select,
+.stack-client textarea {
+    width: 100%;
+}
