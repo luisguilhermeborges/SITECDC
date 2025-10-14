@@ -9,9 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/eventos.css" />
-
 </head>
 <body>
   <main class="container">
@@ -30,15 +27,6 @@
               <p>Clique em um dos cardápios abaixo para continuar.</p>
             </div>
           </div>
-
-          <div style="display:none">
-            <input id="input-pessoas" type="number" value="20" />
-            <select id="select-local">
-              <option value="interno" selected>Interno</option>
-              <option value="externo">Externo</option>
-            </select>
-          </div>
-
           <div class="menu-grid" id="menuGrid" role="radiogroup" aria-label="Seleção de cardápio"></div>
         </section>
 
@@ -52,52 +40,35 @@
           </div>
 
           <div class="adicionais-wrapper" id="adicionaisWrapper">
-            <div class="adicional-col">
-              <h4>Entradas</h4>
-              <div class="adicional-list" id="adicionais-entradas"></div>
             </div>
-            <div class="adicional-col">
-              <h4>Cortes Especiais</h4>
-              <div class="adicional-list" id="adicionais-cortes"></div>
-            </div>
-            <div class="adicional-col">
-              <h4>Acompanhamentos</h4>
-              <div class="adicional-list" id="adicionais-acomp"></div>
-            </div>
-            <div class="adicional-col">
-              <h4>Sobremesa</h4>
-              <div class="adicional-list" id="adicionais-sobremesa"></div>
-            </div>
-          </div>
 
           <div class="divider"></div>
 
           <div class="bebidas" id="bebidasBox">
             <h3>BEBIDAS</h3>
             <p class="hint">Todas as bebidas abaixo são <strong>sob consulta</strong>:</p>
-
             <div class="bebida-item">
               <label class="checkbox">
                 <input type="checkbox" data-bebida="combo_cerveja_refri_agua" />
-                <span><strong>Cerveja, refrigerante e água</strong> — preço sob consulta</span>
+                <span><strong>Cerveja, refrigerante e água</strong></span>
               </label>
             </div>
             <div class="bebida-item">
               <label class="checkbox">
                 <input type="checkbox" data-bebida="combo_chopp_refri_agua" />
-                <span><strong>Chopp, refrigerante e água</strong> — preço sob consulta</span>
+                <span><strong>Chopp, refrigerante e água</strong></span>
               </label>
             </div>
             <div class="bebida-item">
               <label class="checkbox">
                 <input type="checkbox" data-bebida="vinho" />
-                <span><strong>Vinho</strong> — preço sob consulta</span>
+                <span><strong>Vinho</strong></span>
               </label>
             </div>
             <div class="bebida-item">
               <label class="checkbox">
                 <input type="checkbox" data-bebida="destilados" />
-                <span><strong>Whisky, conhaque ou outro destilado</strong> — preço sob consulta</span>
+                <span><strong>Whisky, conhaque ou outro destilado</strong></span>
               </label>
             </div>
           </div>
@@ -154,7 +125,7 @@
                 <h4>Informações do evento</h4>
                 <label class="field">
                   <span>Data do evento</span>
-                  <input type="date" id="evt-data" required />
+                  <input type="text" id="evt-data" placeholder="dd/mm/aaaa" required />
                   <small class="field-error" id="err-evt-data"></small>
                 </label>
                 <label class="field">
@@ -162,15 +133,6 @@
                   <input type="time" id="evt-hora" required />
                   <small class="field-error" id="err-evt-hora"></small>
                 </label>
-
-                <label class="field">
-                  <span>Local</span>
-                  <select id="evt-local">
-                    <option value="interno" selected>Espaço Código da Carne</option>
-                    <option value="externo">Externo</option>
-                  </select>
-                </label>
-
                 <div id="evt-externo-box" class="externo-box" hidden>
                   <label class="field">
                     <span>Endereço</span>
@@ -201,7 +163,6 @@
             <div id="terms-box" class="terms-box">
               <div class="terms-loading">Carregando termos…</div>
             </div>
-
             <div class="terms-accept">
               <label class="checkbox pretty-check">
                 <input id="terms-accept" type="checkbox" disabled />
@@ -209,7 +170,6 @@
               </label>
               <small class="field-error" id="err-terms"></small>
             </div>
-
             <div class="final-buttons">
               <button class="btn btn-outline" id="btn-finalizar-email" disabled>Enviar por E-mail</button>
               <button class="btn btn-primary" id="btn-finalizar-wpp" disabled>Enviar por WhatsApp</button>
@@ -220,6 +180,21 @@
 
       <aside class="sidebar-col">
         <div class="summary-sticky">
+          <div class="sidebar-inputs pretty-form">
+            <h4>Configure seu evento</h4>
+            <label class="field">
+              <span>Nº de Pessoas</span>
+              <input id="input-pessoas" type="number" value="20" min="15" />
+            </label>
+            <label class="field">
+              <span>Local do Evento</span>
+              <select id="select-local">
+                <option value="interno" selected>Espaço Código da Carne</option>
+                <option value="externo">Externo (Seu local)</option>
+              </select>
+            </label>
+          </div>
+
           <div class="calc-summary">
             <h4>Resumo</h4>
             <div class="summary-row"><span id="resumo-menu">—</span></div>
@@ -227,7 +202,7 @@
             <div class="summary-row"><span>Bebidas</span><span id="resumo-bebidas">—</span></div>
             <div class="summary-row"><span>Pedido especial</span><span id="resumo-pedido">—</span></div>
             <div class="total-row"><span>Total estimado</span><span id="resumo-total">R$ 0,00</span></div>
-            <small id="aviso-minimo" style="color:#8a443f;font-weight:600"></small>
+            <small id="aviso-minimo"></small>
           </div>
 
           <div class="menu-itens-card" id="menu-itens-card" hidden>
@@ -236,7 +211,6 @@
           </div>
 
           <div class="sidebar-next" id="sidebar-next">
-            <button class="btn btn-outline btn-sidebar-back" id="btn-prev-sidebar" hidden>Voltar</button>
             <button class="btn btn-primary btn-sidebar-next" id="btn-next-sidebar">Ir para Adicionais</button>
           </div>
         </div>
