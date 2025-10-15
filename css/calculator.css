@@ -1,0 +1,100 @@
+/* css/calculator.css */
+
+.bbq-calculator {
+  background: var(--bg-soft);
+  border: 1px solid #e6e6e6;
+  border-radius: var(--radius);
+  padding: clamp(16px, 3vw, 24px);
+  margin-top: clamp(24px, 4vw, 40px);
+}
+
+.bbq-calculator h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.calc-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.calc-inputs .field {
+  margin-bottom: 0;
+}
+
+.calc-inputs input {
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+}
+
+.calc-inputs input:disabled {
+  background: #f0f0f0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+#calc-results {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+#calc-results h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--brand);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.result-item {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.result-item .label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.result-item .value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.calc-cta {
+  text-align: center;
+  margin-top: 24px;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 24px;
+}
+
+.calc-cta p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  text-transform: none;
+  font-size: 15px;
+}
+
+.calc-cta .btn-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
