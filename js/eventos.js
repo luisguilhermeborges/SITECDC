@@ -96,7 +96,7 @@ let resumoMenuEl, resumoItensEl, resumoBebidasEl, resumoPedidoEl, resumoTotalEl,
 let formFinaliza, evtDataEl, evtHoraEl, evtLocalEl, evtExternoBoxEl, evtEnderecoEl, evtResponsavelEl;
 let termsBoxEl, termsAcceptEl, errTermsEl, btnWpp, btnEmail;
 
-let btnNextSidebar, btnPrevSidebar;
+let btnNextSidebar, btnPrevSidebar, sidebarInputsEl;
 let currentStep = 1;
 let selectedMenuId = "HAMBURGADA";
 
@@ -106,7 +106,7 @@ window.__menuImgFallback = function (img, base) {
   const next = queue.shift();
   if (!next) {
     img.onerror = null;
-    img.src = MENU_IMG_PATH + "placeholder.png"; // coloque um placeholder.png em assets/cardapios/
+    img.src = MENU_IMG_PATH + "placeholder.png";
     return;
   }
   img.dataset.exts = queue.join(",");
@@ -115,7 +115,6 @@ window.__menuImgFallback = function (img, base) {
 
 function buildMenuImageHTML(imgBase, altText) {
   const base = `${MENU_IMG_PATH}${imgBase}`;
-  // tenta .webp primeiro; se falhar, cai no fallback controlado por __menuImgFallback
   return `
     <picture>
       <source srcset="${base}.webp" type="image/webp">
@@ -308,6 +307,13 @@ function buildResumoTextoParaEnvio() {
     linhasDados.push(`- Quem libera a entrada: ${evtResponsavelEl?.value || "—"}`);
   }
 
+  const checkNotaFiscal = document.getElementById("check-nota-fiscal");
+  const billingIdEl = document.getElementById("billing-id");
+  let notaFiscalInfo = "Não";
+  if (checkNotaFiscal?.checked) {
+    notaFiscalInfo = `Sim (Documento: ${billingIdEl?.value || "Não informado"})`;
+  }
+
   return [
     `Olá! Quero um orçamento de evento:`,
     ``,
@@ -329,8 +335,11 @@ function buildResumoTextoParaEnvio() {
     ``,
     `Contato:`,
     `- Nome: ${document.getElementById("cli-nome")?.value || "—"}`,
+    `- CPF: ${document.getElementById("cli-cpf")?.value || "—"}`,
     `- WhatsApp: ${document.getElementById("cli-whats")?.value || "—"}`,
     `- E-mail: ${document.getElementById("cli-email")?.value || "—"}`,
+    ``,
+    `Precisa de Nota Fiscal: ${notaFiscalInfo}`,
     ``,
     `Obrigado!`
   ].join("\n");
@@ -339,22 +348,41 @@ function buildResumoTextoParaEnvio() {
 function validarPasso3() {
   clearErrors();
   let ok = true;
-  if (!evtDataEl?.value) { setError(evtDataEl, document.getElementById("err-evt-data"), "Informe a data"); ok = false; }
-  if (!evtHoraEl?.value) { setError(evtHoraEl, document.getElementById("err-evt-hora"), "Informe a hora"); ok = false; }
 
   const cliNomeEl = document.getElementById("cli-nome");
-  const cliWhatsEl = document.getElementById("cli-whats");
-  const lgpdOkEl = document.getElementById("lgpd-ok");
-
   if (!cliNomeEl?.value?.trim()) { setError(cliNomeEl, document.getElementById("err-cli-nome"), "Seu nome"); ok = false; }
-  if (!cliWhatsEl?.value?.trim()) { cliWhatsEl?.classList.add("is-invalid"); ok = false; }
+  
+  const cliCpfEl = document.getElementById("cli-cpf");
+  if (!cliCpfEl?.value?.trim() || cliCpfEl.value.replace(/\D/g, '').length !== 11) { setError(cliCpfEl, document.getElementById("err-cli-cpf"), "CPF inválido"); ok = false; }
+
+  const cliWhatsEl = document.getElementById("cli-whats");
+  const whatsDigits = (cliWhatsEl?.value || "").replace(/\D/g, '');
+  if (whatsDigits.length < 10) { setError(cliWhatsEl, document.getElementById("err-cli-whats"), "WhatsApp inválido"); ok = false; }
+
+  const cliEmailEl = document.getElementById("cli-email");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (cliEmailEl?.value && !emailRegex.test(cliEmailEl.value)) { setError(cliEmailEl, document.getElementById("err-cli-email"), "E-mail inválido"); ok = false; }
+
+  if (!evtDataEl?.value) { setError(evtDataEl, document.getElementById("err-evt-data"), "Informe a data"); ok = false; }
+  if (!evtHoraEl?.value) { setError(evtHoraEl, document.getElementById("err-evt-hora"), "Informe a hora"); ok = false; }
+  
+  const lgpdOkEl = document.getElementById("lgpd-ok");
   if (!lgpdOkEl?.checked) { const el = document.getElementById("err-lgpd"); el && (el.textContent = "Autorize o contato para envio do orçamento."); ok = false; }
 
-  const isExterno = (evtLocalEl?.value || selectLocal?.value || "").toLowerCase() === "externo";
+  const isExterno = (selectLocal?.value || "").toLowerCase() === "externo";
   if (isExterno) {
     if (!evtEnderecoEl?.value?.trim()) { setError(evtEnderecoEl, document.getElementById("err-evt-endereco"), "Informe o endereço"); ok = false; }
     if (!evtResponsavelEl?.value?.trim()) { setError(evtResponsavelEl, document.getElementById("err-evt-responsavel"), "Informe quem libera a entrada"); ok = false; }
   }
+
+  const checkNotaFiscal = document.getElementById("check-nota-fiscal");
+  const billingIdEl = document.getElementById("billing-id");
+  const billingDigits = (billingIdEl?.value || "").replace(/\D/g, '');
+  if (checkNotaFiscal?.checked && (billingDigits.length !== 11 && billingDigits.length !== 14)) {
+    setError(billingIdEl, document.getElementById("err-billing-id"), "CPF/CNPJ de faturamento inválido");
+    ok = false;
+  }
+
   return ok;
 }
 
@@ -442,12 +470,18 @@ function goToStep(n) {
 
   const itensCard = document.getElementById("menu-itens-card");
   const sidebarNext = document.getElementById("sidebar-next");
-  const btnBack = document.getElementById("btn-prev-sidebar");
   const btnNext = document.getElementById("btn-next-sidebar");
 
+  if (sidebarInputsEl) sidebarInputsEl.hidden = (n >= 3);
   if (itensCard) itensCard.hidden = !(n >= 2);
   if (sidebarNext) sidebarNext.hidden = (n === 4);
-  if (btnBack) btnBack.hidden = (n === 1);
+  
+  if (btnPrevSidebar) {
+    btnPrevSidebar.hidden = (n === 1);
+    // Linha de depuração:
+    console.log(`Step ${n}: Setting btnPrevSidebar.hidden to ${btnPrevSidebar.hidden}`);
+  }
+
   if (btnNext) {
     btnNext.textContent =
       (n === 1) ? "Ir para Adicionais" :
@@ -461,7 +495,54 @@ function goToStep(n) {
   renderMenuItensSidebar();
 }
 
-function wirePedidosEspeciais() {
+function applyMask(el, maskFn) {
+  const handler = (e) => {
+    const pos = e.target.selectionStart;
+    const originalValue = e.target.value;
+    const newValue = maskFn(originalValue);
+    e.target.value = newValue;
+    const newPos = pos + (newValue.length - originalValue.length);
+    e.target.setSelectionRange(newPos, newPos);
+  };
+  el?.addEventListener("input", handler);
+}
+
+function wireMasksAndToggles() {
+  const dateMask = (v) => v.replace(/\D/g, '').slice(0, 8).replace(/(\d{2})(\d)/, '$1/$2').replace(/(\d{2})(\d)/, '$1/$2');
+  applyMask(document.getElementById("evt-data"), dateMask);
+  
+  const phoneMask = (v) => {
+    let r = v.replace(/\D/g, '').slice(0, 11);
+    if (r.length > 10) r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+    else if (r.length > 5) r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+    else if (r.length > 2) r = r.replace(/^(\d\d)(\d{0,5})/, '($1) $2');
+    else r = r.replace(/^(\d*)/, '($1');
+    return r;
+  };
+  applyMask(document.getElementById("cli-whats"), phoneMask);
+  
+  const cpfMask = (v) => v.replace(/\D/g, '').slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  applyMask(document.getElementById("cli-cpf"), cpfMask);
+
+  const cpfCnpjMask = (v) => {
+    let r = v.replace(/\D/g, '');
+    if (r.length <= 11) { // CPF
+      r = r.replace(/(\d{3})(\d)/, '$1.$2');
+      r = r.replace(/(\d{3})(\d)/, '$1.$2');
+      r = r.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    } else { // CNPJ
+      r = r.slice(0, 14).replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+    }
+    return r;
+  };
+  applyMask(document.getElementById("billing-id"), cpfCnpjMask);
+
+  const checkNotaFiscal = document.getElementById("check-nota-fiscal");
+  const billingBox = document.getElementById("billing-details-box");
+  checkNotaFiscal?.addEventListener("change", (e) => {
+    if (billingBox) billingBox.hidden = !e.target.checked;
+  });
+
   checkPedidoEspecial?.addEventListener("change", (e) => {
     if (pedidoEspecialBox) pedidoEspecialBox.hidden = !e.target.checked;
     updateResumo();
@@ -471,19 +552,19 @@ function wirePedidosEspeciais() {
 
 function wireCalc() {
   inputPessoas?.addEventListener("input", () => { updateResumo(); renderMenuItensSidebar(); renderAdicionaisFiltered(); });
-  selectLocal?.addEventListener("change", () => { updateResumo(); renderMenuItensSidebar(); renderAdicionaisFiltered(); });
+  selectLocal?.addEventListener("change", () => {
+    const isExterno = selectLocal.value === "externo";
+    if (evtExternoBoxEl) evtExternoBoxEl.hidden = !isExterno;
+    updateResumo();
+    renderMenuItensSidebar();
+    renderAdicionaisFiltered();
+  });
 
   adicionaisWrapperEl?.addEventListener("change", (e) => {
     if (e.target.matches?.('[data-adicional]')) updateResumo();
   });
   bebidasBoxEl?.addEventListener("change", (e) => {
     if (e.target.matches?.('[data-bebida]')) updateResumo();
-  });
-
-  // Explode de externo
-  evtLocalEl?.addEventListener("change", (e) => {
-    const isExterno = e.target.value === "externo";
-    if (evtExternoBoxEl) evtExternoBoxEl.hidden = !isExterno;
   });
 }
 
@@ -552,12 +633,13 @@ function EventosInit() {
 
   btnNextSidebar = document.getElementById("btn-next-sidebar");
   btnPrevSidebar = document.getElementById("btn-prev-sidebar");
+  sidebarInputsEl = document.getElementById("sidebar-inputs");
 
   renderMenuCardsOnlyImages();
   renderAdicionaisFiltered();
   renderMenuItensSidebar();
 
-  wirePedidosEspeciais();
+  wireMasksAndToggles();
   wireCalc();
   wireWizardNav();
   wireFinalizacao();
