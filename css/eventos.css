@@ -157,8 +157,7 @@ img, picture {
   position: relative;
 }
 .menu-card.img-only .img-wrap {
-  aspect-ratio: 5 / 9;
-  width: 91%;
+  aspect-ratio: 5 / 8
   overflow: hidden;
   background: transparent;
   display: grid;
@@ -265,7 +264,7 @@ img, picture {
   padding-left: 16px;
 }
 .sidebar-next {
-  margin-top: 12px;
+  /* margin-top: 12px; <-- LINHA REMOVIDA */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;

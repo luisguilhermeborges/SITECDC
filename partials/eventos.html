@@ -109,6 +109,12 @@
             <label class="field"><span>Nº de Pessoas</span><input id="input-pessoas" type="number" value="20" min="15" /></label>
             <label class="field"><span>Local do Evento</span><select id="select-local"><option value="interno" selected>Espaço Código da Carne</option><option value="externo">Externo (Seu local)</option></select></label>
           </div>
+          
+          <div class="sidebar-next" id="sidebar-next">
+            <button class="btn btn-outline btn-sidebar-back" id="btn-prev-sidebar" hidden>Voltar</button>
+            <button class="btn btn-primary btn-sidebar-next" id="btn-next-sidebar">Ir para Adicionais</button>
+          </div>
+
           <div class="calc-summary">
             <h4>Resumo</h4>
             <div class="summary-row"><span id="resumo-menu">—</span></div>
@@ -121,10 +127,6 @@
           <div class="menu-itens-card" id="menu-itens-card" hidden>
             <h4 id="menu-itens-title">Itens do cardápio</h4>
             <div id="menu-itens-content" class="menu-itens-content"></div>
-          </div>
-          <div class="sidebar-next" id="sidebar-next">
-            <button class="btn btn-outline btn-sidebar-back" id="btn-prev-sidebar" hidden>Voltar</button>
-            <button class="btn btn-primary btn-sidebar-next" id="btn-next-sidebar">Ir para Adicionais</button>
           </div>
         </div>
       </aside>
