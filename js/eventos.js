@@ -8,7 +8,7 @@ const MENUS = [
     id: "BRONZE",
     nome: "🥉 CARDÁPIO BRONZE",
     preco_por_pessoa: 119.90,
-    imgBase: "cardapio-bronze",
+    imgBase: "cardapio-bronze", // Procura por .webp e depois .jpg, etc.
     inclui: {
       "Entradas": ["Pão com linguiça", "Matambrito", "Batata frita"],
       "Cortes Especiais": ["Short Rib", "Maminha", "Bife Ancho ou Bife Chorizo"],
@@ -57,29 +57,29 @@ const MENUS = [
   }
 ];
 
-/* ====== ADICIONAIS ====== */
+/* ====== ADICIONAIS (com imagens .webp) ====== */
 const ADICIONAIS = [
-  { canon: "hamburguer", label: "Hambúrguer", categoria: "Entradas", tipo: "per_person", valor: 15.00, img: "hamburguer.jpg" },
-  { canon: "mandioca_frita", label: "Mandioca frita", categoria: "Entradas", tipo: "per_person", valor: 8.00, img: "mandioca-frita.jpg" },
-  { canon: "croquete_cupim", label: "Croquete de cupim", categoria: "Entradas", tipo: "per_person", valor: 8.00, img: "croquete-cupim.jpeg" },
-  { canon: "queijo_coalho_mel", label: "Queijo coalho com mel", categoria: "Entradas", tipo: "per_person", valor: 15.00, img: "queijo-coalho.jpg" },
-  { canon: "matambrito", label: "Matambrito de porco", categoria: "Entradas", tipo: "per_person", valor: 15.00, img: "matambrito.jpg" },
-  { canon: "batata_frita", label: "Batata frita", categoria: "Entradas", tipo: "per_person", valor: 8.00, img: "batata-frita.jpg" },
+  { canon: "hamburguer", label: "Hambúrguer", categoria: "Entradas", tipo: "per_person", valor: 15.00, img: "hamburguer.webp" },
+  { canon: "mandioca_frita", label: "Mandioca frita", categoria: "Entradas", tipo: "per_person", valor: 8.00, img: "mandioca-frita.webp" },
+  { canon: "croquete_cupim", label: "Croquete de cupim", categoria: "Entradas", tipo: "per_person", valor: 8.00, img: "croquete-cupim.webp" },
+  { canon: "queijo_coalho_mel", label: "Queijo coalho com mel", categoria: "Entradas", tipo: "per_person", valor: 15.00, img: "queijo-coalho.webp" },
+  { canon: "matambrito", label: "Matambrito de porco", categoria: "Entradas", tipo: "per_person", valor: 15.00, img: "matambrito.webp" },
+  { canon: "batata_frita", label: "Batata frita", categoria: "Entradas", tipo: "per_person", valor: 8.00, img: "batata-frita.webp" },
 
-  { canon: "bife_ancho_black_rub", label: "Bife Ancho com Black Rub", categoria: "Cortes Especiais", tipo: "per_person", valor: 35.00, img: "ancho-black-hub.jpeg" },
-  { canon: "picanha_la_majestad", label: "Picanha", categoria: "Cortes Especiais", tipo: "per_person", valor: 45.00, img: "picanha-la-majestad.jpg" },
-  { canon: "french_rack_cordeiro", label: "T-bone de cordeiro", categoria: "Cortes Especiais", tipo: "per_person", valor: 55.00, img: "french-rack.JPG" },
-  { canon: "corte_wagyu", label: "Corte Wagyu", categoria: "Cortes Especiais", tipo: "per_person", valor: 75.00, img: "wagyu.jpeg" },
+  { canon: "bife_ancho_black_rub", label: "Bife Ancho com Black Rub", categoria: "Cortes Especiais", tipo: "per_person", valor: 35.00, img: "ancho-black-hub.webp" },
+  { canon: "picanha_la_majestad", label: "Picanha", categoria: "Cortes Especiais", tipo: "per_person", valor: 45.00, img: "picanha-la-majestad.webp" },
+  { canon: "french_rack_cordeiro", label: "T-bone de cordeiro", categoria: "Cortes Especiais", tipo: "per_person", valor: 55.00, img: "french-rack.webp" },
+  { canon: "corte_wagyu", label: "Corte Wagyu", categoria: "Cortes Especiais", tipo: "per_person", valor: 75.00, img: "wagyu.webp" },
 
-  { canon: "arroz_biro_biro", label: "Arroz biro biro", categoria: "Acompanhamentos", tipo: "per_person", valor: 15.00, img: "arroz-birobiro.jpeg" },
-  { canon: "arroz_caldoso_costela", label: "Arroz caldoso de costela", categoria: "Acompanhamentos", tipo: "per_person", valor: 15.00, img: "arroz-caldoso.jpg" },
-  { canon: "salada_caesar", label: "Salada Caesar", categoria: "Acompanhamentos", tipo: "per_person", valor: 10.00, img: "salada-caesar.jpg" },
-  { canon: "mandioca_cremosa", label: "Mandioca cremosa", categoria: "Acompanhamentos", tipo: "per_person", valor: 8.00, img: "mandioca-cremosa.jpg" },
-  { canon: "legumes_grelhados", label: "Legumes grelhados", categoria: "Acompanhamentos", tipo: "per_person", valor: 8.00, img: "legumes-grelhados.JPG" },
+  { canon: "arroz_biro_biro", label: "Arroz biro biro", categoria: "Acompanhamentos", tipo: "per_person", valor: 15.00, img: "arroz-birobiro.webp" },
+  { canon: "arroz_caldoso_costela", label: "Arroz caldoso de costela", categoria: "Acompanhamentos", tipo: "per_person", valor: 15.00, img: "arroz-caldoso.webp" },
+  { canon: "salada_caesar", label: "Salada Caesar", categoria: "Acompanhamentos", tipo: "per_person", valor: 10.00, img: "salada-caesar.webp" },
+  { canon: "mandioca_cremosa", label: "Mandioca cremosa", categoria: "Acompanhamentos", tipo: "per_person", valor: 8.00, img: "mandioca-cremosa.webp" },
+  { canon: "legumes_grelhados", label: "Legumes grelhados", categoria: "Acompanhamentos", tipo: "per_person", valor: 8.00, img: "legumes-grelhados.webp" },
 
-  { canon: "panqueca_doce_leite", label: "Panqueca de doce de leite", categoria: "Sobremesa", tipo: "per_person", valor: 9.00, img: "panqueca-doce-de-leite.jpg" },
-  { canon: "sorvete", label: "Sorvete", categoria: "Sobremesa", tipo: "per_person", valor: 5.00, img: "sorvete.jpg" },
-  { canon: "abacaxi_grelhado", label: "Abacaxi na brasa", categoria: "Sobremesa", tipo: "per_person", valor: 5.00, img: "abacaxi.jpg" }
+  { canon: "panqueca_doce_leite", label: "Panqueca de doce de leite", categoria: "Sobremesa", tipo: "per_person", valor: 9.00, img: "panqueca-doce-de-leite.webp" },
+  { canon: "sorvete", label: "Sorvete", categoria: "Sobremesa", tipo: "per_person", valor: 5.00, img: "sorvete.webp" },
+  { canon: "abacaxi_grelhado", label: "Abacaxi na brasa", categoria: "Sobremesa", tipo: "per_person", valor: 5.00, img: "abacaxi.webp" }
 ];
 
 const formatBRL = (n) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -196,18 +196,18 @@ function renderAdicionaisFiltered() {
     if (included.has(norm(ad.label))) return;
     const el = makeAdicionalItem(ad);
     switch (ad.categoria) {
-      case "Entradas":         colEntradas.appendChild(el); break;
-      case "Cortes Especiais": colCortes.appendChild(el);   break;
-      case "Acompanhamentos":  colAcomp.appendChild(el);    break;
-      case "Sobremesa":        colSobrem.appendChild(el);   break;
-      default:                 colAcomp.appendChild(el);
+      case "Entradas": colEntradas.appendChild(el); break;
+      case "Cortes Especiais": colCortes.appendChild(el); break;
+      case "Acompanhamentos": colAcomp.appendChild(el); break;
+      case "Sobremesa": colSobrem.appendChild(el); break;
+      default: colAcomp.appendChild(el);
     }
   });
 
   if (!colEntradas.children.length) colEntradas.innerHTML = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
-  if (!colCortes.children.length)   colCortes.innerHTML   = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
-  if (!colAcomp.children.length)    colAcomp.innerHTML    = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
-  if (!colSobrem.children.length)   colSobrem.innerHTML   = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
+  if (!colCortes.children.length) colCortes.innerHTML = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
+  if (!colAcomp.children.length) colAcomp.innerHTML = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
+  if (!colSobrem.children.length) colSobrem.innerHTML = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
 }
 
 /* ====== Cálculos / Resumo ====== */
@@ -344,7 +344,7 @@ function validarPasso3() {
 
   const cliNomeEl = document.getElementById("cli-nome");
   const cliWhatsEl = document.getElementById("cli-whats");
-  const lgpdOkEl   = document.getElementById("lgpd-ok");
+  const lgpdOkEl = document.getElementById("lgpd-ok");
 
   if (!cliNomeEl?.value?.trim()) { setError(cliNomeEl, document.getElementById("err-cli-nome"), "Seu nome"); ok = false; }
   if (!cliWhatsEl?.value?.trim()) { cliWhatsEl?.classList.add("is-invalid"); ok = false; }
@@ -435,15 +435,15 @@ function loadTerms() {
 /* ====== Navegação do Wizard (com IDs corretos) ====== */
 function goToStep(n) {
   currentStep = n;
-  [1,2,3,4].forEach(i => {
+  [1, 2, 3, 4].forEach(i => {
     const sec = document.getElementById(`step-${i}`);
     if (sec) sec.hidden = (i !== n);
   });
 
-  const itensCard   = document.getElementById("menu-itens-card");
+  const itensCard = document.getElementById("menu-itens-card");
   const sidebarNext = document.getElementById("sidebar-next");
-  const btnBack     = document.getElementById("btn-prev-sidebar");
-  const btnNext     = document.getElementById("btn-next-sidebar");
+  const btnBack = document.getElementById("btn-prev-sidebar");
+  const btnNext = document.getElementById("btn-next-sidebar");
 
   if (itensCard) itensCard.hidden = !(n >= 2);
   if (sidebarNext) sidebarNext.hidden = (n === 4);
@@ -501,9 +501,9 @@ function wireFinalizacao() {
 
 function wireWizardNav() {
   btnNextSidebar?.addEventListener("click", () => {
-    if (currentStep === 1)       goToStep(2);
-    else if (currentStep === 2)  goToStep(3);
-    else if (currentStep === 3)  { if (validarPasso3()) goToStep(4); }
+    if (currentStep === 1) goToStep(2);
+    else if (currentStep === 2) goToStep(3);
+    else if (currentStep === 3) { if (validarPasso3()) goToStep(4); }
   });
 
   btnPrevSidebar?.addEventListener("click", () => {
@@ -517,38 +517,38 @@ function wireWizardNav() {
 function EventosInit() {
   menuGridEl = document.getElementById("menuGrid");
 
-  colEntradas         = document.getElementById("adicionais-entradas");
-  colCortes           = document.getElementById("adicionais-cortes");
-  colAcomp            = document.getElementById("adicionais-acomp");
-  colSobrem           = document.getElementById("adicionais-sobremesa");
+  colEntradas = document.getElementById("adicionais-entradas");
+  colCortes = document.getElementById("adicionais-cortes");
+  colAcomp = document.getElementById("adicionais-acomp");
+  colSobrem = document.getElementById("adicionais-sobremesa");
   adicionaisWrapperEl = document.getElementById("adicionaisWrapper");
-  bebidasBoxEl        = document.getElementById("bebidasBox");
+  bebidasBoxEl = document.getElementById("bebidasBox");
   checkPedidoEspecial = document.getElementById("check-pedido-especial");
-  pedidoEspecialBox   = document.getElementById("pedido-especial-box");
-  pedidoEspecialText  = document.getElementById("pedido-especial-text");
+  pedidoEspecialBox = document.getElementById("pedido-especial-box");
+  pedidoEspecialText = document.getElementById("pedido-especial-text");
 
-  inputPessoas   = document.getElementById("input-pessoas");
-  selectLocal    = document.getElementById("select-local");
-  resumoMenuEl   = document.getElementById("resumo-menu");
-  resumoItensEl  = document.getElementById("resumo-itens");
-  resumoBebidasEl= document.getElementById("resumo-bebidas");
+  inputPessoas = document.getElementById("input-pessoas");
+  selectLocal = document.getElementById("select-local");
+  resumoMenuEl = document.getElementById("resumo-menu");
+  resumoItensEl = document.getElementById("resumo-itens");
+  resumoBebidasEl = document.getElementById("resumo-bebidas");
   resumoPedidoEl = document.getElementById("resumo-pedido");
-  resumoTotalEl  = document.getElementById("resumo-total");
-  avisoMinimoEl  = document.getElementById("aviso-minimo");
+  resumoTotalEl = document.getElementById("resumo-total");
+  avisoMinimoEl = document.getElementById("aviso-minimo");
 
-  formFinaliza     = document.getElementById("finaliza-form");
-  evtDataEl        = document.getElementById("evt-data");
-  evtHoraEl        = document.getElementById("evt-hora");
-  evtLocalEl       = document.getElementById("evt-local");
-  evtExternoBoxEl  = document.getElementById("evt-externo-box");
-  evtEnderecoEl    = document.getElementById("evt-endereco");
+  formFinaliza = document.getElementById("finaliza-form");
+  evtDataEl = document.getElementById("evt-data");
+  evtHoraEl = document.getElementById("evt-hora");
+  evtLocalEl = document.getElementById("evt-local");
+  evtExternoBoxEl = document.getElementById("evt-externo-box");
+  evtEnderecoEl = document.getElementById("evt-endereco");
   evtResponsavelEl = document.getElementById("evt-responsavel");
 
-  termsBoxEl    = document.getElementById("terms-box");
+  termsBoxEl = document.getElementById("terms-box");
   termsAcceptEl = document.getElementById("terms-accept");
-  errTermsEl    = document.getElementById("err-terms");
-  btnWpp        = document.getElementById("btn-finalizar-wpp");
-  btnEmail      = document.getElementById("btn-finalizar-email");
+  errTermsEl = document.getElementById("err-terms");
+  btnWpp = document.getElementById("btn-finalizar-wpp");
+  btnEmail = document.getElementById("btn-finalizar-email");
 
   btnNextSidebar = document.getElementById("btn-next-sidebar");
   btnPrevSidebar = document.getElementById("btn-prev-sidebar");
