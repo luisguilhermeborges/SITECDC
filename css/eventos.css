@@ -98,12 +98,16 @@ img, picture {
   padding: 10px 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease, opacity .2s;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .2s, background-color .2s;
   text-align: center;
 }
 .btn:disabled {
-  opacity: .6;
+  background: #e0e0e0;
+  color: #a0a0a0;
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  border-color: transparent;
 }
 .btn:hover:not(:disabled) {
   transform: translateY(-1px);

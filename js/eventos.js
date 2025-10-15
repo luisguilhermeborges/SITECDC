@@ -477,9 +477,7 @@ function goToStep(n) {
   if (sidebarNext) sidebarNext.hidden = (n === 4);
   
   if (btnPrevSidebar) {
-    btnPrevSidebar.hidden = (n === 1);
-    // Linha de depuração:
-    console.log(`Step ${n}: Setting btnPrevSidebar.hidden to ${btnPrevSidebar.hidden}`);
+    btnPrevSidebar.disabled = (n === 1);
   }
 
   if (btnNext) {
