@@ -4,8 +4,9 @@ function CalculatorInit() {
   const adultsInput = document.getElementById('calc-adults');
   const childrenInput = document.getElementById('calc-children');
   const resultsDiv = document.getElementById('calc-results');
+  const ctaSection = document.getElementById('calc-cta-section');
 
-  if (!adultsInput || !childrenInput || !resultsDiv) {
+  if (!adultsInput || !childrenInput || !resultsDiv || !ctaSection) {
     return;
   }
 
@@ -15,6 +16,7 @@ function CalculatorInit() {
 
     if (adults === 0 && children === 0) {
       resultsDiv.innerHTML = '<h3>Preencha os campos para calcular</h3>';
+      ctaSection.style.display = 'none'; // Esconde a seção de CTA
       return;
     }
 
@@ -64,12 +66,14 @@ function CalculatorInit() {
         </div>
       </div>
     `;
+
+    ctaSection.style.display = 'block'; // Mostra a seção de CTA
   };
 
   adultsInput.addEventListener('input', calculateBbq);
   childrenInput.addEventListener('input', calculateBbq);
 
-  // Cálculo inicial
+  // Cálculo inicial na primeira carga
   calculateBbq();
 }
 

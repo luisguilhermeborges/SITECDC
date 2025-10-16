@@ -1,100 +1,185 @@
 /* css/calculator.css */
 
-.bbq-calculator {
-  background: var(--bg-soft);
-  border: 1px solid #e6e6e6;
-  border-radius: var(--radius);
-  padding: clamp(16px, 3vw, 24px);
-  margin-top: clamp(24px, 4vw, 40px);
-}
-
-.bbq-calculator h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.calc-inputs {
+.home-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
 }
 
-.calc-inputs .field {
-  margin-bottom: 0;
+.home-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.calc-inputs input {
-  font-size: 1.2em;
-  font-weight: 600;
+.calculator-widget {
+  position: sticky;
+  top: 12px;
+  background-color: #FFF7F5;
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 32px);
+  border: 1px solid #FDEAE6;
   text-align: center;
-  padding: 10px;
 }
 
-.calc-inputs input:disabled {
-  background: #f0f0f0;
-  cursor: not-allowed;
-  opacity: 0.7;
+.bbq-calculator-new {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.bbq-calculator-new h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: clamp(22px, 4vw, 32px);
+  color: #F26659;
+  text-transform: none;
+  margin-bottom: 24px;
+}
+
+.calc-fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 450px;
+  margin: 0 auto 24px auto;
+}
+
+.calc-field {
+  position: relative;
+  text-align: left;
+}
+
+.calc-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #D98C83;
+  text-transform: none;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.calc-field-inner {
+  position: relative;
+}
+
+.calc-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #F26659;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.calc-field input {
+  width: 100%;
+  padding: 12px 12px 12px 50px;
+  border-radius: 12px;
+  border: 2px solid #FADCD7;
+  background-color: transparent;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #555;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.calc-field input:focus {
+  border-color: #F26659;
+  box-shadow: 0 0 0 3px rgba(242, 102, 89, 0.2);
 }
 
 #calc-results {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 20px;
-  border: 1px solid #ddd;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px dashed #FADCD7;
 }
 
 #calc-results h3 {
   text-align: center;
-  margin-bottom: 16px;
-  color: var(--brand);
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #F26659;
+  text-transform: uppercase;
 }
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 0 auto;
 }
 
 .result-item {
-  background: #fafafa;
+  background: #fff;
   border-radius: 10px;
   padding: 12px;
   text-align: center;
-  border: 1px solid #eee;
+  border: 1px solid #FDEAE6;
 }
 
 .result-item .label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  color: #555;
+  color: #D98C83;
   text-transform: uppercase;
   margin-bottom: 4px;
 }
 
 .result-item .value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--brand);
+  color: #F26659;
 }
 
-.calc-cta {
-  text-align: center;
+#calc-cta-section {
   margin-top: 24px;
-  border-top: 1px solid #e6e6e6;
   padding-top: 24px;
+  border-top: 1px dashed #FADCD7;
 }
 
 .calc-cta p {
   margin-bottom: 16px;
   line-height: 1.6;
   text-transform: none;
-  font-size: 15px;
+  font-size: 14px;
+  color: #555;
 }
 
 .calc-cta .btn-group {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
+}
+
+.calc-cta .btn {
+  background: #F26659;
+  color: #fff;
+  border: 2px solid #F26659;
+  border-radius: 12px;
+}
+
+.calc-cta .btn:hover {
+  background: #e05a4f;
+  border-color: #e05a4f;
+}
+
+@media (max-width: 1024px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+  .calculator-widget {
+    position: static;
+  }
 }

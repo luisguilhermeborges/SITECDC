@@ -1,77 +1,82 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CÓDIGO DA CARNE</title>
+<section
+  class="carousel fullbleed"
+  role="region"
+  aria-roledescription="carrossel"
+  aria-label="Destaques"
+  data-carousel
+  data-autoplay="4500"
+>
+  <button class="carousel__arrow is-prev" aria-label="Slide anterior" data-dir="-1">‹</button>
+  <button class="carousel__arrow is-next" aria-label="Próximo slide" data-dir="1">›</button>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/eventos.css" />
-  <link rel="stylesheet" href="css/calculator.css" />
-
-  <link rel="icon" href="assets/favicon-32x32.png" />
-  <meta name="theme-color" content="#640404" />
-  <meta name="description" content="Da seleção ao corte perfeito. Eventos, Clube e Lojas do Código da Carne." />
-</head>
-
-<body>
-  <div class="topbar">
-    <div class="container topbar__wrap">
-      <a class="brand" href="#/home" aria-label="Código da Carne">
-        <img src="assets/logodeitadacdc.png" alt="Código da Carne" class="brand__logo-deitada" />
-      </a>
-      <a class="btn btn--onbeef" href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener">
-        <img src="assets/carrinho.png" alt="Carrinho" class="onbeef-logo" />
-      </a>
+  <div class="carousel__viewport">
+    <div class="carousel__track">
+      <a href="#/clube" class="carousel__slide" aria-label="Clube Código da Carne"></a>
+      <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener noreferrer" class="carousel__slide" aria-label="Nossos Produtos"></a>
+      <a href="#/eventos" class="carousel__slide" aria-label="Eventos e Churras"></a>
+      <a href="#/lojas" class="carousel__slide" aria-label="Lojas Código da Carne"></a>
     </div>
   </div>
 
-  <header class="header" role="banner">
-    <div class="container header__wrap">
-      <nav class="nav" aria-label="Principal">
-        <button id="navToggle" class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">&#9776;</button>
-        <ul id="menu" class="nav__list">
-          <li><a class="nav__link" href="#/home" data-link>HOME</a></li>
-          <li><a class="nav__link" href="#/eventos" data-link>EVENTOS</a></li>
-          <li><a class="nav__link" href="#/clube" data-link>CLUBE</a></li>
-          <li><a class="nav__link" href="#/lojas" data-link>LOJAS</a></li>
-          <li><a class="nav__link" href="#/quem-somos" data-link>QUEM SOMOS</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div class="carousel__dots" role="tablist" aria-label="Selecionar slide"></div>
+</section>
 
-  <main id="main-content" class="container" aria-live="polite" aria-busy="false"></main>
-
-  <footer class="footer">
-    <div class="container footer__wrap">
-      <p>DA SELEÇÃO AO CORTE PERFEITO, CUIDAMOS DE CADA DETALHE.</p>
-      <div class="footer__socials">
-        <a href="https://api.whatsapp.com/send?phone=55439918028" target="_blank" rel="noopener" aria-label="WhatsApp">WHATSAPP</a>
-        <a href="https://www.instagram.com/codigodacarne/" target="_blank" rel="noopener" aria-label="Instagram">INSTAGRAM</a>
-        <a href="https://www.facebook.com/codigodacarne" target="_blank" rel="noopener" aria-label="Facebook">FACEBOOK</a>
-        <a href="https://linkedin.com/codigodacarne" target="_blank" rel="noopener" aria-label="LinkedIn">LINKEDIN</a>
+<div class="home-layout">
+  <div class="home-main-content">
+    <section class="section">
+      <h1>SEJA BEM-VINDO</h1>
+      <p>DA SELEÇÃO AO CORTE PERFEITO, CUIDAMOS DE CADA DETALHE PARA QUE SUA EXPERIÊNCIA SEJA MEMORÁVEL.</p>
+    </section>
+    
+    <section class="section">
+      <h2 style="margin-bottom:10px;">ONDE ESTAMOS</h2>
+      <div class="mini-map" role="region" aria-label="Mapa das lojas Código da Carne em Londrina">
+        <iframe
+          src="http://googleusercontent.com/maps/google/0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-label="Mapa com as 3 lojas do Código da Carne"
+        ></iframe>
       </div>
-      <small>&copy; <span id="year"></span> CÓDIGO DA CARNE · TODOS OS DIREITOS RESERVADOS</small>
+    </section>
+  </div>
+
+  <aside class="home-sidebar">
+    <div class="calculator-widget">
+      <div class="bbq-calculator-new">
+        <h2>Calculadora de Churrasco</h2>
+        <div class="calc-fields-wrapper">
+          <div class="calc-field">
+            <label for="calc-adults">Adultos</label>
+            <div class="calc-field-inner">
+              <span class="calc-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              <input id="calc-adults" type="number" value="10" min="0" />
+            </div>
+          </div>
+          <div class="calc-field">
+            <label for="calc-children">Crianças</label>
+            <div class="calc-field-inner">
+              <span class="calc-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </span>
+              <input id="calc-children" type="number" value="0" min="0" />
+            </div>
+          </div>
+        </div>
+        <div id="calc-results"></div>
+      </div>
+      <div id="calc-cta-section" style="display: none;">
+        <div class="calc-cta">
+          <p>Gostou da sugestão? Compre os melhores cortes em nossa loja online ou solicite um orçamento para seu evento.</p>
+          <div class="btn-group">
+            <a class="btn" href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener">Acessar Loja Online</a>
+            <a class="btn" href="#/eventos">Solicitar Orçamento de Evento</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
-
-  <a
-    class="whatsapp-fab"
-    href="https://api.whatsapp.com/send?phone=55439918028&text=Ol%C3%A1%20C%C3%93DIGO%20DA%20CARNE%2C%20gostaria%20de%20um%20or%C3%A7amento."
-    target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <img src="assets/whatsapp.png" alt="">
-  </a>
-
-  <script src="js/app.js"></script>
-  <script src="js/carousel.js" defer></script>
-  <script src="js/calculator.js" defer></script>
-
-  <script>
-    // atualiza o ano no footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+  </aside>
+</div>
