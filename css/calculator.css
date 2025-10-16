@@ -1,185 +1,98 @@
 /* css/calculator.css */
 
-.home-layout {
+/* Remove o layout antigo */
+.home-layout { display: block; }
+.home-sidebar { display: none; } /* Esconde o sidebar antigo, pois o conteúdo foi movido */
+
+/* Novo layout para a seção da calculadora */
+.calculator-section-layout {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
   gap: 24px;
+  align-items: center;
 }
 
-.home-main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.calculator-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.calculator-widget {
-  position: sticky;
-  top: 12px;
-  background-color: #FFF7F5;
-  border-radius: 16px;
-  padding: clamp(24px, 4vw, 32px);
-  border: 1px solid #FDEAE6;
+.bbq-calculator .calc-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.bbq-calculator .calc-inputs input {
   text-align: center;
 }
 
-.bbq-calculator-new {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-}
-
-.bbq-calculator-new h2 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: clamp(22px, 4vw, 32px);
-  color: #F26659;
-  text-transform: none;
-  margin-bottom: 24px;
-}
-
-.calc-fields-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 450px;
-  margin: 0 auto 24px auto;
-}
-
-.calc-field {
-  position: relative;
-  text-align: left;
-}
-
-.calc-field label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #D98C83;
-  text-transform: none;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.calc-field-inner {
-  position: relative;
-}
-
-.calc-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #F26659;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.calc-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.calc-field input {
-  width: 100%;
-  padding: 12px 12px 12px 50px;
-  border-radius: 12px;
-  border: 2px solid #FADCD7;
-  background-color: transparent;
-  outline: none;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1em;
-  font-weight: 500;
-  color: #555;
-  transition: border-color .2s, box-shadow .2s;
-}
-
-.calc-field input:focus {
-  border-color: #F26659;
-  box-shadow: 0 0 0 3px rgba(242, 102, 89, 0.2);
-}
-
 #calc-results {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px dashed #FADCD7;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--line);
 }
 
 #calc-results h3 {
   text-align: center;
-  margin: 0 0 16px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #F26659;
-  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--brand);
 }
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 12px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
 }
 
 .result-item {
-  background: #fff;
+  background: #fafafa;
   border-radius: 10px;
   padding: 12px;
   text-align: center;
-  border: 1px solid #FDEAE6;
+  border: 1px solid #eee;
 }
 
 .result-item .label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  color: #D98C83;
-  text-transform: uppercase;
+  color: #555;
   margin-bottom: 4px;
 }
 
 .result-item .value {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: #F26659;
+  color: var(--brand);
 }
 
 #calc-cta-section {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px dashed #FADCD7;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--line);
+  text-align: center;
 }
 
-.calc-cta p {
-  margin-bottom: 16px;
-  line-height: 1.6;
+#calc-cta-section p {
   text-transform: none;
   font-size: 14px;
-  color: #555;
+  margin-bottom: 16px;
 }
 
-.calc-cta .btn-group {
+#calc-cta-section .btn-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 10px;
 }
 
-.calc-cta .btn {
-  background: #F26659;
-  color: #fff;
-  border: 2px solid #F26659;
-  border-radius: 12px;
-}
-
-.calc-cta .btn:hover {
-  background: #e05a4f;
-  border-color: #e05a4f;
-}
-
+/* Responsividade */
 @media (max-width: 1024px) {
-  .home-layout {
-    grid-template-columns: 1fr;
-  }
-  .calculator-widget {
-    position: static;
+  .calculator-section-layout {
+    grid-template-columns: 1fr; /* Empilha em telas menores */
+    gap: 16px;
   }
 }
