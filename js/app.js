@@ -24,24 +24,19 @@ function afterPartialInjected(path) {
   // Sobe a página para o topo (UX)
   if ("scrollTo" in window) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
-  const initIfNeeded = (initFn) => {
+  // === INICIALIZAÇÃO ESPECÍFICA: EVENTOS ===
+  if (path === "/eventos") {
+    // Garante que o DOM da parcial já está pintado antes de inicializar
     requestAnimationFrame(() => {
-      if (typeof initFn === "function") {
-        initFn();
+      if (typeof window.EventosInit === "function") {
+        window.EventosInit();
       } else {
+        // Se o JS ainda não carregou, tenta mais uma vez no próximo frame
         requestAnimationFrame(() => {
-          if (typeof initFn === "function") initFn();
+          if (typeof window.EventosInit === "function") window.EventosInit();
         });
       }
     });
-  };
-
-  if (path === "/home") {
-    initIfNeeded(window.CalculatorInit);
-  }
-  
-  if (path === "/eventos") {
-    initIfNeeded(window.EventosInit);
   }
 }
 
@@ -52,10 +47,14 @@ async function loadPartial(path) {
     const res = await fetch(url, { cache: "no-store" });
     const html = await res.text();
 
+    // Injeta a parcial
     main.innerHTML = html;
-    setActiveLink(path);
-    afterPartialInjected(path);
 
+    // Marca link ativo
+    setActiveLink(path);
+
+    // Dispara inicialização específica da rota
+    afterPartialInjected(path);
   } catch (e) {
     console.error("Erro ao carregar parcial:", e);
     main.innerHTML = `
@@ -76,9 +75,11 @@ function getPathFromHash() {
 window.addEventListener("hashchange", () => loadPartial(getPathFromHash()));
 
 window.addEventListener("load", () => {
+  // Ano no rodapé
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
+  // Menu mobile
   if (navToggle && menu) {
     navToggle.addEventListener("click", () => {
       const open = menu.classList.toggle("is-open");
@@ -92,10 +93,12 @@ window.addEventListener("load", () => {
     });
   }
 
+  // Navegação inicial
   if (!location.hash) location.hash = "/home";
   loadPartial(getPathFromHash());
 });
 
+// Intercepta cliques em links data-link que não usam #/rota
 document.addEventListener("click", (e) => {
   const a = e.target.closest("a[data-link]");
   if (!a) return;
