@@ -37,7 +37,25 @@ body {
     flex-direction: column;
     min-height: 100dvh;
     padding-top: env(safe-area-inset-top, 0px);
+    position: relative;
+    z-index: 1;
 }
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/backgroundpincel.png');
+    background-size: 400px auto;
+    background-repeat: repeat;
+    opacity: 0.03;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .container {
     width: min(var(--container), 100% - 32px);
     margin-inline: auto;
@@ -82,7 +100,7 @@ p {
     justify-content: center;
     gap: 8px;
     padding: 10px 14px;
-    border-radius: 10px; /* Alterado de 999px para 10px */
+    border-radius: 10px;
     text-decoration: none;
     color: var(--text-alt);
     background: #fff;
@@ -243,7 +261,7 @@ main {
     display: block;
     padding-top: 0;
     padding-bottom: clamp(24px, 4vw, 40px);
-    background: var(--bg);
+    background: transparent; /* Alterado para transparente para o fundo do body aparecer */
 }
 .footer {
     background: var(--header);
@@ -495,6 +513,39 @@ main {
     .mini-map {
         height: 240px;
     }
+}
+
+/* ------------------ Store Card with Background Image ------------------ */
+.card.store-card {
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px; /* Garante uma altura mínima */
+}
+
+.card.store-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: -1;
+    border-radius: var(--radius);
+}
+
+.card.store-card h3,
+.card.store-card p,
+.card.store-card ul,
+.card.store-card li {
+    color: #fff !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.card.store-card .btn {
+  margin-top: auto; /* Alinha o botão na parte de baixo */
 }
 
 /* ------------------ Responsivo ------------------ */
