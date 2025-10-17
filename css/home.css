@@ -83,7 +83,62 @@
   margin-bottom: 20px;
 }
 
-/* Responsividade para as novas seções */
+/* --- NOVOS ESTILOS --- */
+
+/* Seção de Diferenciais */
+.differentials-section {
+  text-align: center;
+}
+
+.differential-item {
+  text-align: center;
+}
+
+.differential-item .icon {
+  font-size: 48px;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+
+.differential-item h3 {
+  font-size: 18px;
+}
+
+.differential-item p {
+  text-transform: none;
+  font-size: var(--fz);
+}
+
+/* Seção de Depoimentos */
+.testimonials-section {
+  background-color: var(--bg-soft);
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid #eee;
+}
+
+.testimonial-card .quote {
+  font-style: italic;
+  text-transform: none;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.testimonial-card .author {
+  font-weight: 700;
+  color: var(--brand);
+}
+
+
+/* Responsividade */
 @media (max-width: 768px) {
   .home-about-section {
     grid-template-columns: 1fr; /* Empilha a imagem e o texto */
