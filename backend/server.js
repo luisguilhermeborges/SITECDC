@@ -32,6 +32,7 @@ if (!ASAAS_API_KEY || !ASAAS_API_URL) {
 console.log(`Usando API Asaas em: ${ASAAS_API_URL}`);
 
 // --- Endpoint para criar a assinatura ---
+// VERIFIQUE AQUI: O caminho '/api/criar-assinatura' está correto
 app.post('/api/criar-assinatura', async (req, res) => {
   const { planoId, valor, cliente } = req.body;
   const clientIp = req.ip; // Obtém o IP do cliente
