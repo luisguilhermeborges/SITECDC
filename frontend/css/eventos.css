@@ -103,7 +103,7 @@ img, picture {
 }
 .btn:disabled {
   background: #e0e0e0;
-  color: #a0a0a0;
+  color: #a0a0e0;
   cursor: not-allowed;
   box-shadow: none;
   transform: none;
@@ -492,13 +492,18 @@ details[open] .adicional-col h4::after {
   transition: border-color .2s, box-shadow .2s, background-color .2s;
   font-family: "Poppins", sans-serif;
 }
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
+
+/* === INÍCIO DA ALTERAÇÃO DE ACESSIBILIDADE (FOCO) === */
+/* Substituído :focus por :focus-visible */
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
   border-color: var(--brand);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand), transparent 75%);
   background-color: #fff;
 }
+/* === FIM DA ALTERAÇÃO DE ACESSIBILIDADE (FOCO) === */
+
 .pretty-check {
   display: flex;
   align-items: center;
@@ -555,4 +560,5 @@ details[open] .adicional-col h4::after {
   font-weight: 600;
   display: block;
   margin-top: 4px;
+}
 }

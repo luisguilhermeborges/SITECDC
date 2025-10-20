@@ -53,6 +53,33 @@ async function loadPartial(path) {
     setActiveLink(path);
     afterPartialInjected(path);
 
+    // === INÍCIO DA ALTERAÇÃO DE SEO ===
+    // Atualiza o título e a meta descrição da página dinamicamente
+    const metaDescriptionEl = document.querySelector('meta[name="description"]');
+    
+    switch (path) {
+      case "/eventos":
+        document.title = "Eventos e Churrascos - Código da Carne";
+        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Realize o seu evento connosco. Escolha cardápios completos de churrasco, personalize com adicionais e peça um orçamento.");
+        break;
+      case "/lojas":
+        document.title = "Nossas Lojas em Londrina - Código da Carne";
+        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Encontre a loja Código da Carne mais próxima de si. Veja os endereços e horários das nossas 3 lojas em Londrina.");
+        break;
+      case "/quem-somos":
+        document.title = "Quem Somos - Código da Carne";
+        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Conheça a história da Código da Carne, fundada em 2015 pelos irmãos Gabriel e Gustavo Galindo.");
+        break;
+      case "/clube":
+        document.title = "Clube Código - Código da Carne";
+        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Em breve! Benefícios exclusivos para membros do Clube Código.");
+        break;
+      default: // /home
+        document.title = "Código da Carne - Da seleção ao corte perfeito";
+        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Da seleção ao corte perfeito. Eventos, Clube e Lojas do Código da Carne em Londrina.");
+    }
+    // === FIM DA ALTERAÇÃO DE SEO ===
+
   } catch (e) {
     console.error("Erro ao carregar parcial:", e);
     main.innerHTML = `

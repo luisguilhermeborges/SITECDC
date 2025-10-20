@@ -69,18 +69,18 @@
               <div class="form-grid">
                 <div class="form-col">
                   <h4>Contato</h4>
-                  <label class="field"><span>Nome</span><input type="text" id="cli-nome" required /><small class="field-error" id="err-cli-nome"></small></label>
-                  <label class="field"><span>CPF</span><input type="tel" id="cli-cpf" placeholder="000.000.000-00" required /><small class="field-error" id="err-cli-cpf"></small></label>
-                  <label class="field"><span>WhatsApp</span><input type="tel" id="cli-whats" placeholder="(DDD) 9xxxx-xxxx" required /><small class="field-error" id="err-cli-whats"></small></label>
-                  <label class="field"><span>E-mail</span><input type="email" id="cli-email" placeholder="voce@exemplo.com" /><small class="field-error" id="err-cli-email"></small></label>
+                  <label class="field" for="cli-nome"><span>Nome</span><input type="text" id="cli-nome" required /><small class="field-error" id="err-cli-nome"></small></label>
+                  <label class="field" for="cli-cpf"><span>CPF</span><input type="tel" id="cli-cpf" placeholder="000.000.000-00" required /><small class="field-error" id="err-cli-cpf"></small></label>
+                  <label class="field" for="cli-whats"><span>WhatsApp</span><input type="tel" id="cli-whats" placeholder="(DDD) 9xxxx-xxxx" required /><small class="field-error" id="err-cli-whats"></small></label>
+                  <label class="field" for="cli-email"><span>E-mail</span><input type="email" id="cli-email" placeholder="voce@exemplo.com" /><small class="field-error" id="err-cli-email"></small></label>
                 </div>
                 <div class="form-col">
                   <h4>Informações do evento</h4>
-                  <label class="field"><span>Data do evento</span><input type="tel" id="evt-data" placeholder="dd/mm/aaaa" required /><small class="field-error" id="err-evt-data"></small></label>
-                  <label class="field"><span>Início (hora)</span><input type="time" id="evt-hora" required /><small class="field-error" id="err-evt-hora"></small></label>
+                  <label class="field" for="evt-data"><span>Data do evento</span><input type="tel" id="evt-data" placeholder="dd/mm/aaaa" required /><small class="field-error" id="err-evt-data"></small></label>
+                  <label class="field" for="evt-hora"><span>Início (hora)</span><input type="time" id="evt-hora" required /><small class="field-error" id="err-evt-hora"></small></label>
                   <div id="evt-externo-box" class="externo-box" hidden>
-                    <label class="field"><span>Endereço</span><input type="text" id="evt-endereco" placeholder="Rua, nº, bairro, cidade" /><small class="field-error" id="err-evt-endereco"></small></label>
-                    <label class="field"><span>Quem libera a entrada</span><input type="text" id="evt-responsavel" placeholder="Nome da pessoa responsável" /><small class="field-error" id="err-evt-responsavel"></small></label>
+                    <label class="field" for="evt-endereco"><span>Endereço</span><input type="text" id="evt-endereco" placeholder="Rua, nº, bairro, cidade" /><small class="field-error" id="err-evt-endereco"></small></label>
+                    <label class="field" for="evt-responsavel"><span>Quem libera a entrada</span><input type="text" id="evt-responsavel" placeholder="Nome da pessoa responsável" /><small class="field-error" id="err-evt-responsavel"></small></label>
                   </div>
                 </div>
               </div>
@@ -94,10 +94,10 @@
               <h4>Dados Fiscais</h4>
               <label class="checkbox pretty-check"><input type="checkbox" id="check-nota-fiscal" /><span>Precisa de Nota Fiscal?</span></label>
               <div id="billing-details-box" class="billing-box" hidden>
-                <label class="field"><span>CPF ou CNPJ para Faturamento</span><input type="tel" id="billing-id" placeholder="Informe o documento" /><small class="field-error" id="err-billing-id"></small></label>
+                <label class="field" for="billing-id"><span>CPF ou CNPJ para Faturamento</span><input type="tel" id="billing-id" placeholder="Informe o documento" /><small class="field-error" id="err-billing-id"></small></label>
               </div>
             </div>
-          </form>
+            </form>
         </section>
 
         <section class="step" id="step-4" hidden>
@@ -124,8 +124,8 @@
           
           <div class="sidebar-inputs pretty-form" id="sidebar-inputs">
             <h4>Configure seu evento</h4>
-            <label class="field"><span>Nº de Pessoas</span><input id="input-pessoas" type="number" value="20" min="15" /></label>
-            <label class="field"><span>Local do Evento</span><select id="select-local"><option value="interno" selected>Espaço Código da Carne</option><option value="externo">Externo (Seu local)</option></select></label>
+            <label class="field" for="input-pessoas"><span>Nº de Pessoas</span><input id="input-pessoas" type="number" value="20" min="15" /></label>
+            <label class="field" for="select-local"><span>Local do Evento</span><select id="select-local"><option value="interno" selected>Espaço Código da Carne</option><option value="externo">Externo (Seu local)</option></select></label>
           </div>
 
           <div class="calc-summary">

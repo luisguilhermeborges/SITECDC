@@ -604,3 +604,28 @@ main {
 .stack-client textarea {
     width: 100%;
 }
+
+
+/* === INÍCIO DA ADIÇÃO DE ACESSIBILIDADE (FOCO VISÍVEL) === */
+/* Este bloco foi adicionado ao final do ficheiro */
+
+/* Estilo de foco para botões, links de navegação e FAB do WhatsApp */
+.btn:focus-visible,
+.nav__link:focus-visible,
+.whatsapp-fab:focus-visible {
+  outline: 3px solid var(--topbar); /* Usa a cor da marca */
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(100, 4, 4, 0.3);
+}
+
+/* Estilo de foco para checkboxes e radios customizados */
+.checkbox input[type="checkbox"]:focus-visible + span,
+.checkbox input[type="radio"]:focus-visible + span,
+.menu-card input[type="radio"]:focus-visible + .card-figure {
+  outline: 3px solid var(--topbar);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(100, 4, 4, 0.3);
+  border-radius: 4px; /* Ajuda a suavizar o contorno */
+}
+
+/* === FIM DA ADIÇÃO DE ACESSIBILIDADE === */
