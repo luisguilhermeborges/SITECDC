@@ -137,6 +137,44 @@
   color: var(--brand);
 }
 
+/* --- CARROSSEL DE PARCEIROS --- */
+.partners-section {
+  text-align: center;
+  padding: 32px 0;
+  overflow: hidden;
+}
+
+.partner-carousel {
+  display: flex;
+  width: max-content;
+  animation: scroll 60s linear infinite;
+}
+
+.partner-carousel:hover {
+  animation-play-state: paused;
+}
+
+.partner-carousel img {
+  height: 80px;
+  width: auto;
+  margin: 0 40px;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.partner-carousel img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
