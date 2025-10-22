@@ -1,17 +1,19 @@
-// Dentro de frontend/js/app.js
+// js/app.js
 
 const routes = {
   "/home": "partials/home.html",
   "/eventos": "partials/eventos.html",
-  "/clube": "partials/clube.html",
+  "/clube": "partials/clube.html", // Rota existente
   "/lojas": "partials/lojas.html",
   "/quem-somos": "partials/quem-somos.html"
+  // Adicione outras rotas aqui se necessário
 };
 
 const main = document.getElementById("main-content");
 const menu = document.getElementById("menu");
 const navToggle = document.getElementById("navToggle");
 
+// Marca o link de navegação ativo
 function setActiveLink(path) {
   document.querySelectorAll(".nav__link").forEach(a => {
     a.classList.toggle("is-active", a.getAttribute("href") === `#${path}`);
@@ -19,139 +21,196 @@ function setActiveLink(path) {
 }
 
 /**
- * Hook de inicialização por rota.
- * Aqui chamamos a lógica específica logo após injetar a parcial no DOM.
+ * Função chamada após o carregamento do conteúdo HTML de uma rota (parcial).
+ * Responsável por chamar funções de inicialização específicas de cada página.
  */
 function afterPartialInjected(path) {
-  // Sobe a página para o topo (UX)
+  // Sobe a página para o topo para melhor experiência do usuário
   if ("scrollTo" in window) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
+  // Função auxiliar para chamar inicializadores de forma segura
   const initIfNeeded = (initFn, fnName) => {
-    // Tenta executar a função DEPOIS que o navegador processar a injeção do HTML
+    // Usa requestAnimationFrame para garantir que o navegador processou o HTML injetado
     requestAnimationFrame(() => {
       if (typeof initFn === "function") {
-        console.log(`[app.js] Executando ${fnName}...`);
+        console.log(`[app.js] Executando inicializador: ${fnName}...`);
         try {
-            initFn();
-        } catch(e) {
-            console.error(`[app.js] Erro ao executar ${fnName}:`, e);
+          initFn(); // Chama a função de inicialização (ex: window.EventosInit, window.inicializarClube)
+        } catch (e) {
+          console.error(`[app.js] Erro ao executar ${fnName} para ${path}:`, e);
         }
       } else {
-         console.error(`[app.js] Falha ao encontrar a função de inicialização ${fnName} para ${path}.`);
+        console.warn(`[app.js] Função de inicialização ${fnName} não encontrada para ${path}. Verifique se o script correspondente foi carregado.`);
       }
     });
   };
 
-  // Lógica de inicialização para a página de eventos
+  // --- Lógica de inicialização por rota ---
   if (path === "/eventos") {
-    initIfNeeded(window.EventosInit, 'EventosInit'); 
-  }
-
-  // === LÓGICA CORRETA PARA O CLUBE ===
-  if (path === "/clube") {
-    // Chama a função inicializarClube que foi definida globalmente em clube.html
+    // Chama a função definida em eventos.js
+    initIfNeeded(window.EventosInit, 'EventosInit');
+  } else if (path === "/clube") {
+    // Chama a função definida em clube.js
     initIfNeeded(window.inicializarClube, 'inicializarClube');
   }
-   // === FIM DA ALTERAÇÃO ===
+  // Adicione outras inicializações para diferentes rotas aqui (ex: /lojas, /quem-somos)
+  // else if (path === "/lojas") {
+  //   initIfNeeded(window.inicializarLojas, 'inicializarLojas');
+  // }
 }
 
+// Carrega o conteúdo HTML da rota especificada
 async function loadPartial(path) {
+  // Define a URL do arquivo HTML a ser carregado (ou usa /home como padrão)
   const url = routes[path] || routes["/home"];
-  main.setAttribute("aria-busy", "true");
+  const finalPath = routes[path] ? path : "/home"; // Garante que o path correto seja usado
+
+  // Marca a área de conteúdo como "ocupada" para acessibilidade
+  if (main) main.setAttribute("aria-busy", "true");
+
   try {
-    // O frontend DEVE estar rodando num servidor web para este fetch funcionar
-    const res = await fetch(url, { cache: "no-store" }); 
-    if (!res.ok) { // Verifica se o fetch foi bem sucedido
-        throw new Error(`Erro ${res.status} ao carregar ${url}`);
+    // Busca o conteúdo do arquivo HTML (cache desabilitado para garantir a versão mais recente)
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Erro ${res.status} ao carregar ${url}`);
     }
     const html = await res.text();
 
-    main.innerHTML = html; // INJETAR HTML PRIMEIRO (isso executa o <script> em clube.html)
-    setActiveLink(path);
-    
-    // CHAMA A FUNÇÃO DE INICIALIZAÇÃO DEPOIS DE INJETAR
-    afterPartialInjected(path); 
+    // Insere o HTML carregado na área principal da página
+    if (main) main.innerHTML = html;
 
-    // Atualiza o título e a meta descrição da página dinamicamente (SEO)
+    // Marca o link de navegação correspondente como ativo
+    setActiveLink(finalPath);
+
+    // Chama a função para executar scripts de inicialização específicos da página carregada
+    afterPartialInjected(finalPath);
+
+    // --- Atualização dinâmica do Título da Página e Meta Descrição (SEO) ---
     const metaDescriptionEl = document.querySelector('meta[name="description"]');
-    switch (path) {
+    let pageTitle = "Código da Carne - Da seleção ao corte perfeito";
+    let pageDescription = "Da seleção ao corte perfeito. Eventos, Clube e Lojas do Código da Carne em Londrina.";
+
+    switch (finalPath) {
       case "/eventos":
-        document.title = "Eventos e Churrascos - Código da Carne";
-        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Realize o seu evento connosco. Escolha cardápios completos de churrasco, personalize com adicionais e peça um orçamento.");
+        pageTitle = "Eventos e Churrascos - Código da Carne";
+        pageDescription = "Realize o seu evento connosco. Escolha cardápios completos de churrasco, personalize com adicionais e peça um orçamento.";
         break;
       case "/lojas":
-        document.title = "Nossas Lojas em Londrina - Código da Carne";
-        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Encontre a loja Código da Carne mais próxima de si. Veja os endereços e horários das nossas 3 lojas em Londrina.");
+        pageTitle = "Nossas Lojas em Londrina - Código da Carne";
+        pageDescription = "Encontre a loja Código da Carne mais próxima de si. Veja os endereços e horários das nossas 3 lojas em Londrina.";
         break;
       case "/quem-somos":
-        document.title = "Quem Somos - Código da Carne";
-        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Conheça a história da Código da Carne, fundada em 2015 pelos irmãos Gabriel e Gustavo Galindo.");
+        pageTitle = "Quem Somos - Código da Carne";
+        pageDescription = "Conheça a história da Código da Carne, fundada em 2015 pelos irmãos Gabriel e Gustavo Galindo.";
         break;
       case "/clube":
-        document.title = "Clube Código - Código da Carne";
-        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Escolha seu plano Bronze, Prata ou Ouro e receba mensalmente uma seleção exclusiva dos melhores cortes.");
+        pageTitle = "Clube Código - Código da Carne";
+        pageDescription = "Escolha seu plano Bronze, Prata ou Ouro e receba mensalmente uma seleção exclusiva dos melhores cortes.";
         break;
-      default: // /home
-        document.title = "Código da Carne - Da seleção ao corte perfeito";
-        if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Da seleção ao corte perfeito. Eventos, Clube e Lojas do Código da Carne em Londrina.");
     }
+    document.title = pageTitle;
+    if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", pageDescription);
 
   } catch (e) {
-    console.error("Erro ao carregar parcial:", e);
-    main.innerHTML = `
-      <section class="section">
-        <h2>ERRO AO CARREGAR A PÁGINA</h2>
-        <p>Tente novamente mais tarde ou contacte o suporte.</p>
-        <p><small>${e.message}</small></p>
-      </section>`;
+    console.error("[app.js] Erro ao carregar parcial:", e);
+    // Mostra uma mensagem de erro na página caso o carregamento falhe
+    if (main) {
+        main.innerHTML = `
+          <section class="section error-page">
+            <h2>ERRO AO CARREGAR A PÁGINA</h2>
+            <p>Não foi possível carregar o conteúdo solicitado. Por favor, tente atualizar a página ou volte mais tarde.</p>
+            <p><a class="btn btn-primary" href="#/home">Voltar para Home</a></p>
+            <details>
+              <summary>Detalhes do erro</summary>
+              <pre>${e.message}\n${e.stack || ''}</pre>
+            </details>
+          </section>`;
+    }
+    // Define um título genérico em caso de erro
+    document.title = "Erro - Código da Carne";
+    const metaDescriptionEl = document.querySelector('meta[name="description"]');
+     if (metaDescriptionEl) metaDescriptionEl.setAttribute("content", "Ocorreu um erro ao carregar esta página.");
+
   } finally {
-    main.setAttribute("aria-busy", "false");
+    // Marca a área de conteúdo como "não ocupada"
+    if (main) main.setAttribute("aria-busy", "false");
   }
 }
 
+// Obtém o caminho da rota atual a partir do hash da URL (ex: #/eventos -> /eventos)
 function getPathFromHash() {
   const h = location.hash.replace(/^#/, "");
+  // Retorna o caminho se começar com '/', senão retorna '/home' como padrão
   return h && h.startsWith("/") ? h : "/home";
 }
 
+// --- Event Listeners ---
+
+// Listener para mudanças no hash da URL (navegação entre páginas)
 window.addEventListener("hashchange", () => loadPartial(getPathFromHash()));
 
+// Listener executado quando a página inicial é carregada completamente
 window.addEventListener("load", () => {
-  const y = document.getElementById("year");
-  if (y) y.textContent = new Date().getFullYear();
+  // Atualiza o ano no rodapé
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Configura o botão de toggle do menu mobile
   if (navToggle && menu) {
     navToggle.addEventListener("click", () => {
-      const open = menu.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", String(open));
+      const isOpen = menu.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.textContent = isOpen ? '✕' : '☰'; // Muda o ícone do botão
     });
+    // Fecha o menu se clicar fora dele
     document.addEventListener("click", (e) => {
-      if (!menu.contains(e.target) && !navToggle.contains(e.target)) {
+      if (menu.classList.contains('is-open') && !menu.contains(e.target) && !navToggle.contains(e.target)) {
         menu.classList.remove("is-open");
         navToggle.setAttribute("aria-expanded", "false");
+        navToggle.textContent = '☰';
       }
     });
   }
 
-  if (!location.hash) location.hash = "/home";
+  // Garante que a URL tenha um hash (redireciona para /home se não tiver)
+  if (!location.hash) {
+    history.replaceState(null, '', '#/home'); // Usa replaceState para não criar entrada no histórico
+  }
+  // Carrega a página inicial baseada no hash atual
   loadPartial(getPathFromHash());
 });
 
+// Listener para cliques em links internos da SPA (Single Page Application)
 document.addEventListener("click", (e) => {
-  const a = e.target.closest("a[data-link]");
-  if (!a) return;
-  // Previne o comportamento padrão APENAS se o link for interno (começa com #/)
-  const href = a.getAttribute("href");
+  // Encontra o link clicado (ou um de seus pais) que tenha o atributo 'data-link'
+  const link = e.target.closest("a[data-link]");
+  if (!link) return; // Se não for um link da SPA, ignora
+
+  const href = link.getAttribute("href");
+
+  // Previne o comportamento padrão do navegador APENAS se for um link interno (começa com #/)
   if (href && href.startsWith("#/")) {
-      e.preventDefault();
-      // Não precisa mudar o hash aqui, pois o hashchange listener fará isso.
-      // Apenas garante que o link não cause um salto na página antes do JS carregar.
-      // Se location.hash já for igual ao href, força o carregamento da parcial
-      if (location.hash === href) {
-          loadPartial(getPathFromHash());
-      } else {
-          location.hash = href; // Dispara o hashchange listener
-      }
+    e.preventDefault(); // Impede o navegador de pular para a âncora
+
+    // Fecha o menu mobile se estiver aberto ao clicar num link
+    if (menu && menu.classList.contains('is-open')) {
+        menu.classList.remove("is-open");
+        if(navToggle) {
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.textContent = '☰';
+        }
+    }
+
+    // Se o hash atual já for o destino, força o recarregamento da parcial
+    // (útil se o usuário clicar no link da página atual)
+    if (location.hash === href) {
+      loadPartial(getPathFromHash());
+    } else {
+      // Altera o hash da URL, o que disparará o listener 'hashchange' para carregar a nova página
+      location.hash = href;
+    }
   }
-  // Se não começar com #/, deixa o comportamento padrão (ex: link externo)
+  // Se o href não começar com '#/', o navegador seguirá o link normalmente (ex: link externo)
 });
+
+console.log("[app.js] Script principal carregado e listeners configurados.");

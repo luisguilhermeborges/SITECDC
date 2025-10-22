@@ -5,10 +5,10 @@
 
         <div class="clube-planos">
             <div class="plano-card">
-                <img src="/assets/cardapios/cardapio-bronze.webp" alt="Ícone representando o Plano Bronze" class="plano-icon">
+                <img src="/assets/cardapios/clube-bronze.webp" alt="Ícone representando o Plano Bronze" class="plano-icon" onerror="this.onerror=null; this.src='https://placehold.co/300x400/eeeeee/cccccc?text=Bronze'">
                 <h3>Bronze</h3>
                 <p>Ideal para quem quer começar a explorar novos sabores. Uma seleção cuidadosa para o seu dia a dia.</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 50,00</p>
+                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 199,90</p>
                 <button class="btn btn-primary"
                         data-plano="bronze"
                         data-asaas-link="https://sandbox.asaas.com/c/8km0veipaikzrv57">
@@ -17,24 +17,24 @@
             </div>
 
             <div class="plano-card">
-                 <img src="/assets/cardapios/cardapio-prata.webp" alt="Ícone representando o Plano Prata" class="plano-icon">
+                 <img src="/assets/cardapios/clube-prata.webp" alt="Ícone representando o Plano Prata" class="plano-icon" onerror="this.onerror=null; this.src='https://placehold.co/300x400/eeeeee/cccccc?text=Prata'">
                 <h3>Prata</h3>
                 <p>Para os entusiastas! Uma variedade maior de cortes premium para surpreender no churrasco ou nas refeições especiais.</p>
-                 <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 100,00</p>
+                 <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 299,90</p>
                 <button class="btn btn-primary"
                         data-plano="prata"
-                        data-asaas-link="https://sandbox.asaas.com/c/SEU_LINK_REAL_PRATA_AQUI"> Assinar Plano Prata
+                        data-asaas-link="https://sandbox.asaas.com/c/d8376t8ayog08kz7"> Assinar Plano Prata
                 </button>
             </div>
 
             <div class="plano-card">
-                 <img src="/assets/cardapios/cardapio-ouro.webp" alt="Ícone representando o Plano Ouro" class="plano-icon">
+                 <img src="/assets/cardapios/clube-ouro.webp" alt="Ícone representando o Plano Ouro" class="plano-icon" onerror="this.onerror=null; this.src='https://placehold.co/300x400/eeeeee/cccccc?text=Ouro'">
                 <h3>Ouro</h3>
                 <p>A experiência definitiva! Cortes nobres, exóticos e selecionados a dedo para os paladares mais exigentes.</p>
-                 <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 150,00</p>
+                 <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 399,90</p>
                 <button class="btn btn-primary"
                         data-plano="ouro"
-                        data-asaas-link="https://sandbox.asaas.com/c/SEU_LINK_REAL_OURO_AQUI"> Assinar Plano Ouro
+                        data-asaas-link="https://sandbox.asaas.com/c/iugc5ym8okodnrzm"> Assinar Plano Ouro
                 </button>
             </div>
         </div>
@@ -54,57 +54,5 @@
                 <p>O pagamento é recorrente e processado através da plataforma Asaas, aceitando Cartão de Crédito, Boleto e PIX.</p>
             </details>
         </div>
-
     </div>
 </section>
-
-<script>
-  console.log('Script do clube.html a ser DEFINIDO (versão link direto).'); // LOG 1
-
-  // Define a função no escopo global (window)
-  window.inicializarClube = function() {
-    console.log('Função window.inicializarClube() chamada (versão link direto).'); // LOG 2
-
-    const planosContainer = document.querySelector('.clube-planos'); // Seleciona o container dos planos
-
-    // Verifica elemento essencial
-    if (!planosContainer) {
-        console.error('ERRO: Elemento .clube-planos não encontrado!');
-        return;
-    }
-
-    // --- USA DELEGAÇÃO DE EVENTOS para redirecionar ---
-    planosContainer.removeEventListener('click', handlePlanoClickRedirect); // Evita duplicar
-    planosContainer.addEventListener('click', handlePlanoClickRedirect);
-    console.log('Listener de clique DELEGADO adicionado ao .clube-planos para REDIRECT'); // LOG 4
-
-    function handlePlanoClickRedirect(event) {
-        // Verifica se o clique foi num botão DENTRO do container COM o link Asaas
-        const botao = event.target.closest('button.btn.btn-primary[data-asaas-link]');
-
-        if (!botao) {
-            // Se o clique não foi num botão de plano com link, ignora
-            return;
-        }
-
-        console.log('!!! CLIQUE DELEGADO DETETADO !!!', botao); // LOG 5
-
-        const asaasLink = botao.dataset.asaasLink;
-
-        // Verifica se o link é válido (não vazio, não # e não contém os placeholders)
-        if (asaasLink && asaasLink !== '#' && !asaasLink.includes('SEU_LINK_REAL_')) {
-             console.log('Redirecionando para:', asaasLink); // LOG 6
-             // Abre o link numa nova aba/janela para não interromper a navegação no site
-             window.open(asaasLink, '_blank');
-        } else {
-            console.warn('Botão clicado, mas data-asaas-link está vazio, é um placeholder ou inválido:', asaasLink);
-            // Mensagem amigável para o utilizador
-            alert('Link de pagamento indisponível ou não configurado para este plano. Por favor, tente novamente mais tarde ou entre em contacto.');
-        }
-    }
-    // --- FIM DA ALTERAÇÃO COM DELEGAÇÃO PARA REDIRECT ---
-
-  } // Fim da função window.inicializarClube
-
-  console.log('Script do clube.html DEFINIDO (versão link direto).'); // LOG FINAL DA DEFINIÇÃO
-</script>
