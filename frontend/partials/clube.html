@@ -23,7 +23,7 @@
         return;
     }
 
-    // --- ALTERAÇÃO AQUI: USA DELEGAÇÃO DE EVENTOS ---
+    // --- USA DELEGAÇÃO DE EVENTOS ---
     // Remove listeners antigos DESTE container para evitar duplicação
     planosContainer.removeEventListener('click', handlePlanoClickDelegado);
     // Adiciona UM listener ao container pai
@@ -84,7 +84,6 @@
     formAssinatura.addEventListener('submit', handleFormSubmit);
 
     async function handleFormSubmit(event) {
-        // ... (código de submit inalterado) ...
          event.preventDefault(); 
        if (statusEl) {
           statusEl.textContent = 'A processar o seu pedido...';
@@ -108,6 +107,7 @@
       };
 
       try {
+        // ESTA URL DEVE ESTAR ACESSÍVEL (o backend server.js deve estar rodando)
         const backendUrl = 'http://localhost:3001/api/criar-assinatura'; 
 
         const response = await fetch(backendUrl, {
@@ -136,6 +136,7 @@
       } catch (error) {
         console.error('Falha na comunicação com o backend ou erro na resposta:', error);
         if(statusEl) {
+            // Esta mensagem de erro é o que o utilizador provavelmente está a ver
             statusEl.textContent = `Erro: ${error.message}`; 
             statusEl.className = 'error-message'; 
         }
@@ -147,7 +148,6 @@
     } // Fim handleFormSubmit
 
     // --- Funções de Máscara (inalteradas) ---
-    // ... (código das máscaras inalterado) ...
      if (cpfInput) {
         cpfInput.removeEventListener('input', handleCPFMask); // Remove listener antigo
         cpfInput.addEventListener('input', handleCPFMask);

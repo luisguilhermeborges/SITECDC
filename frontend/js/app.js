@@ -47,7 +47,7 @@ function afterPartialInjected(path) {
     initIfNeeded(window.EventosInit, 'EventosInit'); 
   }
 
-  // === ALTERAÇÃO AQUI PARA O CLUBE ===
+  // === LÓGICA CORRETA PARA O CLUBE ===
   if (path === "/clube") {
     // Chama a função inicializarClube que foi definida globalmente em clube.html
     initIfNeeded(window.inicializarClube, 'inicializarClube');
@@ -59,13 +59,14 @@ async function loadPartial(path) {
   const url = routes[path] || routes["/home"];
   main.setAttribute("aria-busy", "true");
   try {
-    const res = await fetch(url, { cache: "no-store" });
+    // O frontend DEVE estar rodando num servidor web para este fetch funcionar
+    const res = await fetch(url, { cache: "no-store" }); 
     if (!res.ok) { // Verifica se o fetch foi bem sucedido
         throw new Error(`Erro ${res.status} ao carregar ${url}`);
     }
     const html = await res.text();
 
-    main.innerHTML = html; // INJETAR HTML PRIMEIRO
+    main.innerHTML = html; // INJETAR HTML PRIMEIRO (isso executa o <script> em clube.html)
     setActiveLink(path);
     
     // CHAMA A FUNÇÃO DE INICIALIZAÇÃO DEPOIS DE INJETAR
