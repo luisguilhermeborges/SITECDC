@@ -12,6 +12,7 @@ const routes = {
 const main = document.getElementById("main-content");
 const menu = document.getElementById("menu");
 const navToggle = document.getElementById("navToggle");
+const onbeefButton = document.getElementById("onbeef-button"); // Referência ao botão
 
 // Marca o link de navegação ativo
 function setActiveLink(path) {
@@ -81,6 +82,16 @@ async function loadPartial(path) {
 
     // Marca o link de navegação correspondente como ativo
     setActiveLink(finalPath);
+
+    // --- MODIFICAÇÃO ABAIXO: Lógica para esconder o botão ---
+    if (onbeefButton) {
+        if (finalPath === "/eventos" || finalPath === "/clube") {
+            onbeefButton.classList.add("is-hidden");
+        } else {
+            onbeefButton.classList.remove("is-hidden");
+        }
+    }
+    // --- FIM DA MODIFICAÇÃO ---
 
     // Chama a função para executar scripts de inicialização específicos da página carregada
     afterPartialInjected(finalPath);

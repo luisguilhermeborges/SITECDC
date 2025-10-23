@@ -56,6 +56,12 @@ body::before {
     pointer-events: none;
 }
 
+/* --- Classe para esconder elementos --- */
+.is-hidden {
+    display: none !important;
+}
+
+
 .container {
     width: min(var(--container), 100% - 32px);
     margin-inline: auto;
@@ -108,7 +114,7 @@ p {
     cursor: pointer;
     font-weight: 700;
     font-size: var(--fz);
-    transition: transform .15s ease, box-shadow .15s ease, opacity .2s;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .2s, background-color .2s, border-color .2s;
 }
 
 .btn:hover:not(:disabled) {
@@ -131,7 +137,7 @@ p {
     height: var(--topbar-h);
     min-height: var(--topbar-h);
     background: var(--topbar);
-    color: #c29393ff;
+    color: #fff;
     box-shadow: 0 1px 0 rgba(0,0,0,.08);
 }
 .topbar__wrap {
@@ -141,15 +147,52 @@ p {
     justify-content: space-between;
     gap: clamp(8px,2vw,16px);
 }
-.btn--onbeef {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+
+/* MODIFICAÇÃO ABAIXO: Estilos para o botão "Compre Aqui" na Topbar (SEM HOVER) */
+.btn-topbar-shop {
+    /* Herda de .btn, mas personaliza */
+    background: var(--topbar); /* Cor de fundo igual à topbar */
+    border: none; /* Sem borda */
+    color: #fff; /* Texto branco */
+    padding: 8px 12px;
+    border-radius: 8px;
+    gap: 6px;
+    box-shadow: none; /* Remove sombra padrão do .btn */
+    /* Remove a transição de cor de fundo/borda, mantém outras */
+    transition: transform .15s ease, box-shadow .15s ease, opacity .2s;
 }
+
+.btn-topbar-shop .onbeef-text {
+    font-size: var(--fz);
+    font-weight: 700;
+    white-space: nowrap;
+    color: #fff; /* Garante que o texto seja branco */
+}
+
+.btn-topbar-shop .onbeef-logo {
+    height: clamp(18px, 4.5vw, 24px);
+    width: auto;
+    object-fit: contain;
+    filter: none; /* Remove o filtro que coloria o ícone */
+}
+
+/* Efeito hover (apenas levantar) */
+.btn-topbar-shop:hover {
+    transform: translateY(-1px);
+    /* Mantém cores originais */
+    background: var(--topbar);
+    border-color: transparent; /* Garante sem borda no hover */
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1); /* Sombra suave no hover */
+}
+.btn-topbar-shop:hover .onbeef-text {
+    color: #fff;
+}
+.btn-topbar-shop:hover .onbeef-logo {
+    filter: none;
+}
+/* FIM DA MODIFICAÇÃO */
+
 .brand {
     display: flex;
     align-items: center;
@@ -162,16 +205,7 @@ p {
     width: auto;
     object-fit: contain;
 }
-.onbeef-logo {
-    height: clamp(20px, 5.5vw, 32px);
-    width: auto;
-    object-fit: contain;
-    transition: transform .2s, filter .2s;
-}
-.onbeef-logo:hover {
-    filter: brightness(1.1);
-    transform: scale(1.1);
-}
+
 .header {
     position: sticky;
     top: var(--topbar-h);
@@ -261,7 +295,7 @@ main {
     display: block;
     padding-top: 0;
     padding-bottom: clamp(24px, 4vw, 40px);
-    background: transparent; /* Alterado para transparente para o fundo do body aparecer */
+    background: transparent;
 }
 .footer {
     background: var(--header);
@@ -581,6 +615,32 @@ main {
     .nav__link {
         padding: 12px 16px;
     }
+
+    /* Esconde o texto "Compre Aqui" em telas pequenas */
+    .btn-topbar-shop .onbeef-text {
+        display: none;
+    }
+    /* Ajusta padding do botão quando só tem ícone */
+    .btn-topbar-shop {
+        padding: 8px;
+        gap: 0; /* Remove gap */
+        border: none; /* Remove borda no mobile */
+        background: transparent; /* Fundo transparente no mobile */
+        box-shadow: none; /* Garante sem sombra no mobile */
+    }
+    .btn-topbar-shop .onbeef-logo {
+        filter: none; /* Garante ícone branco no mobile */
+        height: clamp(20px, 5.5vw, 32px); /* Ícone maior no mobile */
+    }
+    .btn-topbar-shop:hover {
+        background: transparent; /* Remove fundo no hover mobile */
+        box-shadow: none;
+        transform: scale(1.1); /* Efeito de escala no hover mobile */
+    }
+     .btn-topbar-shop:hover .onbeef-logo {
+        filter: none; /* Garante que o ícone permaneça branco no hover mobile */
+    }
+
 }
 @media (max-width: 480px) {
     .container {
@@ -607,15 +667,14 @@ main {
 
 
 /* === INÍCIO DA ADIÇÃO DE ACESSIBILIDADE (FOCO VISÍVEL) === */
-/* Este bloco foi adicionado ao final do ficheiro */
-
 /* Estilo de foco para botões, links de navegação e FAB do WhatsApp */
 .btn:focus-visible,
 .nav__link:focus-visible,
-.whatsapp-fab:focus-visible {
-  outline: 3px solid var(--topbar); /* Usa a cor da marca */
+.whatsapp-fab:focus-visible,
+.btn-topbar-shop:focus-visible { /* Adicionado foco para o botão */
+  outline: 3px solid #fff; /* Usa branco para contraste no topbar */
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(100, 4, 4, 0.3);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4); /* Sombra mais clara */
 }
 
 /* Estilo de foco para checkboxes e radios customizados */
@@ -627,5 +686,4 @@ main {
   box-shadow: 0 0 0 4px rgba(100, 4, 4, 0.3);
   border-radius: 4px; /* Ajuda a suavizar o contorno */
 }
-
 /* === FIM DA ADIÇÃO DE ACESSIBILIDADE === */

@@ -472,7 +472,9 @@ function goToStep(n) {
   const sidebarNext = document.getElementById("sidebar-next");
   const btnNext = document.getElementById("btn-next-sidebar");
 
-  if (sidebarInputsEl) sidebarInputsEl.hidden = (n >= 3);
+  // *** LINHA REMOVIDA ***
+  // if (sidebarInputsEl) sidebarInputsEl.hidden = (n >= 3);
+  
   if (itensCard) itensCard.hidden = !(n >= 2);
   if (sidebarNext) sidebarNext.hidden = (n === 4);
   
@@ -550,9 +552,22 @@ function wireMasksAndToggles() {
 
 function wireCalc() {
   inputPessoas?.addEventListener("input", () => { updateResumo(); renderMenuItensSidebar(); renderAdicionaisFiltered(); });
+  
+  // *** FUNÇÃO MODIFICADA ***
   selectLocal?.addEventListener("change", () => {
     const isExterno = selectLocal.value === "externo";
     if (evtExternoBoxEl) evtExternoBoxEl.hidden = !isExterno;
+
+    // Lógica para esconder bebidas em evento externo
+    if (bebidasBoxEl) {
+      bebidasBoxEl.hidden = isExterno;
+      // Se for externo, desmarca todas as bebidas
+      if (isExterno) {
+        const beverageCheckboxes = bebidasBoxEl.querySelectorAll('[data-bebida]:checked');
+        beverageCheckboxes.forEach(cb => cb.checked = false);
+      }
+    }
+
     updateResumo();
     renderMenuItensSidebar();
     renderAdicionaisFiltered();
@@ -631,7 +646,7 @@ function EventosInit() {
 
   btnNextSidebar = document.getElementById("btn-next-sidebar");
   btnPrevSidebar = document.getElementById("btn-prev-sidebar");
-  sidebarInputsEl = document.getElementById("sidebar-inputs");
+  sidebarInputsEl = document.getElementById("sidebar-inputs"); // A variável continua existindo
 
   renderMenuCardsOnlyImages();
   renderAdicionaisFiltered();

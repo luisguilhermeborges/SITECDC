@@ -562,3 +562,25 @@ details[open] .adicional-col h4::after {
   margin-top: 4px;
 }
 }
+
+/* ===========================
+   CSS ADICIONAL
+   =========================== */
+
+/* Configuração de Pessoas/Local movida para o Passo 1 */
+.step-1-config {
+  margin-top: 24px;
+}
+
+/* Ajusta o layout dos inputs movidos para 2 colunas em telas maiores */
+@media (min-width: 600px) {
+  .step-1-config {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: end;
+  }
+  .step-1-config .field {
+    margin-bottom: 0;
+  }
+}
