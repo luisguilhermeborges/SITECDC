@@ -2,14 +2,65 @@
 
 /* --- Estilos específicos para a página do Clube --- */
 
+.clube h2 {
+    text-align: center;
+    font-size: clamp(22px, 4vw, 32px); /* Um pouco maior */
+    margin-bottom: 8px;
+}
+
 .clube .subtitle {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 24px auto;
+    margin: 0 auto clamp(24px, 5vw, 48px) auto; /* Aumenta margem inferior */
     font-size: var(--fz-lg);
     text-transform: none; /* Subscrição da base.css */
+    line-height: 1.7;
 }
 
+/* --- NOVOS ESTILOS: Seção "Como Funciona" --- */
+.clube-como-funciona {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto clamp(24px, 5vw, 48px) auto;
+    text-align: center;
+}
+
+.como-funciona-step {
+    padding: 16px;
+}
+
+.como-funciona-step .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--text-alt);
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.como-funciona-step h4 {
+    margin: 0 0 8px 0;
+    color: var(--text-alt);
+    text-transform: uppercase;
+}
+
+.como-funciona-step p {
+    text-transform: none;
+    font-size: var(--fz);
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* --- Estilos dos Planos (Originais e Ajustados) --- */
 .clube-planos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
@@ -27,11 +78,29 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative; /* Necessário para o badge */
+    overflow: hidden; /* Para o badge não vazar da borda */
 }
 
 .plano-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* --- NOVO ESTILO: Badge "Mais Popular" --- */
+.plano-badge {
+    position: absolute;
+    top: 12px;
+    right: -30px;
+    background-color: var(--text-alt);
+    color: #fff;
+    padding: 6px 30px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 2; /* Garante que fique acima da imagem */
 }
 
 .plano-icon {
@@ -72,10 +141,56 @@
     width: 100%; /* Botão ocupa toda a largura */
 }
 
-/* --- FAQ --- */
+/* --- NOVOS ESTILOS: Prova Social (Depoimentos) --- */
+.clube-depoimentos {
+    max-width: 900px;
+    margin: clamp(24px, 5vw, 48px) auto 0 auto;
+    padding-top: clamp(24px, 4vw, 32px);
+    border-top: 1px solid #eee;
+}
+
+.clube-depoimentos h3 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--text-alt);
+}
+
+.depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.depoimento-card {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.depoimento-card .quote {
+    font-style: italic;
+    text-transform: none;
+    color: #555;
+    margin-bottom: 16px;
+    line-height: 1.7;
+    flex-grow: 1;
+}
+
+.depoimento-card .author {
+    font-weight: 700;
+    color: var(--text-alt);
+    text-align: right;
+}
+
+
+/* --- FAQ (Estilos Originais Ajustados) --- */
 .clube-faq {
-    max-width: 800px;
-    margin: 0 auto; /* Centraliza o FAQ */
+    max-width: 900px; /* Alinhado com as novas seções */
+    margin: clamp(24px, 5vw, 48px) auto 0 auto; /* Adiciona margem superior */
     border-top: 1px solid #eee;
     padding-top: clamp(24px, 4vw, 32px);
 }
@@ -123,7 +238,6 @@
 
 .clube-faq details[open] summary::after {
     content: '−';
-    transform: translateY(-50%) rotate(180deg);
 }
 
 .clube-faq details p {
