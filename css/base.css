@@ -325,7 +325,7 @@ main {
     max-height: 620px;
     min-height: 300px;
     overflow: hidden;
-    background-color: #3b0202;
+    /*background-color: #3b0202;*/
 }
 .carousel.fullbleed {
     width: 100vw !important;
