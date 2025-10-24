@@ -150,13 +150,13 @@ p {
 
 /* Estilos para o botão "Compre Aqui" na Topbar (SEM HOVER) */
 .btn-topbar-shop {
-    background: var(--topbar); /* Cor de fundo igual à topbar */
-    border: none; /* Sem borda */
-    color: #fff; /* Texto branco */
+    background: var(--topbar);
+    border: none;
+    color: #fff;
     padding: 8px 12px;
     border-radius: 8px;
     gap: 6px;
-    box-shadow: none; /* Remove sombra padrão do .btn */
+    box-shadow: none;
     transition: transform .15s ease, box-shadow .15s ease, opacity .2s;
 }
 
@@ -246,7 +246,8 @@ p {
 .nav__link {
     text-decoration: none;
     color: #222;
-    padding: 6px 12px 2px 12px;
+    padding: 6px 12px;
+    padding-bottom: 5px;
     line-height: 1;
     white-space: nowrap;
     position: relative;
@@ -321,10 +322,10 @@ main {
     position: relative;
     width: 100%;
     height: calc(75vh - var(--topbar-h) - var(--header-h));
-    max-height: 620px; /* Limite máximo */
-    min-height: 300px; /* Altura mínima para telas maiores */
+    max-height: 620px;
+    min-height: 300px;
     overflow: hidden;
-    background-color: #3b0202; /* Alterado de preto para vermelho escuro */
+    background-color: #3b0202;
 }
 .carousel.fullbleed {
     width: 100vw !important;
@@ -358,7 +359,7 @@ main {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: transparent; /* Alterado de preto para transparente */
+    background-color: transparent;
     display: block;
     cursor: pointer;
     text-decoration: none;
@@ -422,23 +423,25 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%) scale(.96);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.45);
-    background: color-mix(in srgb, var(--topbar) 40%, transparent);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    background: var(--topbar);
     color: #fff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .2s, transform .2s, filter .2s;
+    transition: opacity .2s, transform .2s, background-color .2s;
     z-index: 4;
-    box-shadow: 0 4px 18px rgba(0,0,0,.25);
+    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    cursor: pointer;
 }
+
 .carousel__arrow.is-prev {
     left: 16px;
 }
@@ -446,15 +449,17 @@ main {
     right: 16px;
 }
 .carousel:hover .carousel__arrow {
-    opacity: 1;
+    opacity: 0.85;
     pointer-events: auto;
     transform: translateY(-50%) scale(1);
 }
 .carousel__arrow:hover {
-    filter: brightness(1.06);
+    opacity: 1;
+    background-color: #8A443F;
 }
 .carousel__arrow:active {
     transform: translateY(-50%) scale(.97);
+    background-color: #530303;
 }
 .carousel__arrow:focus-visible {
     outline: 3px solid #fff;
@@ -516,7 +521,7 @@ main {
 /* ------------------ Mini Map ------------------ */
 .mini-map {
     width: 100%;
-    height: 320px; /* <<< ALTURA DESKTOP RESTAURADA */
+    height: 320px;
     border: 1px solid #e6e6e6;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -526,9 +531,8 @@ main {
     width: 100%;
     border: 0;
     display: block;
-    /* Ajustes para esconder o cabeçalho do Google Maps */
-    margin-top: -60px; /* <<< MARGEM RESTAURADA */
-    height: calc(100% + 60px); /* <<< ALTURA CALCULADA RESTAURADA */
+    margin-top: -60px;
+    height: calc(100% + 60px);
 }
 
 /* ------------------ Store Card with Background Image ------------------ */
@@ -540,7 +544,7 @@ main {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    min-height: 280px; /* Garante uma altura mínima */
+    min-height: 280px;
 }
 
 .card.store-card::before {
@@ -561,7 +565,7 @@ main {
 }
 
 .card.store-card .btn {
-  margin-top: auto; /* Alinha o botão na parte de baixo */
+  margin-top: auto;
 }
 
 /* ------------------ Responsivo ------------------ */
@@ -594,9 +598,20 @@ main {
     .nav__list.is-open {
         display: flex;
     }
+
+    /* --- AJUSTE MENU HAMBURGUER UNDERLINE --- */
     .nav__link {
         padding: 12px 16px;
+        padding-bottom: 12px; /* Reduzido de 15px */
+        width: 100%;
+        text-align: right;
     }
+    .nav__link::after {
+        left: 16px;
+        right: 16px;
+        bottom: 10px; /* Aumentado de 8px para subir a linha */
+    }
+    /* --- FIM DO AJUSTE --- */
 
     /* Esconde o texto "Compre Aqui" em telas pequenas */
     .btn-topbar-shop .onbeef-text {
@@ -637,7 +652,7 @@ main {
 
     /* Ajuste Mapa Mobile */
     .mini-map {
-        height: 240px; /* <<< ALTURA MOBILE RESTAURADA */
+        height: 240px;
     }
 
 }
@@ -666,7 +681,6 @@ main {
 
 
 /* === INÍCIO DA ADIÇÃO DE ACESSIBILIDADE (FOCO VISÍVEL) === */
-/* Estilo de foco para botões, links de navegação e FAB do WhatsApp */
 .btn:focus-visible,
 .nav__link:focus-visible,
 .whatsapp-fab:focus-visible,
@@ -676,7 +690,6 @@ main {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
-/* Estilo de foco para checkboxes e radios customizados */
 .checkbox input[type="checkbox"]:focus-visible + span,
 .checkbox input[type="radio"]:focus-visible + span,
 .menu-card input[type="radio"]:focus-visible + .card-figure {
