@@ -320,13 +320,11 @@ main {
 .carousel {
     position: relative;
     width: 100%;
-    /* Altura ajustada: usa viewport height (vh) menos a altura das barras */
-    /* Você pode ajustar o 75vh se quiser mais ou menos altura */
     height: calc(75vh - var(--topbar-h) - var(--header-h));
     max-height: 620px; /* Limite máximo */
     min-height: 300px; /* Altura mínima para telas maiores */
     overflow: hidden;
-    background: #000;
+    background-color: #3b0202; /* Alterado de preto para vermelho escuro */
 }
 .carousel.fullbleed {
     width: 100vw !important;
@@ -360,7 +358,7 @@ main {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: #000;
+    background-color: transparent; /* Alterado de preto para transparente */
     display: block;
     cursor: pointer;
     text-decoration: none;
@@ -463,14 +461,108 @@ main {
     outline-offset: 2px;
 }
 
+
 /* ------------------ WhatsApp FAB ------------------ */
-/* ... (código do FAB omitido para brevidade) ... */
+.whatsapp-fab {
+    position: fixed;
+    right: clamp(12px, 2vw, 20px);
+    bottom: max(96px, env(safe-area-inset-bottom, 0px) + 8px);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.12);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s, filter .15s;
+}
+.whatsapp-fab img {
+    width: 28px;
+    height: 28px;
+    display: block;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.2));
+}
+.whatsapp-fab:hover {
+    transform: translateY(-1px) scale(1.03);
+}
+.whatsapp-fab:active {
+    transform: translateY(0) scale(.98);
+}
+.whatsapp-fab:focus-visible {
+    outline: 3px solid #128C7E;
+    outline-offset: 3px;
+}
+@media (max-width:720px) {
+    .whatsapp-fab {
+        width: 64px;
+        height: 64px;
+        right: clamp(10px,3vw,16px);
+        bottom: max(84px, env(safe-area-inset-bottom, 0px) + 8px);
+    }
+    .whatsapp-fab img {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media print {
+    .whatsapp-fab {
+        display: none !important;
+    }
+}
 
 /* ------------------ Mini Map ------------------ */
-/* ... (código do mini-map omitido para brevidade) ... */
+.mini-map {
+    width: 100%;
+    height: 320px; /* <<< ALTURA DESKTOP RESTAURADA */
+    border: 1px solid #e6e6e6;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.mini-map iframe {
+    width: 100%;
+    border: 0;
+    display: block;
+    /* Ajustes para esconder o cabeçalho do Google Maps */
+    margin-top: -60px; /* <<< MARGEM RESTAURADA */
+    height: calc(100% + 60px); /* <<< ALTURA CALCULADA RESTAURADA */
+}
 
 /* ------------------ Store Card with Background Image ------------------ */
-/* ... (código do store-card omitido para brevidade) ... */
+.card.store-card {
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px; /* Garante uma altura mínima */
+}
+
+.card.store-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: -1;
+    border-radius: var(--radius);
+}
+
+.card.store-card h3,
+.card.store-card p,
+.card.store-card ul,
+.card.store-card li {
+    color: #fff !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.card.store-card .btn {
+  margin-top: auto; /* Alinha o botão na parte de baixo */
+}
 
 /* ------------------ Responsivo ------------------ */
 @media (max-width: 960px) {
@@ -513,41 +605,40 @@ main {
     /* Ajusta padding do botão quando só tem ícone */
     .btn-topbar-shop {
         padding: 8px;
-        gap: 0; /* Remove gap */
-        border: none; /* Remove borda no mobile */
-        background: transparent; /* Fundo transparente no mobile */
-        box-shadow: none; /* Garante sem sombra no mobile */
+        gap: 0;
+        border: none;
+        background: transparent;
+        box-shadow: none;
     }
     .btn-topbar-shop .onbeef-logo {
-        filter: none; /* Garante ícone branco no mobile */
-        height: clamp(20px, 5.5vw, 32px); /* Ícone maior no mobile */
+        filter: none;
+        height: clamp(20px, 5.5vw, 32px);
     }
     .btn-topbar-shop:hover {
-        background: transparent; /* Remove fundo no hover mobile */
+        background: transparent;
         box-shadow: none;
-        transform: scale(1.1); /* Efeito de escala no hover mobile */
+        transform: scale(1.1);
     }
      .btn-topbar-shop:hover .onbeef-logo {
-        filter: none; /* Garante que o ícone permaneça branco no hover mobile */
+        filter: none;
     }
 
-    /* --- AJUSTE CARROSSEL MOBILE --- */
+    /* Ajuste Carrossel Mobile */
     .carousel__arrow {
         display: none !important;
     }
     .carousel {
-        /* *** ALTURA MÍNIMA AJUSTADA AQUI *** */
-        min-height: 220px; /* Reduzido de 260px */
-        height: auto; /* Permite que a altura seja definida pelo min-height */
-        /* Alternativa: usar uma altura relativa à largura (aspect-ratio) */
-        /* aspect-ratio: 16 / 9; */
-        /* height: auto; */
-        /* min-height: unset; */ /* Remove a altura mínima anterior se usar aspect-ratio */
+        min-height: 220px;
+        height: auto;
     }
     .carousel__overlay {
         inset: auto 0 6% 0;
     }
-    /* --- FIM AJUSTE CARROSSEL --- */
+
+    /* Ajuste Mapa Mobile */
+    .mini-map {
+        height: 240px; /* <<< ALTURA MOBILE RESTAURADA */
+    }
 
 }
 @media (max-width: 480px) {
@@ -560,7 +651,18 @@ main {
 }
 
 /* Empilha (“um abaixo do outro”) só os campos de DADOS DO CLIENTE */
-/* ... (código stack-client omitido para brevidade) ... */
+.stack-client {
+    grid-template-columns: 1fr !important;
+}
+/* garante que inputs de data/hora ocupem 100% quando empilhados */
+.stack-client > * {
+    width: 100%;
+}
+.stack-client input,
+.stack-client select,
+.stack-client textarea {
+    width: 100%;
+}
 
 
 /* === INÍCIO DA ADIÇÃO DE ACESSIBILIDADE (FOCO VISÍVEL) === */
@@ -568,10 +670,10 @@ main {
 .btn:focus-visible,
 .nav__link:focus-visible,
 .whatsapp-fab:focus-visible,
-.btn-topbar-shop:focus-visible { /* Adicionado foco para o botão */
-  outline: 3px solid #fff; /* Usa branco para contraste no topbar */
+.btn-topbar-shop:focus-visible {
+  outline: 3px solid #fff;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4); /* Sombra mais clara */
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
 /* Estilo de foco para checkboxes e radios customizados */
@@ -581,6 +683,6 @@ main {
   outline: 3px solid var(--topbar);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(100, 4, 4, 0.3);
-  border-radius: 4px; /* Ajuda a suavizar o contorno */
+  border-radius: 4px;
 }
 /* === FIM DA ADIÇÃO DE ACESSIBILIDADE === */
