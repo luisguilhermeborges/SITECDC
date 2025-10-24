@@ -51,7 +51,7 @@ body::before {
     background-image: url('../assets/backgroundpincel.png');
     background-size: 400px auto;
     background-repeat: repeat;
-    opacity: 0.03;
+    opacity: 0.00;
     z-index: -1;
     pointer-events: none;
 }
