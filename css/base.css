@@ -51,7 +51,7 @@ body::before {
     background-image: url('../assets/backgroundpincel.png');
     background-size: 400px auto;
     background-repeat: repeat;
-    opacity: 0.00;
+    opacity: 0.00; /* Alterado de 0.03 para 0.00 */
     z-index: -1;
     pointer-events: none;
 }
@@ -247,8 +247,8 @@ p {
     text-decoration: none;
     color: #222;
     padding: 6px 12px;
-    padding-bottom: 5px; /* Mantém espaço mínimo global */
-    line-height: 1.2; /* Leve ajuste na altura da linha */
+    padding-bottom: 5px;
+    line-height: 1.2;
     white-space: nowrap;
     position: relative;
     background: transparent;
@@ -263,7 +263,7 @@ p {
     position: absolute;
     left: 10px;
     right: 10px;
-    bottom: 0; /* Posição base */
+    bottom: 0;
     height: 3px;
     background: transparent;
     border-radius: 3px 3px 0 0;
@@ -364,6 +364,8 @@ main {
     cursor: pointer;
     text-decoration: none;
 }
+
+/* --- CORREÇÃO AQUI: Alterado .jpeg para .jpg --- */
 .carousel__track > .carousel__slide:nth-child(1) {
     background-image: url("../assets/slide-clube.jpg");
 }
@@ -376,6 +378,8 @@ main {
 .carousel__track > .carousel__slide:nth-child(4) {
     background-image: url("../assets/slide-lojas.jpg");
 }
+/* --- FIM DA CORREÇÃO --- */
+
 .carousel__overlay {
     position: absolute;
     inset: auto 0 8% 0;
@@ -601,15 +605,15 @@ main {
 
     /* --- AJUSTE MENU HAMBURGUER UNDERLINE --- */
     .nav__link {
-        padding: 10px 16px; /* Padding vertical ajustado */
-        padding-bottom: 6px; /* Reduzido de 12px -> espaço menor abaixo do texto */
+        padding: 10px 16px;
+        padding-bottom: 6px;
         width: 100%;
         text-align: right;
     }
     .nav__link::after {
         left: 16px;
         right: 16px;
-        bottom: 2px; /* Aumentado de 10px -> Sobe a linha, deixando só 2px de espaço */
+        bottom: 2px;
     }
     /* --- FIM DO AJUSTE --- */
 
