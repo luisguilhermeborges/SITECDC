@@ -247,8 +247,8 @@ p {
     text-decoration: none;
     color: #222;
     padding: 6px 12px;
-    padding-bottom: 5px;
-    line-height: 1;
+    padding-bottom: 5px; /* Mantém espaço mínimo global */
+    line-height: 1.2; /* Leve ajuste na altura da linha */
     white-space: nowrap;
     position: relative;
     background: transparent;
@@ -263,7 +263,7 @@ p {
     position: absolute;
     left: 10px;
     right: 10px;
-    bottom: 0;
+    bottom: 0; /* Posição base */
     height: 3px;
     background: transparent;
     border-radius: 3px 3px 0 0;
@@ -601,15 +601,15 @@ main {
 
     /* --- AJUSTE MENU HAMBURGUER UNDERLINE --- */
     .nav__link {
-        padding: 12px 16px;
-        padding-bottom: 12px; /* Reduzido de 15px */
+        padding: 10px 16px; /* Padding vertical ajustado */
+        padding-bottom: 6px; /* Reduzido de 12px -> espaço menor abaixo do texto */
         width: 100%;
         text-align: right;
     }
     .nav__link::after {
         left: 16px;
         right: 16px;
-        bottom: 10px; /* Aumentado de 8px para subir a linha */
+        bottom: 2px; /* Aumentado de 10px -> Sobe a linha, deixando só 2px de espaço */
     }
     /* --- FIM DO AJUSTE --- */
 

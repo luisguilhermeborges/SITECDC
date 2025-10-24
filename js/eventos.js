@@ -1,3 +1,5 @@
+// js/eventos.js
+
 const WPP_NUMBER = "55439918028"; // Número de WhatsApp para receber o orçamento
 const SALES_EMAIL = "contato@codigodacarne.com.br"; // E-mail para receber o orçamento
 const MENU_IMG_PATH = "assets/cardapios/";
@@ -351,7 +353,7 @@ function validarPasso3() {
 
   const cliNomeEl = document.getElementById("cli-nome");
   if (!cliNomeEl?.value?.trim()) { setError(cliNomeEl, document.getElementById("err-cli-nome"), "Seu nome"); ok = false; }
-  
+
   const cliCpfEl = document.getElementById("cli-cpf");
   if (!cliCpfEl?.value?.trim() || cliCpfEl.value.replace(/\D/g, '').length !== 11) { setError(cliCpfEl, document.getElementById("err-cli-cpf"), "CPF inválido"); ok = false; }
 
@@ -365,7 +367,7 @@ function validarPasso3() {
 
   if (!evtDataEl?.value) { setError(evtDataEl, document.getElementById("err-evt-data"), "Informe a data"); ok = false; }
   if (!evtHoraEl?.value) { setError(evtHoraEl, document.getElementById("err-evt-hora"), "Informe a hora"); ok = false; }
-  
+
   const lgpdOkEl = document.getElementById("lgpd-ok");
   if (!lgpdOkEl?.checked) { const el = document.getElementById("err-lgpd"); el && (el.textContent = "Autorize o contato para envio do orçamento."); ok = false; }
 
@@ -472,12 +474,9 @@ function goToStep(n) {
   const sidebarNext = document.getElementById("sidebar-next");
   const btnNext = document.getElementById("btn-next-sidebar");
 
-  // *** LINHA REMOVIDA ***
-  // if (sidebarInputsEl) sidebarInputsEl.hidden = (n >= 3);
-  
   if (itensCard) itensCard.hidden = !(n >= 2);
   if (sidebarNext) sidebarNext.hidden = (n === 4);
-  
+
   if (btnPrevSidebar) {
     btnPrevSidebar.disabled = (n === 1);
   }
@@ -491,7 +490,9 @@ function goToStep(n) {
   }
 
   if (n === 4) loadTerms();
-  if ("scrollTo" in window) window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+  // *** ALTERAÇÃO AQUI: Mudado para 'instant' ***
+  if ("scrollTo" in window) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   renderMenuItensSidebar();
 }
 
@@ -510,7 +511,7 @@ function applyMask(el, maskFn) {
 function wireMasksAndToggles() {
   const dateMask = (v) => v.replace(/\D/g, '').slice(0, 8).replace(/(\d{2})(\d)/, '$1/$2').replace(/(\d{2})(\d)/, '$1/$2');
   applyMask(document.getElementById("evt-data"), dateMask);
-  
+
   const phoneMask = (v) => {
     let r = v.replace(/\D/g, '').slice(0, 11);
     if (r.length > 10) r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
@@ -520,7 +521,7 @@ function wireMasksAndToggles() {
     return r;
   };
   applyMask(document.getElementById("cli-whats"), phoneMask);
-  
+
   const cpfMask = (v) => v.replace(/\D/g, '').slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
   applyMask(document.getElementById("cli-cpf"), cpfMask);
 
@@ -552,16 +553,13 @@ function wireMasksAndToggles() {
 
 function wireCalc() {
   inputPessoas?.addEventListener("input", () => { updateResumo(); renderMenuItensSidebar(); renderAdicionaisFiltered(); });
-  
-  // *** FUNÇÃO MODIFICADA ***
+
   selectLocal?.addEventListener("change", () => {
     const isExterno = selectLocal.value === "externo";
     if (evtExternoBoxEl) evtExternoBoxEl.hidden = !isExterno;
 
-    // Lógica para esconder bebidas em evento externo
     if (bebidasBoxEl) {
       bebidasBoxEl.hidden = isExterno;
-      // Se for externo, desmarca todas as bebidas
       if (isExterno) {
         const beverageCheckboxes = bebidasBoxEl.querySelectorAll('[data-bebida]:checked');
         beverageCheckboxes.forEach(cb => cb.checked = false);
@@ -646,7 +644,7 @@ function EventosInit() {
 
   btnNextSidebar = document.getElementById("btn-next-sidebar");
   btnPrevSidebar = document.getElementById("btn-prev-sidebar");
-  sidebarInputsEl = document.getElementById("sidebar-inputs"); // A variável continua existindo
+  sidebarInputsEl = document.getElementById("sidebar-inputs");
 
   renderMenuCardsOnlyImages();
   renderAdicionaisFiltered();
