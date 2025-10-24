@@ -365,16 +365,16 @@ main {
     text-decoration: none;
 }
 .carousel__track > .carousel__slide:nth-child(1) {
-    background-image: url("../assets/slide-clube.jpeg");
+    background-image: url("../assets/slide-clube.jpg");
 }
 .carousel__track > .carousel__slide:nth-child(2) {
-    background-image: url("../assets/slide-produtos.jpeg");
+    background-image: url("../assets/slide-produtos.jpg");
 }
 .carousel__track > .carousel__slide:nth-child(3) {
-    background-image: url("../assets/slide-eventos.jpeg");
+    background-image: url("../assets/slide-eventos.jpg");
 }
 .carousel__track > .carousel__slide:nth-child(4) {
-    background-image: url("../assets/slide-lojas.jpeg");
+    background-image: url("../assets/slide-lojas.jpg");
 }
 .carousel__overlay {
     position: absolute;
