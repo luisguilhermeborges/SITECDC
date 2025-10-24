@@ -539,11 +539,28 @@ main {
     .carousel__overlay {
         inset: auto 0 6% 0;
     }
-    /* --- FIM DIAGNÓSTICO --- */
 
-    /* Ajuste Mapa Mobile */
+    /* ------------------ Mini Map ------------------ */
     .mini-map {
-        height: 240px;
+        width: 100%;
+        height: 320px; /* Altura padrão para desktop */
+        border: 1px solid #e6e6e6;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden; /* Esconde partes extras do iframe */
+    }
+    .mini-map iframe {
+        width: 100%;
+        border: 0;
+        display: block;
+        /* Ajustes para "esconder" o cabeçalho/pesquisa do Google Maps */
+        margin-top: -60px; /* Empurra o conteúdo do iframe para cima */
+        height: calc(100% + 60px); /* Aumenta a altura interna para compensar o margin-top */
+    }
+
+    /* ... dentro de @media (max-width: 720px) ... */
+    .mini-map {
+        height: 240px; /* Altura menor para mobile */
     }
 
 }
