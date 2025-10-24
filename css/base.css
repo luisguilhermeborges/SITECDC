@@ -365,7 +365,6 @@ main {
     text-decoration: none;
 }
 
-/* Caminhos corrigidos para .jpg */
 .carousel__track > .carousel__slide:nth-child(1) {
     background-image: url("../assets/slide-clube.jpg");
 }
@@ -475,7 +474,23 @@ main {
 /* ... (código FAB omitido) ... */
 
 /* ------------------ Mini Map ------------------ */
-/* ... (código mapa omitido) ... */
+/* REGRAS ORIGINAIS RESTAURADAS/CONFIRMADAS */
+.mini-map {
+    width: 100%;
+    height: 320px;
+    border: 1px solid #e6e6e6;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.mini-map iframe {
+    width: 100%;
+    border: 0;
+    display: block;
+    margin-top: -60px;
+    height: calc(100% + 60px);
+}
+/* FIM DAS REGRAS DO MAPA */
 
 /* ------------------ Store Card with Background Image ------------------ */
 /* ... (código store card omitido) ... */
@@ -525,42 +540,50 @@ main {
     }
 
     /* Esconde o texto "Compre Aqui" em telas pequenas */
-    /* ... (código botão topbar mobile omitido) ... */
+    .btn-topbar-shop .onbeef-text {
+        display: none;
+    }
+    /* Ajusta padding do botão quando só tem ícone */
+    .btn-topbar-shop {
+        padding: 8px;
+        gap: 0;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+    }
+    .btn-topbar-shop .onbeef-logo {
+        filter: none;
+        height: clamp(20px, 5.5vw, 32px);
+    }
+    .btn-topbar-shop:hover {
+        background: transparent;
+        box-shadow: none;
+        transform: scale(1.1);
+    }
+     .btn-topbar-shop:hover .onbeef-logo {
+        filter: none;
+    }
 
-    /* --- DIAGNÓSTICO CARROSSEL MOBILE --- */
+    /* Ajuste Carrossel Mobile */
     .carousel__arrow {
         display: none !important;
     }
     .carousel {
-        /* Define uma altura fixa para teste */
-        height: 250px; /* Ou tente 30vh */
-        min-height: unset; /* Remove o min-height anterior */
+        height: 250px;
+        min-height: unset;
     }
     .carousel__overlay {
         inset: auto 0 6% 0;
     }
-
-    /* ------------------ Mini Map ------------------ */
-    .mini-map {
-        width: 100%;
-        height: 320px; /* Altura padrão para desktop */
-        border: 1px solid #e6e6e6;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        overflow: hidden; /* Esconde partes extras do iframe */
-    }
-    .mini-map iframe {
-        width: 100%;
-        border: 0;
-        display: block;
-        /* Ajustes para "esconder" o cabeçalho/pesquisa do Google Maps */
-        margin-top: -60px; /* Empurra o conteúdo do iframe para cima */
-        height: calc(100% + 60px); /* Aumenta a altura interna para compensar o margin-top */
+    .carousel__slide {
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
-    /* ... dentro de @media (max-width: 720px) ... */
+
+    /* Ajuste Mapa Mobile */
     .mini-map {
-        height: 240px; /* Altura menor para mobile */
+        height: 240px; /* <<< ALTURA MOBILE ORIGINAL */
     }
 
 }
