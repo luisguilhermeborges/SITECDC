@@ -325,7 +325,7 @@ main {
     max-height: 620px;
     min-height: 300px;
     overflow: hidden;
-    /*background-color: #3b0202;*/
+    background-color: #ffffff;
 }
 .carousel.fullbleed {
     width: 100vw !important;
@@ -474,7 +474,6 @@ main {
 /* ... (código FAB omitido) ... */
 
 /* ------------------ Mini Map ------------------ */
-/* REGRAS ORIGINAIS RESTAURADAS/CONFIRMADAS */
 .mini-map {
     width: 100%;
     height: 320px;
@@ -490,7 +489,27 @@ main {
     margin-top: -60px;
     height: calc(100% + 60px);
 }
-/* FIM DAS REGRAS DO MAPA */
+
+/* --- ADICIONADO: Estilos para mapa full-bleed --- */
+.section--fullbleed-map {
+    padding-block: clamp(16px, 3vw, 24px); /* Mantém espaçamento vertical */
+    padding-inline: 0; /* Remove padding lateral */
+}
+
+.section--fullbleed-map .mini-map {
+    width: 100%; /* Garante largura total */
+    max-width: 100%; /* Garante que não exceda a viewport */
+    border-radius: 0; /* Remove cantos arredondados */
+    border-left: none; /* Remove bordas laterais */
+    border-right: none;
+    box-shadow: none; /* Remove sombra */
+    /* A altura (height) continua a ser controlada pelas regras existentes (320px / 240px) */
+}
+
+.section--fullbleed-map .container h2 {
+    text-align: center; /* Garante centralização do título */
+}
+/* --- FIM DOS ESTILOS ADICIONADOS --- */
 
 /* ------------------ Store Card with Background Image ------------------ */
 /* ... (código store card omitido) ... */
@@ -583,8 +602,13 @@ main {
 
     /* Ajuste Mapa Mobile */
     .mini-map {
-        height: 240px; /* <<< ALTURA MOBILE ORIGINAL */
+        height: 240px; /* Altura mobile original */
     }
+    /* Garante que o mapa full-bleed mantenha a altura correta no mobile */
+    .section--fullbleed-map .mini-map {
+         height: 240px;
+    }
+
 
 }
 @media (max-width: 480px) {

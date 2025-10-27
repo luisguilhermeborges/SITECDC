@@ -78,15 +78,19 @@
             <div class="form-section pretty-form">
               <div class="form-grid">
                 <div class="form-col">
-                  <h4>Contato</h4>
+                  <h4>Contato Principal</h4>
                   <label class="field" for="cli-nome"><span>Nome</span><input type="text" id="cli-nome" required /><small class="field-error" id="err-cli-nome"></small></label>
-                  <label class="field" for="cli-cpf"><span>CPF</span><input type="tel" id="cli-cpf" placeholder="000.000.000-00" required /><small class="field-error" id="err-cli-cpf"></small></label>
+                  
+                  <label class="field" for="cli-cpf"><span>CPF ou CNPJ</span><input type="tel" id="cli-cpf" placeholder="000.000.000-00 ou 00.000.000/0000-00" required /><small class="field-error" id="err-cli-cpf"></small></label>
+                  
                   <label class="field" for="cli-whats"><span>WhatsApp</span><input type="tel" id="cli-whats" placeholder="(DDD) 9xxxx-xxxx" required /><small class="field-error" id="err-cli-whats"></small></label>
                   <label class="field" for="cli-email"><span>E-mail</span><input type="email" id="cli-email" placeholder="voce@exemplo.com" /><small class="field-error" id="err-cli-email"></small></label>
                 </div>
                 <div class="form-col">
                   <h4>Informações do evento</h4>
-                  <label class="field" for="evt-data"><span>Data do evento</span><input type="tel" id="evt-data" placeholder="dd/mm/aaaa" required /><small class="field-error" id="err-evt-data"></small></label>
+                  
+                  <label class="field" for="evt-data"><span>Data do evento</span><input type="date" id="evt-data" required /><small class="field-error" id="err-evt-data"></small></label>
+                  
                   <label class="field" for="evt-hora"><span>Início (hora)</span><input type="time" id="evt-hora" required /><small class="field-error" id="err-evt-hora"></small></label>
                   <div id="evt-externo-box" class="externo-box" hidden>
                     <label class="field" for="evt-endereco"><span>Endereço</span><input type="text" id="evt-endereco" placeholder="Rua, nº, bairro, cidade" /><small class="field-error" id="err-evt-endereco"></small></label>
@@ -104,7 +108,11 @@
               <h4>Dados Fiscais</h4>
               <label class="checkbox pretty-check"><input type="checkbox" id="check-nota-fiscal" /><span>Precisa de Nota Fiscal?</span></label>
               <div id="billing-details-box" class="billing-box" hidden>
-                <label class="field" for="billing-id"><span>CPF ou CNPJ para Faturamento</span><input type="tel" id="billing-id" placeholder="Informe o documento" /><small class="field-error" id="err-billing-id"></small></label>
+                <label class="field" for="billing-id"><span>CPF ou CNPJ para Faturamento</span><input type="tel" id="billing-id" placeholder="Informe o documento (mesmo do contato ou outro)" /><small class="field-error" id="err-billing-id"></small></label>
+                
+                <label class="field" for="billing-email"><span>E-mail para envio da NF-e</span><input type="email" id="billing-email" placeholder="email@fiscal.com" /><small class="field-error" id="err-billing-email"></small></label>
+                <label class="field" for="billing-whats"><span>Telefone para envio da NF-e (Opcional)</span><input type="tel" id="billing-whats" placeholder="(DDD) xxxxx-xxxx" /><small class="field-error" id="err-billing-whats"></small></label>
+              
               </div>
             </div>
             </form>
