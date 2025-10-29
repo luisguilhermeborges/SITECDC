@@ -39,6 +39,7 @@ body {
     padding-top: env(safe-area-inset-top, 0px);
     position: relative;
     z-index: 1;
+    /* padding-bottom foi removido */
 }
 
 body::before {
@@ -289,32 +290,43 @@ p {
 
 /* ------------------ Main & Footer ------------------ */
 main {
-    flex: 1 1 auto;
+    flex: 1 1 auto; /* Garante que o main ocupe o espaço disponível */
     display: block;
     padding-top: 0;
     padding-bottom: clamp(24px, 4vw, 40px);
     background: transparent;
 }
 .footer {
-    background: var(--header);
+    background: var(--header); /* Mantém o fundo cinza claro */
     border-top: 1px solid #e6e6e6;
+    /* flex-shrink: 0; Garante que o footer não encolha */
 }
 .footer__wrap {
-    padding-block: clamp(16px, 3vw, 24px);
+    /* MODIFICADO: Reduzido o padding vertical para diminuir a altura */
+    padding-block: clamp(12px, 2.4vw, 19px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px; /* Reduzido o gap entre os elementos */
     text-align: center;
+}
+.footer__wrap p {
+    margin-bottom: 8px; /* Reduzido */
+    font-size: var(--fz-sm); /* Texto um pouco menor */
 }
 .footer__socials {
     display: flex;
-    gap: 16px;
+    gap: 12px; /* Reduzido */
     flex-wrap: wrap;
+    justify-content: center; /* Centraliza os links se quebrar linha */
 }
 .footer a {
     color: var(--text-alt);
     text-decoration: none;
+    font-size: var(--fz-sm); /* Links um pouco menores */
+}
+.footer small {
+    font-size: clamp(10px, 1vw, 11px); /* Texto de copyright menor */
 }
 
 /* ------------------ Carousel ------------------ */
@@ -471,7 +483,31 @@ main {
 
 
 /* ------------------ WhatsApp FAB ------------------ */
-/* ... (código FAB omitido) ... */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 20px; /* Posição original ajustada */
+  right: 20px;
+  z-index: 101;
+  width: 50px;
+  height: 50px;
+  background: #25D366; /* Cor do WhatsApp */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+.whatsapp-fab img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
 
 /* ------------------ Mini Map ------------------ */
 .mini-map {
@@ -625,3 +661,46 @@ main {
 
 /* === ACESSIBILIDADE (FOCO VISÍVEL) === */
 /* ... (código foco visível omitido) ... */
+
+/* ------------------ Created By Bar (MODIFICADO) ------------------ */
+/* ------------------ Created By Bar (MODIFICADO) ------------------ */
+.created-by-bar {
+  /* position: fixed; REMOVIDO */
+  /* bottom: 0; REMOVIDO */
+  /* left: 0; REMOVIDO */
+  /* width: 100%; REMOVIDO */
+  background: #f2f2f2; /* Fundo cinza claro (igual header) */
+  padding: 13px;
+  text-align: center;
+}
+
+/* ADICIONADO: Pseudo-elemento para simular a borda curta */
+.created-by-bar::before {
+  content: ''; /* Obrigatório para pseudo-elementos */
+  position: absolute; /* Posiciona em relação ao .created-by-bar */
+  top: 1; /* Alinha no topo */
+  left: 50%; /* Começa no meio */
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+  height: 2px; /* Espessura da "borda" */
+  background-color: #c5b9b9; /* Cor da "borda" */
+  width: 37%; /* Comprimento da "borda" - Ajuste conforme necessário (ex: 300px, 90%, etc.) */
+}
+
+.created-by-bar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: none;
+  font-family: "Poppins", sans-serif;
+}
+.created-by-bar a:hover {
+  color: #030303;
+}
+.created-by-bar img {
+  height: 70px;
+  width: auto;
+}
