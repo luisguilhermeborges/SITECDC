@@ -1,0 +1,152 @@
+---
+// src/pages/eventos.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout 
+  title="Eventos e Churrascos - Código da Carne"
+  description="Realize o seu evento conosco. Escolha cardápios completos de churrasco, personalize com adicionais e peça um orçamento."
+>
+  
+  <div class="page-layout">
+    <div class="content-col">
+      <header class="page-header">
+        <h1>EVENTOS • CÓDIGO DA CARNE</h1>
+        <p class="subtitle">Escolha um cardápio e personalize com adicionais.</p>
+      </header>
+
+      <section class="step" id="step-1">
+        <div class="step-header">
+          <div class="step-index">1</div>
+          <div class="step-title">
+            <h2>Selecione o cardápio e configure seu evento</h2>
+            <p>Informe o local, o número de pessoas e escolha um cardápio.</p>
+          </div>
+        </div>
+        <div class="sidebar-inputs pretty-form step-1-config" id="sidebar-inputs">
+          <label class="field" for="select-local"><span>Local do Evento</span><select id="select-local"><option value="interno" selected>Espaço Código da Carne</option><option value="externo">Externo (Seu local)</option></select></label>
+          <label class="field" for="input-pessoas"><span>Nº de Pessoas</span><input id="input-pessoas" type="number" value="20" min="15" /></label>
+        </div>
+        <div class="divider"></div>
+        <div class="menu-grid" id="menuGrid" role="radiogroup" aria-label="Seleção de cardápio"></div>
+      </section>
+
+      <section class="step" id="step-2" hidden>
+        <div class="step-header">
+          <div class="step-index">2</div>
+          <div class="step-title">
+            <h2>Adicionais e personalizações</h2>
+            <p>Adicionais já incluídos no cardápio são ocultados automaticamente.</p>
+          </div>
+        </div>
+        <div class="adicionais-wrapper" id="adicionaisWrapper">
+          <div class="adicional-col"><h4>Entradas</h4><div class="adicional-list" id="adicionais-entradas"></div></div>
+          <div class="adicional-col"><h4>Cortes Especiais</h4><div class="adicional-list" id="adicionais-cortes"></div></div>
+          <div class="adicional-col"><h4>Acompanhamentos</h4><div class="adicional-list" id="adicionais-acomp"></div></div>
+          <div class="adicional-col"><h4>Sobremesa</h4><div class="adicional-list" id="adicionais-sobremesa"></div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="bebidas" id="bebidasBox">
+          <h3>BEBIDAS</h3><p class="hint">Todas as bebidas abaixo são <strong>sob consulta</strong> e disponíveis <strong>apenas para eventos internos</strong>:</p>
+          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="combo_cerveja_refri_agua" /><span><strong>Cerveja, refrigerante e água</strong></span></label></div>
+          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="combo_chopp_refri_agua" /><span><strong>Chopp, refrigerante e água</strong></span></label></div>
+          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="vinho" /><span><strong>Vinho</strong></span></label></div>
+          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="destilados" /><span><strong>Whisky, conhaque ou outro destilado</strong></span></label></div>
+        </div>
+        <div class="divider"></div>
+        <div class="pedidos-especiais">
+          <h3>PEDIDOS ESPECIAIS</h3><label class="checkbox"><input type="checkbox" id="check-pedido-especial" /><span>Quero fazer um pedido especial</span></label>
+          <div id="pedido-especial-box" class="pedido-especial-box" hidden>
+            <label for="pedido-especial-text" class="textarea-label">Descreva seu pedido especial:</label>
+            <textarea id="pedido-especial-text" rows="4" placeholder="Ex.: temática, substituições, restrições alimentares, etc."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" id="step-3" hidden>
+        <div class="step-header">
+          <div class="step-index">3</div><div class="step-title"><h2>Dados do evento e contato</h2><p>Informe seus dados e as informações do evento.</p></div>
+        </div>
+        <form id="finaliza-form" novalidate>
+          <div class="form-section pretty-form">
+            <div class="form-grid">
+              <div class="form-col">
+                <h4>Contato Principal</h4>
+                <label class="field" for="cli-nome"><span>Nome</span><input type="text" id="cli-nome" required /><small class="field-error" id="err-cli-nome"></small></label>
+                <label class="field" for="cli-cpf"><span>CPF ou CNPJ</span><input type="tel" id="cli-cpf" placeholder="000.000.000-00 ou 00.000.000/0000-00" required /><small class="field-error" id="err-cli-cpf"></small></label>
+                <label class="field" for="cli-whats"><span>WhatsApp</span><input type="tel" id="cli-whats" placeholder="(DDD) 9xxxx-xxxx" required /><small class="field-error" id="err-cli-whats"></small></label>
+                <label class="field" for="cli-email"><span>E-mail</span><input type="email" id="cli-email" placeholder="voce@exemplo.com" /><small class="field-error" id="err-cli-email"></small></label>
+              </div>
+              <div class="form-col">
+                <h4>Informações do evento</h4>
+                <label class="field" for="evt-data"><span>Data do evento</span><input type="date" id="evt-data" required /><small class="field-error" id="err-evt-data"></small></label>
+                <label class="field" for="evt-hora"><span>Início (hora)</span><input type="time" id="evt-hora" required /><small class="field-error" id="err-evt-hora"></small></label>
+                <div id="evt-externo-box" class="externo-box" hidden>
+                  <label class="field" for="evt-endereco"><span>Endereço</span><input type="text" id="evt-endereco" placeholder="Rua, nº, bairro, cidade" /><small class="field-error" id="err-evt-endereco"></small></label>
+                  <label class="field" for="evt-responsavel"><span>Quem libera a entrada</span><input type="text" id="evt-responsavel" placeholder="Nome da pessoa responsável" /><small class="field-error" id="err-evt-responsavel"></small></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-full-width">
+               <label class="checkbox lgpd pretty-check"><input type="checkbox" id="lgpd-ok" /><span>Autorizo o contato para envio do orçamento (LGPD).</span></label>
+               <small class="field-error" id="err-lgpd"></small>
+            </div>
+          </div>
+          <div class="form-section pretty-form">
+            <h4>Dados Fiscais</h4>
+            <label class="checkbox pretty-check"><input type="checkbox" id="check-nota-fiscal" /><span>Precisa de Nota Fiscal?</span></label>
+            <div id="billing-details-box" class="billing-box" hidden>
+              <label class="field" for="billing-id"><span>CPF ou CNPJ para Faturamento</span><input type="tel" id="billing-id" placeholder="Informe o documento (mesmo do contato ou outro)" /><small class="field-error" id="err-billing-id"></small></label>
+              <label class="field" for="billing-email"><span>E-mail para envio da NF-e</span><input type="email" id="billing-email" placeholder="email@fiscal.com" /><small class="field-error" id="err-billing-email"></small></label>
+              <label class="field" for="billing-whats"><span>Telefone para envio da NF-e (Opcional)</span><input type="tel" id="billing-whats" placeholder="(DDD) xxxxx-xxxx" /><small class="field-error" id="err-billing-whats"></small></label>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="step" id="step-4" hidden>
+        <div class="step-header">
+          <div class="step-index">4</div><div class="step-title"><h2>Termos e envio</h2><p>Leia os termos, aceite e finalize o envio por WhatsApp ou e-mail.</p></div>
+        </div>
+        <div class="pretty-form">
+          <div id="terms-box" class="terms-box"><div class="terms-loading">Carregando termos…</div></div>
+          <div class="terms-accept"><label class="checkbox pretty-check"><input id="terms-accept" type="checkbox" disabled /><span>Li e aceito os termos do serviço.</span></label><small class="field-error" id="err-terms"></small></div>
+          <div class="final-buttons">
+            <button class="btn btn-outline" id="btn-finalizar-email" disabled>Enviar por E-mail</button>
+            <button class="btn btn-primary" id="btn-finalizar-wpp" disabled>Enviar por WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="sidebar-col">
+      <div class="summary-sticky">
+        <div class="sidebar-next" id="sidebar-next">
+          <button class="btn btn-primary btn-sidebar-back" id="btn-prev-sidebar">Voltar</button>
+          <button class="btn btn-primary btn-sidebar-next" id="btn-next-sidebar">Ir para Adicionais</button>
+        </div>
+        <div class="calc-summary">
+          <h4>Resumo</h4>
+          <div class="summary-row"><span id="resumo-menu">—</span></div>
+          <div class="summary-row"><span>Adicionais</span><span id="resumo-itens">—</span></div>
+          <div class="summary-row"><span>Bebidas</span><span id="resumo-bebidas">—</span></div>
+          <div class="summary-row"><span>Pedido especial</span><span id="resumo-pedido">—</span></div>
+          <div class="total-row"><span>Total estimado</span><span id="resumo-total">R$ 0,00</span></div>
+          <small id="aviso-minimo"></small>
+        </div>
+        <div class="menu-itens-card" id="menu-itens-card" hidden>
+          <h4 id="menu-itens-title">Itens do cardápio</h4>
+          <div id="menu-itens-content" class="menu-itens-content"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+  </Layout>
+
+<script is:inline src="/js/eventos.js"></script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof window.EventosInit === 'function') {
+      window.EventosInit();
+    }
+  });
+</script>

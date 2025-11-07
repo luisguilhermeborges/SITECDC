@@ -1,0 +1,155 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout 
+  title="CÓDIGO DA CARNE - Da seleção ao corte perfeito"
+  description="Da seleção ao corte perfeito. Eventos, Clube e Lojas do Código da Carne em Londrina."
+>
+  
+  <section
+    class="carousel fullbleed"
+    role="region"
+    aria-roledescription="carrossel"
+    aria-label="Destaques"
+    data-carousel
+    data-autoplay="4500"
+  >
+    <button class="carousel__arrow is-prev" aria-label="Slide anterior" data-dir="-1">‹</button>
+    <button class="carousel__arrow is-next" aria-label="Próximo slide" data-dir="1">›</button>
+
+    <div class="carousel__viewport">
+      <div class="carousel__track">
+        <a href="#/clube" class="carousel__slide" aria-label="Clube Código da Carne"></a>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener noreferrer" class="carousel__slide" aria-label="Nossos Produtos"></a>
+        <a href="#/eventos" class="carousel__slide" aria-label="Eventos e Churras"></a>
+        <a href="#/lojas" class="carousel__slide" aria-label="Lojas Código da Carne"></a>
+      </div>
+    </div>
+
+    <div class="carousel__dots" role="tablist" aria-label="Selecionar slide"></div>
+  </section>
+
+  <section class="section welcome-section">
+    <h1>SEJA BEM-VINDO</h1>
+    <p>Da seleção ao corte perfeito, cuidamos de cada detalhe para que sua experiência seja memorável.</p>
+    <div class="home-cta-buttons">
+      <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Produtos</a>
+      <a href="#/eventos" class="btn btn-primary">Orçamento para Eventos</a>
+    </div>
+  </section>
+
+  <section class="section differentials-section">
+      <h2 style="text-align: center; margin-bottom: 24px;">NOSSOS DIFERENCIAIS</h2>
+      <div class="grid grid--3">
+          <div class="differential-item">
+              <div class="icon">🥩</div>
+              <h3>PRODUÇÃO PRÓPRIA</h3>
+              <p>Do campo à sua mesa, controlamos cada etapa para garantir um produto com padronização e qualidade superior.</p>
+          </div>
+          <div class="differential-item">
+              <div class="icon">⭐</div>
+              <h3>QUALIDADE SUPERIOR</h3>
+              <p>Nossos cortes são selecionados e preparados por especialistas, garantindo maciez e sabor inigualáveis.</p>
+          </div>
+          <div class="differential-item">
+              <div class="icon">🎉</div>
+              <h3>EVENTOS SOB MEDIDA</h3>
+              <p>Levamos a experiência Código da Carne até você, com cardápios personalizados e uma equipe completa.</p>
+          </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <h2 style="text-align: center; margin-bottom: 20px;">NOSSOS PRODUTOS</h2>
+    <div class="grid grid--3">
+      <div class="product-card">
+        <img src="assets/adicionais/picanha.webp" alt="Cortes nobres">
+        <h3>Cortes Nobres</h3>
+        <p>Picanha, Ancho, Chorizo e muito mais. A seleção premium para um churrasco inesquecível.</p>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Cortes</a>
+      </div>
+      <div class="product-card">
+        <img src="assets/foto-1.JPG" alt="Kits para churrasco">
+        <h3>Kits para Churrasco</h3>
+        <p>Soluções completas e práticas para você apenas se preocupar em acender o fogo e reunir os amigos.</p>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Montar meu Kit</a>
+      </div>
+      <div class="product-card">
+        <img src="assets/foto-3.jpg" alt="Carnes para o dia a dia">
+        <h3>Para o Dia a Dia</h3>
+        <p>Hambúrgueres artesanais, carnes para porções e cortes versáteis para suas refeições diárias.</p>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Opções</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials-section">
+      <h2>O QUE NOSSOS CLIENTES DIZEM</h2>
+      <div class="grid grid--2">
+          <div class="testimonial-card">
+              <p class="quote">"A melhor carne que já comi em Londrina! O atendimento é impecável e a qualidade dos produtos é indiscutível. Recomendo de olhos fechados!"</p>
+              <p class="author">- João da Silva</p>
+          </div>
+          <div class="testimonial-card">
+              <p class="quote">"Contratei o serviço de eventos para o meu aniversário e foi um sucesso absoluto. A equipe é super profissional e a comida estava divina. Todos os convidados elogiaram!"</p>
+              <p class="author">- Maria Oliveira</p>
+          </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="home-about-section">
+      <img src="assets/gabrielgustavo1.jpg" alt="Fundadores da Código da Carne">
+      <div class="home-about-text">
+        <h2>NOSSA HISTÓRIA</h2>
+        <p>A Código da Carne nasceu em 2015 da visão dos irmãos Gabriel e Gustavo Galindo. O que começou como um clube de assinaturas exclusivo, se transformou em uma referência de qualidade, com lojas físicas, produção própria e um compromisso inabalável com a excelência.</p>
+        <a href="#/quem-somos" class="btn btn-primary">Conheça nossa trajetória</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section partners-section">
+      <h2 style="margin-bottom: 24px;">NOSSOS PARCEIROS</h2>
+      <div class="partner-carousel">
+          <img src="assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
+          <img src="assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
+          <img src="assets/carrousel-parceiros/fsw.png" alt="FSW">
+          <img src="assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
+          <img src="assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
+          <img src="assets/carrousel-parceiros/guidara.png" alt="Guidara">
+          <img src="assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat">
+          <img src="assets/carrousel-parceiros/nat.jpeg" alt="Nat">
+
+          <img src="assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
+          <img src="assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
+          <img src="assets/carrousel-parceiros/fsw.png" alt="FSW">
+          <img src="assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
+          <img src="assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
+          <img src="assets/carrousel-parceiros/guidara.png" alt="Guidara">
+          <img src="assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat">
+          <img src="assets/carrousel-parceiros/nat.jpeg" alt="Nat">
+      </div>
+  </section>
+
+  <section class="section">
+    <h2 style="margin-bottom:10px; text-align: center;">ONDE ESTAMOS</h2>
+    <div class="mini-map" role="region" aria-label="Mapa das lojas Código da Carne em Londrina">
+      <iframe
+        src="https://www.google.com/maps/d/u/0/embed?mid=1o9Zm7-lXsGXUiXieoyCImT3QXyUutfs&ehbc=2E312F" allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        aria-label="Mapa com as 3 lojas do Código da Carne">
+      </iframe>
+    </div>
+  </section>
+  </Layout>
+
+<script src="/js/carousel.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof window.CDC_CarouselMount === 'function') {
+      window.CDC_CarouselMount();
+    }
+  });
+</script>
