@@ -4,12 +4,12 @@ name: Deploy to GitHub Pages
 on:
   # Corre sempre que você der 'push' para a branch 'main'
   push:
-    branches: [ "main" ] # Mude para "master" se a sua branch principal tiver esse nome
+    branches: [ "main" ] 
   
   # Permite que você corra este workflow manualmente
   workflow_dispatch:
 
-# Permissões necessárias para o GitHub Actions
+# Permissões necessárias
 permissions:
   contents: read
   pages: write
@@ -26,14 +26,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18" # Usar Node.js 18
+          node-version: "18"
           cache: npm
-      
+          cache-dependency-path: site-cdc/package-lock.json # Caminho corrigido
+
       - name: Install dependencies
-        run: npm install # Instala as dependências (Astro, etc.)
+        # Entra na pasta site-cdc e instala
+        run: cd site-cdc && npm install 
       
       - name: Build
-        run: npm run build # Este é o comando que cria a pasta 'dist'
+        # Entra na pasta site-cdc e constrói
+        run: cd site-cdc && npm run build 
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -41,8 +44,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # O Astro cria o site final na pasta 'dist'
-          path: ./dist 
+          # Caminho corrigido para a pasta dist
+          path: ./site-cdc/dist 
 
   deploy:
     needs: build
