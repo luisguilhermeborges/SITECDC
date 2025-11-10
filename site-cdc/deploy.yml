@@ -1,0 +1,56 @@
+# Nome do workflow
+name: Deploy to GitHub Pages
+
+on:
+  # Corre sempre que você der 'push' para a branch 'main'
+  push:
+    branches: [ "main" ] # Mude para "master" se a sua branch principal tiver esse nome
+  
+  # Permite que você corra este workflow manualmente
+  workflow_dispatch:
+
+# Permissões necessárias para o GitHub Actions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Configuração do trabalho (job)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # Usar Node.js 18
+          cache: npm
+      
+      - name: Install dependencies
+        run: npm install # Instala as dependências (Astro, etc.)
+      
+      - name: Build
+        run: npm run build # Este é o comando que cria a pasta 'dist'
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # O Astro cria o site final na pasta 'dist'
+          path: ./dist 
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
