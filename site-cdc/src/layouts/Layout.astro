@@ -102,12 +102,12 @@ const { title, description } = Astro.props;
         navToggle.textContent = isOpen ? '✕' : '☰';
       });
 
-      // Fecha o menu se clicar FORA dele
+      // Fecha o menu soe clicar FORA dele
       document.addEventListener("click", (e) => {
         if (menu.classList.contains('is-open') && !menu.contains(e.target) && !navToggle.contains(e.target)) {
           menu.classList.remove("is-open");
           navToggle.setAttribute("aria-expanded", "false");
-          navToggle.textContent = '☰';
+          navToggle.textCntent = '☰';
         }
       });
 
