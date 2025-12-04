@@ -366,13 +366,44 @@ function enviarWhatsApp() {
 
 function enviarEmail() {
   if (!validarTermos()) return;
-  const texto = buildResumoTextoParaEnvio();
-  const assunto = encodeURL("Orçamento de Evento • Código da Carne");
-  const corpo = encodeURL(texto);
-  const dest = SALES_EMAIL || "";
-  window.location.href = `mailto:${dest}?subject=${assunto}&body=${corpo}`;
-}
 
+  const btn = document.getElementById("btn-finalizar-email");
+  const textoOriginal = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+
+  // Coleta os dados para enviar ao PHP
+  const dados = {
+    nome: document.getElementById("cli-nome").value,
+    email: document.getElementById("cli-email").value,
+    resumo: buildResumoTextoParaEnvio() // Função que já existe no seu código e gera o texto
+  };
+
+  fetch("/enviar-pedido.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(dados)
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Sucesso! Seu orçamento foi enviado. Verifique seu e-mail para a confirmação.");
+      // Opcional: Limpar formulário ou redirecionar
+      window.location.reload(); 
+    } else {
+      alert("Houve um erro ao enviar. Por favor, tente via WhatsApp.");
+      btn.disabled = false;
+      btn.textContent = textoOriginal;
+    }
+  })
+  .catch(error => {
+    console.error("Erro:", error);
+    alert("Erro de conexão. Tente novamente ou use o WhatsApp.");
+    btn.disabled = false;
+    btn.textContent = textoOriginal;
+  });
+}
 function renderMenuItensSidebar() {
   const wrap = document.getElementById("menu-itens-card");
   const titleEl = document.getElementById("menu-itens-title");
