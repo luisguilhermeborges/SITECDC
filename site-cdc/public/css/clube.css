@@ -69,7 +69,9 @@
 }
 
 .plano-card {
-    background: #fffdfd;
+    /* --- ALTERAÇÃO 1: COR DE FUNDO --- */
+    background: #ffffff; /* Mudado de #fffdfd para branco puro. Coloque sua cor aqui. */
+    
     border: 1px solid #e6e6e6;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -90,7 +92,10 @@
 /* --- NOVO ESTILO: Badge "Mais Popular" --- */
 .plano-badge {
     position: absolute;
-    top: 12px;
+    
+    /* --- ALTERAÇÃO 2: POSIÇÃO DA BADGE --- */
+    top: 30px; /* Aumentado de 12px para 30px para descer a faixa */
+    
     right: -30px;
     background-color: var(--text-alt);
     color: #fff;
