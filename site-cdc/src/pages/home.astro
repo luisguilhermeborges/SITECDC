@@ -39,6 +39,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  
   <section class="section differentials-section">
       <h2 style="text-align: center; margin-bottom: 24px;">NOSSOS DIFERENCIAIS</h2>
       <div class="grid grid--3">
@@ -47,6 +48,7 @@ import Layout from '../layouts/Layout.astro';
               <h3>PRODUÇÃO PRÓPRIA</h3>
               <p>Do campo à sua mesa, controlamos cada etapa para garantir um produto com padronização e qualidade superior.</p>
           </div>
+         
           <div class="differential-item">
               <div class="icon">⭐</div>
               <h3>QUALIDADE SUPERIOR</h3>
@@ -54,6 +56,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="differential-item">
               <div class="icon">🎉</div>
+      
               <h3>EVENTOS SOB MEDIDA</h3>
               <p>Levamos a experiência Código da Carne até você, com cardápios personalizados e uma equipe completa.</p>
           </div>
@@ -71,6 +74,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
       <div class="product-card">
         <img src="assets/pontinhoperfeito.jpg" alt="Kits para churrasco">
+      
         <h3>Kits para Churrasco</h3>
         <p>Soluções completas e práticas para você apenas se preocupar em acender o fogo e reunir os amigos.</p>
         <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Montar meu Kit</a>
@@ -114,6 +118,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="partner-carousel">
           <img src="assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
           <img src="assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
+      
           <img src="assets/carrousel-parceiros/fsw.png" alt="FSW">
           <img src="assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
           <img src="assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
@@ -145,8 +150,8 @@ import Layout from '../layouts/Layout.astro';
   </section>
   </Layout>
 
-<script src="/js/carousel.js"></script>
-<script>
+<script is:inline src="/js/carousel.js"></script>
+<script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     if (typeof window.CDC_CarouselMount === 'function') {
       window.CDC_CarouselMount();
