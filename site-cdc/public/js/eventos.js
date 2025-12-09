@@ -1,10 +1,9 @@
 // js/eventos.js
 
 const WPP_NUMBER = "4330252586";
-const SALES_EMAIL = "contato@codigodacarne.com.br";
-const MENU_IMG_PATH = "assets/cardapios/";
+const MENU_IMG_PATH = "/assets/cardapios/";
 
-/* ====== MENUS (ajuste os nomes base das imagens conforme existirem na pasta assets/cardapios) ====== */
+/* ====== MENUS ====== */
 const MENUS = [
   {
     id: "BRONZE", nome: "🥉 CARDÁPIO BRONZE", preco_por_pessoa: 119.90, imgBase: "cardapio-bronze",
@@ -49,7 +48,6 @@ const formatBRL = (n) => n.toLocaleString("pt-BR", { style: "currency", currency
 const encodeURL = (s) => encodeURIComponent(s).replace(/%0A/g, "%0A");
 const norm = (s) => (s || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
 
-// Declaração de variáveis no escopo principal
 let menuGridEl;
 let colEntradas, colCortes, colAcomp, colSobrem, adicionaisWrapperEl, bebidasBoxEl;
 let checkPedidoEspecial, pedidoEspecialBox, pedidoEspecialText;
@@ -58,12 +56,11 @@ let resumoMenuEl, resumoItensEl, resumoBebidasEl, resumoPedidoEl, resumoTotalEl,
 let formFinaliza, cliNomeEl, cliCpfEl, cliWhatsEl, cliEmailEl;
 let evtDataEl, evtHoraEl, evtExternoBoxEl, evtEnderecoEl, evtResponsavelEl;
 let checkNotaFiscal, billingBox, billingIdEl, billingEmailEl, billingWhatsEl;
-let termsBoxEl, termsAcceptEl, errTermsEl, btnWpp, btnEmail;
+let termsBoxEl, termsAcceptEl, errTermsEl, btnWpp; // Removido btnEmail
 let btnNextSidebar, btnPrevSidebar, sidebarInputsEl;
 let currentStep = 1;
 let selectedMenuId = "HAMBURGADA";
 
-/* ====== Fallback de Imagem ====== */
 window.__menuImgFallback = function (img, base) {
   const queue = (img.dataset.exts || "jpg,jpeg,png").split(",");
   const next = queue.shift();
@@ -76,15 +73,14 @@ window.__menuImgFallback = function (img, base) {
   img.src = `${base}.${next}`;
 };
 
-/* ====== Construção HTML ====== */
 function buildMenuImageHTML(imgBase, altText) {
   const base = `${MENU_IMG_PATH}${imgBase}`;
   return `
     <picture>
       <source srcset="${base}.webp" type="image/webp">
       <img class="menu-thumb"
-           src="${base}.jpg"
-           data-exts="jpeg,png"
+           src="${base}.webp"
+           data-exts="jpg,jpeg,png"
            alt="${altText}"
            loading="lazy"
            onerror="window.__menuImgFallback && window.__menuImgFallback(this, '${base}')" />
@@ -128,7 +124,7 @@ function renderMenuCardsOnlyImages() {
 function makeAdicionalItem(ad) {
   const el = document.createElement("div");
   el.className = "adicional-item";
-  const imgHTML = ad.img ? `<img class="adicional-thumb" src="assets/adicionais/${ad.img}" alt="${ad.label}" loading="lazy">` : "";
+  const imgHTML = ad.img ? `<img class="adicional-thumb" src="/assets/adicionais/${ad.img}" alt="${ad.label}" loading="lazy">` : "";
   el.innerHTML = `
     <div class="thumb-wrap">${imgHTML}</div>
     <label class="checkbox">
@@ -171,7 +167,6 @@ function renderAdicionaisFiltered() {
   if (!colSobrem.children.length) colSobrem.innerHTML = `<div class="adicional-item"><span class="checkbox"><input type="checkbox" disabled /><span>Sem adicionais</span></span></div>`;
 }
 
-/* ====== Cálculos / Resumo ====== */
 const MINIMO_INTERNO = 20;
 const MINIMO_EXTERNO = 15;
 
@@ -232,7 +227,6 @@ function updateResumo() {
   resumoTotalEl && (resumoTotalEl.textContent = formatBRL(total));
 }
 
-/* ====== Validações & envio ====== */
 function clearErrors() {
   document.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
   document.querySelectorAll(".field-error").forEach(el => el.textContent = "");
@@ -286,7 +280,6 @@ function buildResumoTextoParaEnvio() {
     ``, `Obrigado!`
   ].join("\n");
 }
-
 
 function validarPasso3() {
   clearErrors();
@@ -347,7 +340,6 @@ function validarPasso3() {
   return ok;
 }
 
-
 function validarTermos() {
   clearErrors();
   if (!termsAcceptEl?.checked) {
@@ -364,46 +356,6 @@ function enviarWhatsApp() {
   window.open(base + encodeURL(texto), "_blank");
 }
 
-function enviarEmail() {
-  if (!validarTermos()) return;
-
-  const btn = document.getElementById("btn-finalizar-email");
-  const textoOriginal = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = "Enviando...";
-
-  // Coleta os dados para enviar ao PHP
-  const dados = {
-    nome: document.getElementById("cli-nome").value,
-    email: document.getElementById("cli-email").value,
-    resumo: buildResumoTextoParaEnvio() // Função que já existe no seu código e gera o texto
-  };
-
-  fetch("/enviar-pedido.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(dados)
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("Sucesso! Seu orçamento foi enviado. Verifique seu e-mail para a confirmação.");
-      // Opcional: Limpar formulário ou redirecionar
-      window.location.reload(); 
-    } else {
-      alert("Houve um erro ao enviar. Por favor, tente via WhatsApp.");
-      btn.disabled = false;
-      btn.textContent = textoOriginal;
-    }
-  })
-  .catch(error => {
-    console.error("Erro:", error);
-    alert("Erro de conexão. Tente novamente ou use o WhatsApp.");
-    btn.disabled = false;
-    btn.textContent = textoOriginal;
-  });
-}
 function renderMenuItensSidebar() {
   const wrap = document.getElementById("menu-itens-card");
   const titleEl = document.getElementById("menu-itens-title");
@@ -426,39 +378,13 @@ function renderMenuItensSidebar() {
 }
 
 function loadTerms() {
-  if (!termsBoxEl) return;
-  termsBoxEl.innerHTML = `<div class="terms-loading">Carregando termos…</div>`;
-  fetch("partials/termos-evento.html", { cache: "no-store" })
-    .then(r => r.text())
-    .then(html => {
-      const tmp = document.createElement("html");
-      tmp.innerHTML = html;
-      const body = tmp.querySelector("body");
-      termsBoxEl.innerHTML = body ? body.innerHTML : html;
-      
-      // *** ALTERAÇÃO AQUI: Remove listener de scroll e habilita o checkbox ***
-      if (termsAcceptEl) { 
-          termsAcceptEl.checked = false; // Começa desmarcado
-          termsAcceptEl.disabled = false; // Habilita imediatamente
-      }
-      if (errTermsEl) errTermsEl.textContent = "";
-
-      // Remove a lógica 'onScroll'
-      /* const scrollEl = termsBoxEl.querySelector("#termsScroll") || termsBoxEl;
-      const onScroll = () => {
-        // ... (código do scroll removido) ...
-      };
-      scrollEl.addEventListener("scroll", onScroll);
-      */
-      // *** FIM DA ALTERAÇÃO ***
-
-    })
-    .catch(() => {
-      termsBoxEl.innerHTML = `<div class="terms-loading">Não foi possível carregar os termos. Tente atualizar a página.</div>`;
-    });
+  if (termsAcceptEl) {
+      termsAcceptEl.checked = false;
+      termsAcceptEl.disabled = false;
+  }
+  if (errTermsEl) errTermsEl.textContent = "";
 }
 
-/* ====== Navegação do Wizard (com IDs corretos) ====== */
 function goToStep(n) {
   currentStep = n;
   [1, 2, 3, 4].forEach(i => {
@@ -470,7 +396,6 @@ function goToStep(n) {
   const sidebarNext = document.getElementById("sidebar-next");
   const btnNext = document.getElementById("btn-next-sidebar");
 
-  // *** ALTERAÇÃO AQUI: Esconde a navegação no passo 4 ***
   if (sidebarNext) sidebarNext.hidden = (n === 4);
 
   if (btnPrevSidebar) {
@@ -485,9 +410,8 @@ function goToStep(n) {
       "Próximo";
   }
 
-  if (n === 4) loadTerms(); // Chama a função loadTerms modificada
+  if (n === 4) loadTerms();
 
-  // Mantém o scroll para o topo
   requestAnimationFrame(() => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -500,7 +424,6 @@ function goToStep(n) {
 }
 
 function applyMask(el, maskFn) {
-  // Função de máscara melhorada para manter posição do cursor
   const handler = (e) => {
       if (!el) return;
       let cursorPos = el.selectionStart;
@@ -510,7 +433,6 @@ function applyMask(el, maskFn) {
       el.value = newValue;
 
       let newCursorPos = cursorPos;
-      // Calcula quantos caracteres não numéricos foram adicionados ANTES da posição original do cursor
       let charsAdded = 0;
       for (let i = 0; i < cursorPos; i++) {
           if (i < originalValue.length && i + charsAdded < newValue.length) {
@@ -534,7 +456,6 @@ function applyMask(el, maskFn) {
   };
   el?.addEventListener("input", handler);
 }
-
 
 function wireMasksAndToggles() {
   const cpfCnpjMask = (v) => {
@@ -591,7 +512,6 @@ function wireMasksAndToggles() {
   pedidoEspecialText?.addEventListener("input", updateResumo);
 }
 
-
 function wireCalc() {
     inputPessoas?.addEventListener("input", () => { updateResumo(); renderMenuItensSidebar(); renderAdicionaisFiltered(); });
     selectLocal?.addEventListener("change", () => {
@@ -617,13 +537,10 @@ function wireCalc() {
 
 function wireFinalizacao() {
     btnWpp?.addEventListener("click", enviarWhatsApp);
-    btnEmail?.addEventListener("click", enviarEmail);
     
-    // Este listener agora funciona com o checkbox habilitado desde o início
     termsAcceptEl?.addEventListener("change", () => {
         const enable = termsAcceptEl.checked;
         if (btnWpp) btnWpp.disabled = !enable;
-        if (btnEmail) btnEmail.disabled = !enable;
         if (enable && errTermsEl) errTermsEl.textContent = "";
     });
     formFinaliza?.addEventListener("submit", (e) => e.preventDefault());
@@ -642,7 +559,6 @@ function wireWizardNav() {
     });
 }
 
-/* ====== INIT ====== */
 function EventosInit() {
   menuGridEl = document.getElementById("menuGrid");
   colEntradas = document.getElementById("adicionais-entradas");
@@ -669,7 +585,6 @@ function EventosInit() {
   cliEmailEl = document.getElementById("cli-email");
   evtDataEl = document.getElementById("evt-data");
   evtHoraEl = document.getElementById("evt-hora");
-  // evtLocalEl = document.getElementById("evt-local"); // Removido pois não existe no HTML
   evtExternoBoxEl = document.getElementById("evt-externo-box");
   evtEnderecoEl = document.getElementById("evt-endereco");
   evtResponsavelEl = document.getElementById("evt-responsavel");
@@ -682,7 +597,6 @@ function EventosInit() {
   termsAcceptEl = document.getElementById("terms-accept");
   errTermsEl = document.getElementById("err-terms");
   btnWpp = document.getElementById("btn-finalizar-wpp");
-  btnEmail = document.getElementById("btn-finalizar-email");
   btnNextSidebar = document.getElementById("btn-next-sidebar");
   btnPrevSidebar = document.getElementById("btn-prev-sidebar");
   sidebarInputsEl = document.getElementById("sidebar-inputs");
@@ -698,5 +612,4 @@ function EventosInit() {
   updateResumo();
 }
 
-/* Expor a função de inicialização para ser chamada pelo app.js */
 window.EventosInit = EventosInit;

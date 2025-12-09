@@ -1,152 +1,156 @@
 ---
-// src/pages/eventos.astro
+// src/pages/home.astro
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout 
-  title="Eventos e Churrascos - Código da Carne"
-  description="Realize o seu evento conosco. Escolha cardápios completos de churrasco, personalize com adicionais e peça um orçamento."
+  title="CÓDIGO DA CARNE - Da seleção ao corte perfeito"
+  description="Da seleção ao corte perfeito. Eventos, Clube e Lojas do Código da Carne em Londrina."
 >
   
-  <div class="page-layout">
-    <div class="content-col">
-      <header class="page-header">
-        <h1>EVENTOS • CÓDIGO DA CARNE</h1>
-        <p class="subtitle">Escolha um cardápio e personalize com adicionais.</p>
-      </header>
+  <section
+    class="carousel fullbleed"
+    role="region"
+    aria-roledescription="carrossel"
+    aria-label="Destaques"
+    data-carousel
+    data-autoplay="4500"
+  >
+    <button class="carousel__arrow is-prev" aria-label="Slide anterior" data-dir="-1">‹</button>
+    <button class="carousel__arrow is-next" aria-label="Próximo slide" data-dir="1">›</button>
 
-      <section class="step" id="step-1">
-        <div class="step-header">
-          <div class="step-index">1</div>
-          <div class="step-title">
-            <h2>Selecione o cardápio e configure seu evento</h2>
-            <p>Informe o local, o número de pessoas e escolha um cardápio.</p>
-          </div>
-        </div>
-        <div class="sidebar-inputs pretty-form step-1-config" id="sidebar-inputs">
-          <label class="field" for="select-local"><span>Local do Evento</span><select id="select-local"><option value="interno" selected>Espaço Código da Carne</option><option value="externo">Externo (Seu local)</option></select></label>
-          <label class="field" for="input-pessoas"><span>Nº de Pessoas</span><input id="input-pessoas" type="number" value="20" min="15" /></label>
-        </div>
-        <div class="divider"></div>
-        <div class="menu-grid" id="menuGrid" role="radiogroup" aria-label="Seleção de cardápio"></div>
-      </section>
-
-      <section class="step" id="step-2" hidden>
-        <div class="step-header">
-          <div class="step-index">2</div>
-          <div class="step-title">
-            <h2>Adicionais e personalizações</h2>
-            <p>Adicionais já incluídos no cardápio são ocultados automaticamente.</p>
-          </div>
-        </div>
-        <div class="adicionais-wrapper" id="adicionaisWrapper">
-          <div class="adicional-col"><h4>Entradas</h4><div class="adicional-list" id="adicionais-entradas"></div></div>
-          <div class="adicional-col"><h4>Cortes Especiais</h4><div class="adicional-list" id="adicionais-cortes"></div></div>
-          <div class="adicional-col"><h4>Acompanhamentos</h4><div class="adicional-list" id="adicionais-acomp"></div></div>
-          <div class="adicional-col"><h4>Sobremesa</h4><div class="adicional-list" id="adicionais-sobremesa"></div></div>
-        </div>
-        <div class="divider"></div>
-        <div class="bebidas" id="bebidasBox">
-          <h3>BEBIDAS</h3><p class="hint">Todas as bebidas abaixo são <strong>sob consulta</strong> e disponíveis <strong>apenas para eventos internos</strong>:</p>
-          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="combo_cerveja_refri_agua" /><span><strong>Cerveja, refrigerante e água</strong></span></label></div>
-          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="combo_chopp_refri_agua" /><span><strong>Chopp, refrigerante e água</strong></span></label></div>
-          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="vinho" /><span><strong>Vinho</strong></span></label></div>
-          <div class="bebida-item"><label class="checkbox"><input type="checkbox" data-bebida="destilados" /><span><strong>Whisky, conhaque ou outro destilado</strong></span></label></div>
-        </div>
-        <div class="divider"></div>
-        <div class="pedidos-especiais">
-          <h3>PEDIDOS ESPECIAIS</h3><label class="checkbox"><input type="checkbox" id="check-pedido-especial" /><span>Quero fazer um pedido especial</span></label>
-          <div id="pedido-especial-box" class="pedido-especial-box" hidden>
-            <label for="pedido-especial-text" class="textarea-label">Descreva seu pedido especial:</label>
-            <textarea id="pedido-especial-text" rows="4" placeholder="Ex.: temática, substituições, restrições alimentares, etc."></textarea>
-          </div>
-        </div>
-      </section>
-
-      <section class="step" id="step-3" hidden>
-        <div class="step-header">
-          <div class="step-index">3</div><div class="step-title"><h2>Dados do evento e contato</h2><p>Informe seus dados e as informações do evento.</p></div>
-        </div>
-        <form id="finaliza-form" novalidate>
-          <div class="form-section pretty-form">
-            <div class="form-grid">
-              <div class="form-col">
-                <h4>Contato Principal</h4>
-                <label class="field" for="cli-nome"><span>Nome</span><input type="text" id="cli-nome" required /><small class="field-error" id="err-cli-nome"></small></label>
-                <label class="field" for="cli-cpf"><span>CPF ou CNPJ</span><input type="tel" id="cli-cpf" placeholder="000.000.000-00 ou 00.000.000/0000-00" required /><small class="field-error" id="err-cli-cpf"></small></label>
-                <label class="field" for="cli-whats"><span>WhatsApp</span><input type="tel" id="cli-whats" placeholder="(DDD) 9xxxx-xxxx" required /><small class="field-error" id="err-cli-whats"></small></label>
-                <label class="field" for="cli-email"><span>E-mail</span><input type="email" id="cli-email" placeholder="voce@exemplo.com" /><small class="field-error" id="err-cli-email"></small></label>
-              </div>
-              <div class="form-col">
-                <h4>Informações do evento</h4>
-                <label class="field" for="evt-data"><span>Data do evento</span><input type="date" id="evt-data" required /><small class="field-error" id="err-evt-data"></small></label>
-                <label class="field" for="evt-hora"><span>Início (hora)</span><input type="time" id="evt-hora" required /><small class="field-error" id="err-evt-hora"></small></label>
-                <div id="evt-externo-box" class="externo-box" hidden>
-                  <label class="field" for="evt-endereco"><span>Endereço</span><input type="text" id="evt-endereco" placeholder="Rua, nº, bairro, cidade" /><small class="field-error" id="err-evt-endereco"></small></label>
-                  <label class="field" for="evt-responsavel"><span>Quem libera a entrada</span><input type="text" id="evt-responsavel" placeholder="Nome da pessoa responsável" /><small class="field-error" id="err-evt-responsavel"></small></label>
-                </div>
-              </div>
-            </div>
-            <div class="form-full-width">
-               <label class="checkbox lgpd pretty-check"><input type="checkbox" id="lgpd-ok" /><span>Autorizo o contato para envio do orçamento (LGPD).</span></label>
-               <small class="field-error" id="err-lgpd"></small>
-            </div>
-          </div>
-          <div class="form-section pretty-form">
-            <h4>Dados Fiscais</h4>
-            <label class="checkbox pretty-check"><input type="checkbox" id="check-nota-fiscal" /><span>Precisa de Nota Fiscal?</span></label>
-            <div id="billing-details-box" class="billing-box" hidden>
-              <label class="field" for="billing-id"><span>CPF ou CNPJ para Faturamento</span><input type="tel" id="billing-id" placeholder="Informe o documento (mesmo do contato ou outro)" /><small class="field-error" id="err-billing-id"></small></label>
-              <label class="field" for="billing-email"><span>E-mail para envio da NF-e</span><input type="email" id="billing-email" placeholder="email@fiscal.com" /><small class="field-error" id="err-billing-email"></small></label>
-              <label class="field" for="billing-whats"><span>Telefone para envio da NF-e (Opcional)</span><input type="tel" id="billing-whats" placeholder="(DDD) xxxxx-xxxx" /><small class="field-error" id="err-billing-whats"></small></label>
-            </div>
-          </div>
-        </form>
-      </section>
-
-      <section class="step" id="step-4" hidden>
-        <div class="step-header">
-          <div class="step-index">4</div><div class="step-title"><h2>Termos e envio</h2><p>Leia os termos, aceite e finalize o envio por WhatsApp ou e-mail.</p></div>
-        </div>
-        <div class="pretty-form">
-          <div id="terms-box" class="terms-box"><div class="terms-loading">Carregando termos…</div></div>
-          <div class="terms-accept"><label class="checkbox pretty-check"><input id="terms-accept" type="checkbox" disabled /><span>Li e aceito os termos do serviço.</span></label><small class="field-error" id="err-terms"></small></div>
-          <div class="final-buttons">
-            <button class="btn btn-outline" id="btn-finalizar-email" disabled>Enviar por E-mail</button>
-            <button class="btn btn-primary" id="btn-finalizar-wpp" disabled>Enviar por WhatsApp</button>
-          </div>
-        </div>
-      </section>
+    <div class="carousel__viewport">
+      <div class="carousel__track">
+        <a href="/clube" class="carousel__slide" aria-label="Clube Código da Carne"></a>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener noreferrer" class="carousel__slide" aria-label="Nossos Produtos"></a>
+        <a href="/eventos" class="carousel__slide" aria-label="Eventos e Churras"></a>
+        <a href="/lojas" class="carousel__slide" aria-label="Lojas Código da Carne"></a>
+      </div>
     </div>
 
-    <aside class="sidebar-col">
-      <div class="summary-sticky">
-        <div class="sidebar-next" id="sidebar-next">
-          <button class="btn btn-primary btn-sidebar-back" id="btn-prev-sidebar">Voltar</button>
-          <button class="btn btn-primary btn-sidebar-next" id="btn-next-sidebar">Ir para Adicionais</button>
-        </div>
-        <div class="calc-summary">
-          <h4>Resumo</h4>
-          <div class="summary-row"><span id="resumo-menu">—</span></div>
-          <div class="summary-row"><span>Adicionais</span><span id="resumo-itens">—</span></div>
-          <div class="summary-row"><span>Bebidas</span><span id="resumo-bebidas">—</span></div>
-          <div class="summary-row"><span>Pedido especial</span><span id="resumo-pedido">—</span></div>
-          <div class="total-row"><span>Total estimado</span><span id="resumo-total">R$ 0,00</span></div>
-          <small id="aviso-minimo"></small>
-        </div>
-        <div class="menu-itens-card" id="menu-itens-card" hidden>
-          <h4 id="menu-itens-title">Itens do cardápio</h4>
-          <div id="menu-itens-content" class="menu-itens-content"></div>
-        </div>
+    <div class="carousel__dots" role="tablist" aria-label="Selecionar slide"></div>
+  </section>
+
+  <section class="section welcome-section">
+    <h1>SEJA BEM-VINDO</h1>
+    <p>Da seleção ao corte perfeito, cuidamos de cada detalhe para que sua experiência seja memorável.</p>
+    <div class="home-cta-buttons">
+      <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Produtos</a>
+      <a href="/eventos" class="btn btn-primary">Orçamento para Eventos</a>
+    </div>
+  </section>
+
+  <section class="section differentials-section">
+      <h2 style="text-align: center; margin-bottom: 24px;">NOSSOS DIFERENCIAIS</h2>
+      <div class="grid grid--3">
+          <div class="differential-item">
+              <div class="icon">🥩</div>
+              <h3>PRODUÇÃO PRÓPRIA</h3>
+              <p>Do campo à sua mesa, controlamos cada etapa para garantir um produto com padronização e qualidade superior.</p>
+          </div>
+         
+          <div class="differential-item">
+              <div class="icon">⭐</div>
+              <h3>QUALIDADE SUPERIOR</h3>
+              <p>Nossos cortes são selecionados e preparados por especialistas, garantindo maciez e sabor inigualáveis.</p>
+          </div>
+          <div class="differential-item">
+              <div class="icon">🎉</div>
+              <h3>EVENTOS SOB MEDIDA</h3>
+              <p>Levamos a experiência Código da Carne até você, com cardápios personalizados e uma equipe completa.</p>
+          </div>
       </div>
-    </aside>
-  </div>
+  </section>
+
+  <section class="section">
+    <h2 style="text-align: center; margin-bottom: 20px;">NOSSOS PRODUTOS</h2>
+    <div class="grid grid--3">
+      <div class="product-card">
+        <img src="/assets/adicionais/picanha.webp" alt="Cortes nobres">
+        <h3>Cortes Nobres</h3>
+        <p>Picanha, Ancho, Chorizo e muito mais. A seleção premium para um churrasco inesquecível.</p>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Cortes</a>
+      </div>
+      <div class="product-card">
+        <img src="/assets/pontinhoperfeito.JPG" alt="Kits para churrasco">
+        <h3>Kits para Churrasco</h3>
+        <p>Soluções completas e práticas para você apenas se preocupar em acender o fogo e reunir os amigos.</p>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Montar meu Kit</a>
+      </div>
+      <div class="product-card">
+        <img src="/assets/foto-4.jpg" alt="Carnes para o dia a dia">
+        <h3>Para o Dia a Dia</h3>
+        <p>Hambúrgueres artesanais, carnes para porções e cortes versáteis para suas refeições diárias.</p>
+        <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Opções</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials-section">
+      <h2>O QUE NOSSOS CLIENTES DIZEM</h2>
+      <div class="grid grid--2">
+          <div class="testimonial-card">
+              <p class="quote">"A melhor carne que já comi em Londrina! O atendimento é impecável e a qualidade dos produtos é indiscutível. Recomendo de olhos fechados!"</p>
+              <p class="author">- João da Silva</p>
+          </div>
+          <div class="testimonial-card">
+              <p class="quote">"Contratei o serviço de eventos para o meu aniversário e foi um sucesso absoluto. A equipe é super profissional e a comida estava divina. Todos os convidados elogiaram!"</p>
+              <p class="author">- Maria Oliveira</p>
+          </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="home-about-section">
+      <img src="/assets/gabrielgustavo1.jpg" alt="Fundadores da Código da Carne">
+      <div class="home-about-text">
+        <h2>NOSSA HISTÓRIA</h2>
+        <p>A Código da Carne nasceu em 2015 da visão dos irmãos Gabriel e Gustavo Galindo. O que começou como um clube de assinaturas exclusivo, se transformou em uma referência de qualidade, com lojas físicas, produção própria e um compromisso inabalável com a excelência.</p>
+        <a href="/quem-somos" class="btn btn-primary">Conheça nossa trajetória</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section partners-section">
+      <h2 style="margin-bottom: 24px;">NOSSOS PARCEIROS</h2>
+      <div class="partner-carousel">
+          <img src="/assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
+          <img src="/assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
+          <img src="/assets/carrousel-parceiros/fsw.png" alt="FSW">
+          <img src="/assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
+          <img src="/assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
+          <img src="/assets/carrousel-parceiros/guidara.png" alt="Guidara">
+          <img src="/assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat">
+          <img src="/assets/carrousel-parceiros/nat.jpeg" alt="Nat">
+
+          <img src="/assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
+          <img src="/assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
+          <img src="/assets/carrousel-parceiros/fsw.png" alt="FSW">
+          <img src="/assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
+          <img src="/assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
+          <img src="/assets/carrousel-parceiros/guidara.png" alt="Guidara">
+          <img src="/assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat">
+          <img src="/assets/carrousel-parceiros/nat.jpeg" alt="Nat">
+      </div>
+  </section>
+
+  <section class="section">
+    <h2 style="margin-bottom:10px; text-align: center;">ONDE ESTAMOS</h2>
+    <div class="mini-map" role="region" aria-label="Mapa das lojas Código da Carne em Londrina">
+      <iframe
+        src="https://www.google.com/maps/d/u/0/embed?mid=1o9Zm7-lXsGXUiXieoyCImT3QXyUutfs&ehbc=2E312F" allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        aria-label="Mapa com as 3 lojas do Código da Carne">
+      </iframe>
+    </div>
+  </section>
   </Layout>
 
-<script is:inline src="/js/eventos.js"></script>
+<script is:inline src="/js/carousel.js"></script>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    if (typeof window.EventosInit === 'function') {
-      window.EventosInit();
+    if (typeof window.CDC_CarouselMount === 'function') {
+      window.CDC_CarouselMount();
     }
   });
 </script>
