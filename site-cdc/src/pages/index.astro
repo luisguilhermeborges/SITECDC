@@ -47,6 +47,7 @@ import Layout from '../layouts/Layout.astro';
               <h3>PRODUÇÃO PRÓPRIA</h3>
               <p>Do campo à sua mesa, controlamos cada etapa para garantir um produto com padronização e qualidade superior.</p>
           </div>
+         
           <div class="differential-item">
               <div class="icon">⭐</div>
               <h3>QUALIDADE SUPERIOR</h3>
@@ -64,19 +65,19 @@ import Layout from '../layouts/Layout.astro';
     <h2 style="text-align: center; margin-bottom: 20px;">NOSSOS PRODUTOS</h2>
     <div class="grid grid--3">
       <div class="product-card">
-        <img src="/assets/adicionais/picanha.webp" alt="Cortes nobres">
+        <img src="/assets/adicionais/picanha.webp" alt="Cortes nobres" loading="lazy" width="300" height="200">
         <h3>Cortes Nobres</h3>
         <p>Picanha, Ancho, Chorizo e muito mais. A seleção premium para um churrasco inesquecível.</p>
         <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Cortes</a>
       </div>
       <div class="product-card">
-        <img src="/assets/foto-4.jpg" alt="Kits para churrasco">
+        <img src="/assets/foto-4.jpg" alt="Kits para churrasco" loading="lazy" width="300" height="200">
         <h3>Kits para Churrasco</h3>
         <p>Soluções completas e práticas para você apenas se preocupar em acender o fogo e reunir os amigos.</p>
         <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Montar meu Kit</a>
       </div>
       <div class="product-card">
-        <img src="/assets/foto-3.jpg" alt="Carnes para o dia a dia">
+        <img src="/assets/foto-3.jpg" alt="Carnes para o dia a dia" loading="lazy" width="300" height="200">
         <h3>Para o Dia a Dia</h3>
         <p>Hambúrgueres artesanais, carnes para porções e cortes versáteis para suas refeições diárias.</p>
         <a href="https://codigo-da-carne.onbeef.link" target="_blank" rel="noopener" class="btn btn-primary">Ver Opções</a>
@@ -100,7 +101,7 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="section">
     <div class="home-about-section">
-      <img src="/assets/gabrielgustavo1.jpg" alt="Fundadores da Código da Carne">
+      <img src="/assets/gabrielgustavo1.jpg" alt="Fundadores da Código da Carne" loading="lazy">
       <div class="home-about-text">
         <h2>NOSSA HISTÓRIA</h2>
         <p>A Código da Carne nasceu em 2015 da visão dos irmãos Gabriel e Gustavo Galindo. O que começou como um clube de assinaturas exclusivo, se transformou em uma referência de qualidade, com lojas físicas, produção própria e um compromisso inabalável com a excelência.</p>
@@ -112,23 +113,23 @@ import Layout from '../layouts/Layout.astro';
   <section class="section partners-section">
       <h2 style="margin-bottom: 24px;">NOSSOS PARCEIROS</h2>
       <div class="partner-carousel">
-          <img src="/assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
-          <img src="/assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
-          <img src="/assets/carrousel-parceiros/fsw.png" alt="FSW">
-          <img src="/assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
-          <img src="/assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
-          <img src="/assets/carrousel-parceiros/guidara.png" alt="Guidara">
-          <img src="/assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat">
-          <img src="/assets/carrousel-parceiros/nat.jpeg" alt="Nat">
+          <img src="/assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa" loading="lazy">
+          <img src="/assets/carrousel-parceiros/charcoal.png" alt="Charcoal" loading="lazy">
+          <img src="/assets/carrousel-parceiros/fsw.png" alt="FSW" loading="lazy">
+          <img src="/assets/carrousel-parceiros/gobeach.png" alt="Go Beach" loading="lazy">
+          <img src="/assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale" loading="lazy">
+          <img src="/assets/carrousel-parceiros/guidara.png" alt="Guidara" loading="lazy">
+          <img src="/assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat" loading="lazy">
+          <img src="/assets/carrousel-parceiros/nat.jpeg" alt="Nat" loading="lazy">
 
-          <img src="/assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa">
-          <img src="/assets/carrousel-parceiros/charcoal.png" alt="Charcoal">
-          <img src="/assets/carrousel-parceiros/fsw.png" alt="FSW">
-          <img src="/assets/carrousel-parceiros/gobeach.png" alt="Go Beach">
-          <img src="/assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale">
-          <img src="/assets/carrousel-parceiros/guidara.png" alt="Guidara">
-          <img src="/assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat">
-          <img src="/assets/carrousel-parceiros/nat.jpeg" alt="Nat">
+          <img src="/assets/carrousel-parceiros/amomassa.jpeg" alt="Amo Massa" loading="lazy">
+          <img src="/assets/carrousel-parceiros/charcoal.png" alt="Charcoal" loading="lazy">
+          <img src="/assets/carrousel-parceiros/fsw.png" alt="FSW" loading="lazy">
+          <img src="/assets/carrousel-parceiros/gobeach.png" alt="Go Beach" loading="lazy">
+          <img src="/assets/carrousel-parceiros/guanciale.jpg" alt="Guanciale" loading="lazy">
+          <img src="/assets/carrousel-parceiros/guidara.png" alt="Guidara" loading="lazy">
+          <img src="/assets/carrousel-parceiros/meetemeat.jpg" alt="Meete Meat" loading="lazy">
+          <img src="/assets/carrousel-parceiros/nat.jpeg" alt="Nat" loading="lazy">
       </div>
   </section>
 
@@ -136,14 +137,15 @@ import Layout from '../layouts/Layout.astro';
     <h2 style="margin-bottom:10px; text-align: center;">ONDE ESTAMOS</h2>
     <div class="mini-map" role="region" aria-label="Mapa das lojas Código da Carne em Londrina">
       <iframe
-        src="https://www.google.com/maps/d/u/0/embed?mid=1o9Zm7-lXsGXUiXieoyCImT3QXyUutfs&ehbc=2E312F" allowfullscreen
+        src="https://maps.google.com/maps?q=R.+Paranagu%C3%A1,+1306+-+Centro,+Londrina+-+PR&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        aria-label="Mapa com as 3 lojas do Código da Carne">
+        aria-label="Mapa com a localização do Código da Carne">
       </iframe>
     </div>
   </section>
-  </Layout>
+</Layout>
 
 <script is:inline src="/js/carousel.js"></script>
 <script is:inline>

@@ -1,20 +1,34 @@
 ---
 // src/layouts/Layout.astro
 
-// Isto permite que cada página defina o seu próprio Título e Descrição
 export interface Props {
   title: string;
   description: string;
+  image?: string; // Imagem opcional para compartilhamento (ex: WhatsApp)
 }
-const { title, description } = Astro.props;
+
+const { 
+  title, 
+  description, 
+  image = "/assets/logodeitadacdc.png" // Imagem padrão se nenhuma for passada
+} = Astro.props;
+
+// Gera URLs absolutas para SEO
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(image, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
   <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#640404" />
+  <link rel="canonical" href={canonicalURL} />
 
+  <link rel="icon" href="/assets/favicon-32x32.png" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/base.css" />
@@ -22,9 +36,59 @@ const { title, description } = Astro.props;
   <link rel="stylesheet" href="/css/home.css" />
   <link rel="stylesheet" href="/css/clube.css" />
 
-  <link rel="icon" href="/assets/favicon-32x32.png" />
-  <meta name="theme-color" content="#640404" />
-  <meta name="description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={socialImageURL} />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalURL} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={socialImageURL} />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ButcherShop",
+      "name": "Código da Carne",
+      "image": "https://codigodacarne.com.br/assets/logodeitadacdc.png",
+      "@id": "https://codigodacarne.com.br",
+      "url": "https://codigodacarne.com.br",
+      "telephone": "+554330252586",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Paranaguá, 1306 - Centro",
+        "addressLocality": "Londrina",
+        "addressRegion": "PR",
+        "postalCode": "86020-031",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -23.3117,
+        "longitude": -51.1581
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:30"
+      },
+      "sameAs": [
+        "https://www.instagram.com/codigodacarne/",
+        "https://www.facebook.com/codigodacarne"
+      ]
+    }
+  </script>
 </head>
 
 <body>
@@ -81,19 +145,18 @@ const { title, description } = Astro.props;
 
   <a
     class="whatsapp-fab"
-    href="https://www.google.com/search?q=codigodacarne&oq=codigodacarne+&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQABgNGIAEMhIIAhAuGA0YrwEYxwEYgAQYjgUyBggDEEUYPDIGCAQQRRhBMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEINTA3MGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8&lqi=ChBjw7NkaWdvIGRhIGNhcm5lSO7P0MX3rYCACFooEAAQARACGAAYARgCIhBjw7NkaWdvIGRhIGNhcm5lKggIAhAAEAEQApIBDmNvbGRfY3V0X3N0b3JlqgFICg0vZy8xMWZ5eGM4OV9nEAEyHxABIhszuR4Hm7lDQy7usI9m9n4yrPedCIe7o4Hl8hIyFBACIhBjw7NkaWdvIGRhIGNhcm5l#"
+    href="https://api.whatsapp.com/send?phone=554330252586"
     target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <img src="/assets/whatsapp.png" alt="">
+    <img src="/assets/whatsapp.png" alt="WhatsApp">
   </a>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear().toString();
   </script>
   
   <script>
     const navToggle = document.getElementById("navToggle");
     const menu = document.getElementById("menu");
-
     if (navToggle && menu) {
       // Abre e fecha o menu ao clicar no botão
       navToggle.addEventListener("click", () => {
@@ -101,16 +164,14 @@ const { title, description } = Astro.props;
         navToggle.setAttribute("aria-expanded", String(isOpen));
         navToggle.textContent = isOpen ? '✕' : '☰';
       });
-
-      // Fecha o menu soe clicar FORA dele
+      // Fecha o menu se clicar FORA dele
       document.addEventListener("click", (e) => {
         if (menu.classList.contains('is-open') && !menu.contains(e.target) && !navToggle.contains(e.target)) {
           menu.classList.remove("is-open");
           navToggle.setAttribute("aria-expanded", "false");
-          navToggle.textCntent = '☰';
+          navToggle.textContent = '☰';
         }
       });
-
       // Fecha o menu se clicar em um LINK do menu (importante para mobile)
       menu.addEventListener("click", (e) => {
         if (e.target.closest("a[href]")) {
@@ -121,6 +182,5 @@ const { title, description } = Astro.props;
       });
     }
   </script>
-  
 </body>
 </html>
