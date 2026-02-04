@@ -1,0 +1,19 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+
+# Build/Produção
+dist/
+build/
+
+# Logs e Cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.vite/
+
+# Variáveis de Ambiente
+.env
+.env.local
