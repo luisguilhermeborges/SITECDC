@@ -6,10 +6,8 @@ import Layout from '../layouts/Layout.astro';
   title="Clube Código - Código da Carne"
   description="Escolha seu plano Bronze, Prata ou Ouro e receba mensalmente uma seleção exclusiva dos melhores cortes."
 >
-  
   <section class="section clube">
     <div class="container">
-        
         <h2>O Clube de Carnes da Código</h2>
         <p class="subtitle">Receba em casa uma seleção surpreendente de cortes premium, escolhidos a dedo por nossos mestres, e tenha sempre à mão a qualidade do Código da Carne.</p>
 
@@ -33,96 +31,118 @@ import Layout from '../layouts/Layout.astro';
 
         <div class="clube-planos">
             <div class="plano-card">
-                <img src="/assets/clube/clube-bronze.jpg" alt="Seleção de carnes do Plano Bronze" class="plano-icon" onerror="this.onerror=null; this.src='https://placehold.co/300x400/eeeeee/000000?text=Bronze'">
+                <img src="/assets/clube/clube-bronze.jpg" alt="Plano Bronze" class="plano-icon">
                 <h3>Bronze</h3>
-                <p>🍖 <strong>2 a 3 kg de carnes selecionadas Código da Carne.</strong><br>
-                Ideal para quem quer praticidade e sabor na medida certa. Cortes variados, embalados e prontos para o dia a dia!</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> Em média R$ 199,90</p>
-                <button class="btn btn-primary"
-                        data-plano="bronze"
-                        data-asaas-link="https://www.asaas.com/c/flhe3ng00j309uye">
-                    Assinar Plano Bronze
-                </button>
+                <p>🍖 <strong>2 a 3 kg de carnes selecionadas.</strong><br>Ideal para praticidade e sabor no dia a dia.</p>
+                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 229,00*</p>
+                <button class="btn btn-primary btn-assinar" data-plano="Bronze" data-asaas-link="https://www.asaas.com/c/flhe3ng00j309uye">Assinar Plano Bronze</button>
             </div>
 
             <div class="plano-card">
-                <div class="plano-badge">      Mais Popular</div>
-                <img src="/assets/clube/clube-prata.jpg" alt="Seleção de carnes do Plano Prata" class="plano-icon" onerror="this.onerror=null; this.src='https://placehold.co/300x400/eeeeee/000000?text=Prata'">
+                <div class="plano-badge">Mais Popular</div>
+                <img src="/assets/clube/clube-prata.jpg" alt="Plano Prata" class="plano-icon">
                 <h3>Prata</h3>
-                <p>🔥 <strong>4 a 5 kg de carnes de alta qualidade.</strong><br>
-                Mais quantidade para curtir em família ou garantir a semana toda. Assine e receba carnes selecionadas direto na sua casa!</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> Em médiaR$ 299,90</p>
-                <button class="btn btn-primary"
-                        data-plano="prata"
-                        data-asaas-link="https://www.asaas.com/c/k97atamydhtlpjxn">
-                    Assinar Plano Prata
-                </button>
+                <p>🔥 <strong>4 a 5 kg de cortes nobres.</strong><br>A experiência completa para quem ama um bom churrasco.</p>
+                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 329,00*</p>
+                <button class="btn btn-primary btn-assinar" data-plano="Prata" data-asaas-link="https://www.asaas.com/c/k97atamydhtlpjxn">Assinar Plano Prata</button>
             </div>
 
             <div class="plano-card">
-                <img src="/assets/clube/clube-ouro.jpg" alt="Seleção de carnes do Plano Ouro" class="plano-icon" onerror="this.onerror=null; this.src='https://placehold.co/300x400/eeeeee/000000?text=Ouro'">
+                <img src="/assets/clube/clube-ouro.jpg" alt="Plano Ouro" class="plano-icon">
                 <h3>Ouro</h3>
-                <p>🥩 <strong>6 a 7 kg, mais carne, mais momentos especiais.</strong><br>
-                Perfeito para quem ama um bom churrasco e não quer faltar nada. Receba mais porções das suas carnes favoritas, com o mesmo padrão Código da Carne.</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> Em média R$ 399,90</p>
-                <button class="btn btn-primary"
-                        data-plano="ouro"
-                        data-asaas-link="https://sandbox.asaas.com/c/iugc5ym8okodnrzm">
-                    Assinar Plano Ouro
-                </button>
+                <p>👑 <strong>6 a 7 kg de seleção Premium.</strong><br>O ápice da sofisticação e os cortes mais exclusivos da casa.</p>
+                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 429,00*</p>
+                <button class="btn btn-primary btn-assinar" data-plano="Ouro" data-asaas-link="https://www.asaas.com/c/8m6i2m8735235336">Assinar Plano Ouro</button>
             </div>
         </div>
-
-        <div class="clube-depoimentos">
-            <h3>O que nossos membros dizem</h3>
-            <div class="depoimentos-grid">
-                <div class="depoimento-card">
-                    <p class="quote">"Sou assinante do Plano Prata há 6 meses e é a melhor coisa que fiz. Todo mês é uma surpresa de qualidade! A comodidade de receber em casa não tem preço. Recomendo demais!"</p>
-                    <p class="author">- Mariana F., Londrina</p>
-                </div>
-                <div class="depoimento-card">
-                    <p class="quote">"A qualidade das carnes é simplesmente de outro nível. Virou o evento do mês aqui em casa abrir a caixa do Clube Código. O Plano Ouro vale cada centavo."</p>
-                    <p class="author">- Ricardo M., Alphaville</p>
-                </div>
-            </div>
-        </div>
+        <p class="observacao-precos" style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 10px;">*Os valores dos planos podem sofrer alterações conforme reajustes de mercado.</p>
 
         <div class="clube-faq">
-            <h3>Dúvidas Frequentes</h3>
-            <details>
-                <summary>Como funciona a entrega?</summary>
-                <p>As entregas são feitas mensalmente, geralmente na ultima semana útil do mês.</p>
-            </details>
-            <details>
-                <summary>A entrega é grátis?</summary>
-                <p>Sim, para assinantes do Clube Código, a entrega mensal em Londrina e Cambé por nossa conta.</p>
-            </details>
-             <details>
-                <summary>Posso pausar minha assinatura se for viajar?</summary>
-                <p>Com certeza! Você pode pausar sua assinatura por um mês sem custo. Basta nos avisar com pelo menos 5 dias de antecedência da data de cobrança.</p>
-            </details>
-            <details>
-                <summary>Os cortes se repetem todo mês?</summary>
-                <p>Buscamos sempre variar! A seleção é feita pelos nossos mestres para garantir uma experiência nova a cada mês, mas os cortes clássicos e favoritos (como Picanha e Ancho) podem aparecer com mais frequência.</p>
-            </details>
-            <details>
-                <summary>Posso cancelar quando quiser?</summary>
-                <p>Sim, o Clube Código não tem fidelidade. Você pode cancelar sua assinatura a qualquer momento, sem taxas adicionais. O cancelamento valerá para o mês seguinte à sua solicitação.</p>
-            </details>
-            <details>
-                <summary>Quais são as formas de pagamento?</summary>
-                <p>O pagamento é recorrente e processado pela plataforma Asaas. Você pode pagar via Cartão de Crédito (cobrança automática todo mês).</p>
-            </details>
+            <div class="faq-header">
+                <h3>Dúvidas Frequentes</h3>
+                <p>Tudo o que você precisa saber sobre o Clube Código</p>
+            </div>
+            
+            <div class="faq-grid">
+                <details>
+                    <summary>Como e quando recebo minha caixa?</summary>
+                    <div class="faq-content">
+                        <p>As entregas são realizadas mensalmente, sempre na <strong>última semana útil de cada mês</strong>. Entraremos em contato via WhatsApp para confirmar a entrega.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary>Quais cidades são atendidas pelo Clube?</summary>
+                    <div class="faq-content">
+                        <p>Atualmente, o Clube Código atende com <strong>frete grátis</strong> exclusivo para as cidades de <strong>Londrina e Cambé</strong>.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary>Existe fidelidade ou taxa de cancelamento?</summary>
+                    <div class="faq-content">
+                        <p>Não! O Clube Código não tem fidelidade. Você pode cancelar ou pausar sua assinatura a qualquer momento, avisando com 5 dias de antecedência.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary>Como funciona o pagamento?</summary>
+                    <div class="faq-content">
+                        <p>O pagamento é feito através da plataforma <strong>Asaas</strong>, garantindo total segurança. A cobrança é recorrente no seu cartão de crédito ou gerada via PIX/Boleto.</p>
+                    </div>
+                </details>
+            </div>
         </div>
     </div>
   </section>
-  </Layout>
+
+  <div id="modal-cadastro" class="modal-clube" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-header">
+        <h3>Finalizar Assinatura</h3>
+        <p>Plano Selecionado: <strong><span id="nome-plano-modal"></span></strong></p>
+      </div>
+      
+      <form id="form-assinatura">
+        <div class="input-group">
+            <label>Nome Completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="input-row">
+            <div class="input-group">
+                <label>CPF</label>
+                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required maxlength="14">
+            </div>
+            <div class="input-group">
+                <label>WhatsApp</label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="(43) 99999-9999" required maxlength="15">
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div class="input-group" style="flex: 0 0 150px;">
+                <label>CEP</label>
+                <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
+            </div>
+            <div class="input-group">
+                <label>Endereço Completo</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro e cidade" required>
+            </div>
+        </div>
+        
+        <div class="termos-container">
+          <div class="termos-texto">
+            <strong>Termos do Clube:</strong> Cobranças recorrentes mensais via Asaas. Entregas na última semana do mês (Londrina/Cambé). Cancelamento livre com 5 dias de aviso prévio.
+          </div>
+          <label class="check-container">
+            <input type="checkbox" id="aceite-termos" required> 
+            <span>Concordo com os termos do Clube Código da Carne</span>
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block">Confirmar e Ir para Pagamento</button>
+      </form>
+    </div>
+  </div>
+</Layout>
 
 <script is:inline src="/js/clube.js"></script>
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (typeof window.inicializarClube === 'function') {
-      window.inicializarClube();
-    }
-  });
-</script>

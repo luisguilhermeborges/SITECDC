@@ -1,27 +1,60 @@
-// js/clube.js
+// public/js/clube.js
+import { TERMOS_CLUBE } from './termos-clube.js';
 
 function inicializarClube() {
-  console.log("[clube.js] Inicializando listeners da página do Clube...");
+    const modal = document.getElementById("modal-cadastro");
+    const closeBtn = document.querySelector(".close-modal");
+    const form = document.getElementById("form-assinatura");
+    const nomePlanoModal = document.getElementById("nome-plano-modal");
+    const containerTermos = document.querySelector(".termos-texto");
 
-  // Seleciona todos os botões que têm o atributo 'data-asaas-link'
-  const botoesAssinatura = document.querySelectorAll("button[data-asaas-link]");
+    // Injeta o texto dos termos
+    if (containerTermos) {
+        containerTermos.innerText = TERMOS_CLUBE;
+    }
 
-  // Adiciona um 'escutador' de clique para cada botão
-  botoesAssinatura.forEach(botao => {
-    botao.addEventListener("click", () => {
-      // Pega o link de pagamento guardado no atributo do botão
-      const linkPagamento = botao.dataset.asaasLink;
-      
-      if (linkPagamento) {
-        console.log(`[clube.js] Redirecionando para: ${linkPagamento}`);
-        // Abre o link de pagamento em uma nova aba do navegador
-        window.open(linkPagamento, "_blank", "noopener,noreferrer");
-      } else {
-        console.warn("[clube.js] Botão clicado, mas não foi encontrado data-asaas-link.");
-      }
+    const inputCPF = document.getElementById("cpf");
+    const inputWhatsApp = document.getElementById("whatsapp");
+    const inputCEP = document.getElementById("cep");
+    let linkAsaasAtual = "";
+
+    // Máscaras de Input
+    inputCPF?.addEventListener('input', e => {
+        let v = e.target.value.replace(/\D/g, '');
+        v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        e.target.value = v;
     });
-  });
+
+    inputWhatsApp?.addEventListener('input', e => {
+        let v = e.target.value.replace(/\D/g, '');
+        v = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+        e.target.value = v;
+    });
+
+    inputCEP?.addEventListener('input', e => {
+        let v = e.target.value.replace(/\D/g, '');
+        v = v.replace(/(\d{5})(\d{3})/, "$1-$2");
+        e.target.value = v;
+    });
+
+    // Abrir Modal
+    document.querySelectorAll(".btn-assinar").forEach(botao => {
+        botao.addEventListener("click", () => {
+            linkAsaasAtual = botao.getAttribute("data-asaas-link");
+            nomePlanoModal.textContent = botao.getAttribute("data-plano");
+            modal.style.display = "flex";
+        });
+    });
+
+    // Fechar Modal
+    if (closeBtn) closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+
+    // Envio do formulário
+    form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        window.location.href = linkAsaasAtual;
+    });
 }
 
-// Expõe a função globalmente para o app.js poder chamá-la
-window.inicializarClube = inicializarClube;
+document.addEventListener("DOMContentLoaded", inicializarClube);

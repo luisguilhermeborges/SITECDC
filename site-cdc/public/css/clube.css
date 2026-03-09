@@ -1,23 +1,20 @@
-/* css/clube.css */
-
-/* --- Estilos específicos para a página do Clube --- */
+/* public/css/clube.css */
 
 .clube h2 {
     text-align: center;
-    font-size: clamp(22px, 4vw, 32px); 
+    font-size: clamp(22px, 4vw, 32px);
     margin-bottom: 8px;
 }
 
 .clube .subtitle {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto clamp(24px, 5vw, 48px) auto; /* Aumenta margem inferior */
+    margin: 0 auto clamp(24px, 5vw, 48px) auto;
     font-size: var(--fz-lg);
-    text-transform: none; /* Subscrição da base.css */
+    text-transform: none;
     line-height: 1.7;
 }
 
-/* --- NOVOS ESTILOS: Seção "Como Funciona" --- */
 .clube-como-funciona {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -51,27 +48,15 @@
     text-transform: uppercase;
 }
 
-.como-funciona-step p {
-    text-transform: none;
-    font-size: var(--fz);
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-}
-
-
-/* --- Estilos dos Planos (Originais e Ajustados) --- */
 .clube-planos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: clamp(16px, 3vw, 24px);
     margin-bottom: clamp(24px, 4vw, 40px);
 }
 
 .plano-card {
-    /* --- ALTERAÇÃO 1: COR DE FUNDO --- */
-    background: #ffffff; /* Mudado de #fffdfd para branco puro. Coloque sua cor aqui. */
-    
+    background: #ffffff;
     border: 1px solid #e6e6e6;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -80,22 +65,18 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative; /* Necessário para o badge */
-    overflow: hidden; /* Para o badge não vazar da borda */
+    position: relative;
+    overflow: hidden;
 }
 
 .plano-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.89);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* --- NOVO ESTILO: Badge "Mais Popular" --- */
 .plano-badge {
     position: absolute;
-    
-    /* --- ALTERAÇÃO 2: POSIÇÃO DA BADGE --- */
-    top: 30px; /* Aumentado de 12px para 30px para descer a faixa */
-    
+    top: 30px;
     right: -30px;
     background-color: var(--text-alt);
     color: #fff;
@@ -104,85 +85,51 @@
     font-weight: 700;
     text-transform: uppercase;
     transform: rotate(45deg);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 2; /* Garante que fique acima da imagem */
+    z-index: 2;
 }
 
 .plano-icon {
-    width: 100%; /* Faz a imagem ocupar a largura do card */
-    max-width: 250px; /* Limita o tamanho máximo */
+    width: 100%;
+    max-width: 250px;
     height: auto;
-    aspect-ratio: 3 / 4; /* Proporção da imagem */
-    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
-    margin: 0 auto 16px auto; /* Centraliza a imagem */
-    border-radius: calc(var(--radius) - 6px); /* Borda arredondada suave */
-    border: 1px solid #eee;
-}
-
-.plano-card h3 {
-    color: var(--text-alt);
-    margin-bottom: 8px;
-    font-size: calc(var(--fz-lg) * 1.2); /* Título um pouco maior */
-}
-
-.plano-card p {
-    text-transform: none; /* Subscrição da base.css */
-    font-size: var(--fz);
-    line-height: 1.6;
-    color: #110000;
-    flex-grow: 1; /* Empurra o botão para baixo */
-    margin-bottom: 12px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    margin: 0 auto 16px auto;
+    border-radius: calc(var(--radius) - 6px);
 }
 
 .plano-valor {
-    font-size: var(--fz-sm);
-    color: #070000;
-    margin-bottom: 16px !important; /* !important para garantir a margem antes do botão */
-    flex-grow: 0 !important; /* Garante que não cresça demais */
+    font-weight: 700;
+    color: var(--text-alt);
+    margin: 10px 0;
 }
 
-.plano-card .btn {
-    margin-top: auto; /* Alinha o botão na base do card */
-    width: 100%; /* Botão ocupa toda a largura */
-}
-
-/* --- NOVOS ESTILOS: Prova Social (Depoimentos) --- */
 .clube-depoimentos {
-    max-width: 900px;
-    margin: clamp(24px, 5vw, 48px) auto 0 auto;
-    padding-top: clamp(24px, 4vw, 32px);
-    border-top: 1px solid #eee;
+    margin-top: clamp(32px, 6vw, 64px);
 }
 
 .clube-depoimentos h3 {
     text-align: center;
-    margin-bottom: 24px;
-    color: var(--text-alt);
+    margin-bottom: clamp(24px, 4vw, 40px);
 }
 
 .depoimentos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
 .depoimento-card {
-    background: #fff;
-    border: 1px solid #eee;
+    background-color: #f9f9f9;
     padding: 24px;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
+    border-left: 4px solid var(--text-alt);
 }
 
 .depoimento-card .quote {
     font-style: italic;
-    text-transform: none;
-    color: #555;
     margin-bottom: 16px;
-    line-height: 1.7;
-    flex-grow: 1;
+    line-height: 1.6;
 }
 
 .depoimento-card .author {
@@ -191,71 +138,154 @@
     text-align: right;
 }
 
-
-/* --- FAQ (Estilos Originais Ajustados) --- */
 .clube-faq {
-    max-width: 900px; /* Alinhado com as novas seções */
-    margin: clamp(24px, 5vw, 48px) auto 0 auto; /* Adiciona margem superior */
-    border-top: 1px solid #eee;
-    padding-top: clamp(24px, 4vw, 32px);
+    margin-top: clamp(32px, 6vw, 64px);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .clube-faq h3 {
     text-align: center;
-    margin-bottom: 16px;
-    color: var(--text-alt);
+    margin-bottom: clamp(24px, 4vw, 40px);
 }
 
 .clube-faq details {
-    background: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    transition: background-color 0.2s ease;
-}
-
-.clube-faq details[open] {
     background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e6e6e6;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    padding: 16px;
 }
 
 .clube-faq summary {
-    padding: 14px 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    list-style: none; /* Remove a seta padrão */
+}
+
+.clube-faq p {
+    margin-top: 12px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.observacao-precos {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* --- ESTILOS DO MODAL --- */
+.modal-clube {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 750px;
     position: relative;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.modal-header h3 {
     color: var(--text-alt);
-    outline: none; /* Remove o contorno padrão no foco */
+    font-size: 1.8rem;
+    margin-bottom: 5px;
 }
 
-/* Adiciona uma seta personalizada */
-.clube-faq summary::after {
-    content: '+';
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2em;
-    color: var(--text-alt);
-    transition: transform 0.2s ease;
+.input-row {
+    display: flex;
+    gap: 20px;
 }
 
-.clube-faq details[open] summary::after {
-    content: '−';
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    width: 100%;
 }
 
-.clube-faq details p {
-    padding: 0 16px 14px 16px;
-    margin: 0;
-    text-transform: none;
-    font-size: var(--fz);
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 6px;
     color: #444;
-    line-height: 1.7;
+    text-transform: uppercase;
 }
 
-/* Foco visível para acessibilidade */
-.clube-faq summary:focus-visible {
-    box-shadow: 0 0 0 2px var(--topbar);
-    border-radius: 6px;
+.input-group input {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.termos-container {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.termos-texto {
+    font-size: 0.85rem;
+    height: 120px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    color: #333;
+    white-space: pre-wrap; /* Mantém as quebras de linha do ficheiro de termos */
+}
+
+.check-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #bbb;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
 }
