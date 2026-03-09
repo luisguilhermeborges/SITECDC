@@ -1,291 +1,76 @@
 /* public/css/clube.css */
 
-.clube h2 {
+.clube-page { 
+    background: var(--bg, #FFFFFF); 
+    color: var(--text, #000000); 
+}
+
+/* Passo a Passo e FAQ com fundo bege claro */
+.section--soft {
+    background: var(--bg-soft, #F5F5DC);
+}
+
+.clube-hero {
     text-align: center;
-    font-size: clamp(22px, 4vw, 32px);
-    margin-bottom: 8px;
+    padding: 60px 0 20px;
 }
 
-.clube .subtitle {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto clamp(24px, 5vw, 48px) auto;
-    font-size: var(--fz-lg);
-    text-transform: none;
-    line-height: 1.7;
+.passo-a-passo { padding: 40px 0; border-top: 1px solid #E6E6E6; }
+.steps-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 24px; 
+    text-align: center; 
+}
+.step-num { 
+    display: flex; width: 36px; height: 36px; background: var(--text-alt, #8A443F); 
+    color: #fff; margin: 0 auto 12px; border-radius: 50%; align-items: center; 
+    justify-content: center; font-weight: bold; 
 }
 
-.clube-como-funciona {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto clamp(24px, 5vw, 48px) auto;
-    text-align: center;
-}
-
-.como-funciona-step {
-    padding: 16px;
-}
-
-.como-funciona-step .step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--text-alt);
-    color: #fff;
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 12px;
-}
-
-.como-funciona-step h4 {
-    margin: 0 0 8px 0;
-    color: var(--text-alt);
-    text-transform: uppercase;
-}
-
-.clube-planos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: clamp(16px, 3vw, 24px);
-    margin-bottom: clamp(24px, 4vw, 40px);
-}
-
-.plano-card {
-    background: #ffffff;
-    border: 1px solid #e6e6e6;
-    border-radius: var(--radius);
+/* Planos */
+.planos-clube { padding: 60px 0; }
+.clube-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: start; }
+.card-clube { 
+    background: #fff; 
+    border: 1px solid #E6E6E6; 
+    padding: 32px 24px; 
+    border-radius: var(--radius, 16px); 
+    transition: transform 0.2s; 
+    position: relative; 
     box-shadow: var(--shadow);
-    padding: clamp(16px, 2.5vw, 24px);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-    overflow: hidden;
 }
+.card-clube.destaque { border: 2px solid var(--text-alt, #8A443F); transform: scale(1.02); }
+.card-tag { 
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%); 
+    background: var(--text-alt, #8A443F); color: #fff; 
+    padding: 4px 16px; border-radius: 20px; font-size: 10px; font-weight: bold; 
+}
+.price { font-size: 2rem; font-weight: 800; margin: 16px 0; color: var(--text-alt, #8A443F); }
+.price span { font-size: 0.9rem; color: #666; font-weight: 400; }
+.card-body ul { padding: 0; list-style: none; margin: 20px 0; }
+.card-body li { margin-bottom: 8px; font-size: var(--fz-sm); text-transform: none; }
+.card-body li::before { content: "✓ "; color: var(--text-alt); font-weight: bold; }
 
-.plano-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
+/* FAQ */
+.faq-section { padding: 60px 0; }
+.faq-container { max-width: 800px; margin: 30px auto 0; }
+.faq-item { background: #fff; border: 1px solid #E6E6E6; margin-bottom: 8px; border-radius: 12px; overflow: hidden; }
+.faq-item summary { padding: 16px 20px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; font-weight: bold; color: var(--text-alt); }
+.faq-item summary::after { content: '+'; font-size: 1.2rem; }
+.faq-item[open] summary::after { content: '-'; }
+.faq-content { padding: 0 20px 16px; color: #444; text-transform: none; }
 
-.plano-badge {
-    position: absolute;
-    top: 30px;
-    right: -30px;
-    background-color: var(--text-alt);
-    color: #fff;
-    padding: 6px 30px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    transform: rotate(45deg);
-    z-index: 2;
+/* Modais Claros */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; backdrop-filter: blur(4px); }
+.modal-box { 
+    position: relative; background: #fff; width: min(500px, 95%); 
+    margin: 40px auto; padding: 32px; border-radius: 16px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
 }
-
-.plano-icon {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    margin: 0 auto 16px auto;
-    border-radius: calc(var(--radius) - 6px);
-}
-
-.plano-valor {
-    font-weight: 700;
-    color: var(--text-alt);
-    margin: 10px 0;
-}
-
-.clube-depoimentos {
-    margin-top: clamp(32px, 6vw, 64px);
-}
-
-.clube-depoimentos h3 {
-    text-align: center;
-    margin-bottom: clamp(24px, 4vw, 40px);
-}
-
-.depoimentos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-.depoimento-card {
-    background-color: #f9f9f9;
-    padding: 24px;
-    border-radius: var(--radius);
-    border-left: 4px solid var(--text-alt);
-}
-
-.depoimento-card .quote {
-    font-style: italic;
-    margin-bottom: 16px;
-    line-height: 1.6;
-}
-
-.depoimento-card .author {
-    font-weight: 700;
-    color: var(--text-alt);
-    text-align: right;
-}
-
-.clube-faq {
-    margin-top: clamp(32px, 6vw, 64px);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.clube-faq h3 {
-    text-align: center;
-    margin-bottom: clamp(24px, 4vw, 40px);
-}
-
-.clube-faq details {
-    background-color: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: var(--radius);
-    margin-bottom: 12px;
-    padding: 16px;
-}
-
-.clube-faq summary {
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.clube-faq p {
-    margin-top: 12px;
-    line-height: 1.6;
-    color: #666;
-}
-
-.observacao-precos {
-    text-align: center;
-    font-size: 0.85rem;
-    color: #888;
-    margin-top: 20px;
-}
-
-/* --- ESTILOS DO MODAL --- */
-.modal-clube {
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 750px;
-    position: relative;
-    max-height: 95vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    text-align: center;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.modal-header h3 {
-    color: var(--text-alt);
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
-
-.input-row {
-    display: flex;
-    gap: 20px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 18px;
-    width: 100%;
-}
-
-.input-group label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: #444;
-    text-transform: uppercase;
-}
-
-.input-group input {
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.termos-container {
-    background: #f8f8f8;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-.termos-texto {
-    font-size: 0.85rem;
-    height: 120px;
-    overflow-y: auto;
-    margin-bottom: 15px;
-    color: #333;
-    white-space: pre-wrap; /* Mantém as quebras de linha do ficheiro de termos */
-}
-
-.check-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-    cursor: pointer;
-}
-
-.close-modal {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 32px;
-    cursor: pointer;
-    color: #bbb;
-}
-
-.btn-block {
-    width: 100%;
-    padding: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: 20px;
-}
-
-@media (max-width: 600px) {
-    .input-row {
-        flex-direction: column;
-        gap: 0;
-    }
-}
+.termos-scroll { max-width: 650px; max-height: 80vh; overflow-y: auto; }
+.close-modal, .close-termos { position: absolute; top: 16px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #999; }
+.form-row { display: flex; gap: 12px; }
+.form-group { margin-bottom: 16px; flex: 1; }
+.form-group label { display: block; font-size: 11px; margin-bottom: 4px; font-weight: bold; color: #666; }
+.form-group input { width: 100%; background: #F9F9F9; border: 1px solid #DDD; padding: 12px; border-radius: 8px; font-family: inherit; }

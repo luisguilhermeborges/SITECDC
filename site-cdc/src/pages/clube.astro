@@ -2,147 +2,177 @@
 // src/pages/clube.astro
 import Layout from '../layouts/Layout.astro';
 ---
+
 <Layout 
   title="Clube Código - Código da Carne"
-  description="Escolha seu plano Bronze, Prata ou Ouro e receba mensalmente uma seleção exclusiva dos melhores cortes."
+  description="Assine o primeiro clube de carnes nobres de Londrina."
 >
-  <section class="section clube">
-    <div class="container">
-        <h2>O Clube de Carnes da Código</h2>
+  <main class="clube-page">
+    <section class="clube-hero">
+      <div class="container">
+        <h1>O Clube de Carnes da Código</h1>
         <p class="subtitle">Receba em casa uma seleção surpreendente de cortes premium, escolhidos a dedo por nossos mestres, e tenha sempre à mão a qualidade do Código da Carne.</p>
-
-        <div class="clube-como-funciona">
-            <div class="como-funciona-step">
-                <div class="step-number">1</div>
-                <h4>Escolha seu Plano</h4>
-                <p>Selecione o box (Bronze, Prata ou Ouro) que mais combina com seu consumo e seu paladar.</p>
-            </div>
-            <div class="como-funciona-step">
-                <div class="step-number">2</div>
-                <h4>Receba em Casa</h4>
-                <p>Todo mês, entregamos sua seleção de carnes frescas e embaladas a vácuo na sua porta.</p>
-            </div>
-            <div class="como-funciona-step">
-                <div class="step-number">3</div>
-                <h4>Curta Sem Preocupação</h4>
-                <p>Aproveite a comodidade de ter os melhores cortes sempre à mão, sem taxas ou fidelidade. Cancele quando quiser.</p>
-            </div>
-        </div>
-
-        <div class="clube-planos">
-            <div class="plano-card">
-                <img src="/assets/clube/clube-bronze.jpg" alt="Plano Bronze" class="plano-icon">
-                <h3>Bronze</h3>
-                <p>🍖 <strong>2 a 3 kg de carnes selecionadas.</strong><br>Ideal para praticidade e sabor no dia a dia.</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 229,00*</p>
-                <button class="btn btn-primary btn-assinar" data-plano="Bronze" data-asaas-link="https://www.asaas.com/c/flhe3ng00j309uye">Assinar Plano Bronze</button>
-            </div>
-
-            <div class="plano-card">
-                <div class="plano-badge">Mais Popular</div>
-                <img src="/assets/clube/clube-prata.jpg" alt="Plano Prata" class="plano-icon">
-                <h3>Prata</h3>
-                <p>🔥 <strong>4 a 5 kg de cortes nobres.</strong><br>A experiência completa para quem ama um bom churrasco.</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 329,00*</p>
-                <button class="btn btn-primary btn-assinar" data-plano="Prata" data-asaas-link="https://www.asaas.com/c/k97atamydhtlpjxn">Assinar Plano Prata</button>
-            </div>
-
-            <div class="plano-card">
-                <img src="/assets/clube/clube-ouro.jpg" alt="Plano Ouro" class="plano-icon">
-                <h3>Ouro</h3>
-                <p>👑 <strong>6 a 7 kg de seleção Premium.</strong><br>O ápice da sofisticação e os cortes mais exclusivos da casa.</p>
-                <p class="plano-valor"><strong>Valor Mensal:</strong> R$ 429,00*</p>
-                <button class="btn btn-primary btn-assinar" data-plano="Ouro" data-asaas-link="https://www.asaas.com/c/8m6i2m8735235336">Assinar Plano Ouro</button>
-            </div>
-        </div>
-        <p class="observacao-precos" style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 10px;">*Os valores dos planos podem sofrer alterações conforme reajustes de mercado.</p>
-
-        <div class="clube-faq">
-            <div class="faq-header">
-                <h3>Dúvidas Frequentes</h3>
-                <p>Tudo o que você precisa saber sobre o Clube Código</p>
-            </div>
-            
-            <div class="faq-grid">
-                <details>
-                    <summary>Como e quando recebo minha caixa?</summary>
-                    <div class="faq-content">
-                        <p>As entregas são realizadas mensalmente, sempre na <strong>última semana útil de cada mês</strong>. Entraremos em contato via WhatsApp para confirmar a entrega.</p>
-                    </div>
-                </details>
-                <details>
-                    <summary>Quais cidades são atendidas pelo Clube?</summary>
-                    <div class="faq-content">
-                        <p>Atualmente, o Clube Código atende com <strong>frete grátis</strong> exclusivo para as cidades de <strong>Londrina e Cambé</strong>.</p>
-                    </div>
-                </details>
-                <details>
-                    <summary>Existe fidelidade ou taxa de cancelamento?</summary>
-                    <div class="faq-content">
-                        <p>Não! O Clube Código não tem fidelidade. Você pode cancelar ou pausar sua assinatura a qualquer momento, avisando com 5 dias de antecedência.</p>
-                    </div>
-                </details>
-                <details>
-                    <summary>Como funciona o pagamento?</summary>
-                    <div class="faq-content">
-                        <p>O pagamento é feito através da plataforma <strong>Asaas</strong>, garantindo total segurança. A cobrança é recorrente no seu cartão de crédito ou gerada via PIX/Boleto.</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-    </div>
-  </section>
-
-  <div id="modal-cadastro" class="modal-clube" style="display:none;">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <div class="modal-header">
-        <h3>Finalizar Assinatura</h3>
-        <p>Plano Selecionado: <strong><span id="nome-plano-modal"></span></strong></p>
       </div>
-      
-      <form id="form-assinatura">
-        <div class="input-group">
-            <label>Nome Completo</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
-        </div>
+    </section>
 
-        <div class="input-row">
-            <div class="input-group">
-                <label>CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required maxlength="14">
-            </div>
-            <div class="input-group">
-                <label>WhatsApp</label>
-                <input type="tel" id="whatsapp" name="whatsapp" placeholder="(43) 99999-9999" required maxlength="15">
-            </div>
-        </div>
-
-        <div class="input-row">
-            <div class="input-group" style="flex: 0 0 150px;">
-                <label>CEP</label>
-                <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9">
-            </div>
-            <div class="input-group">
-                <label>Endereço Completo</label>
-                <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro e cidade" required>
-            </div>
-        </div>
-        
-        <div class="termos-container">
-          <div class="termos-texto">
-            <strong>Termos do Clube:</strong> Cobranças recorrentes mensais via Asaas. Entregas na última semana do mês (Londrina/Cambé). Cancelamento livre com 5 dias de aviso prévio.
+    <section class="passo-a-passo section--soft">
+      <div class="container">
+        <div class="steps-grid">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <h4>Escolha o Plano</h4>
+            <p>Selecione o box (Bronze, Prata ou Ouro) que mais combina com seu consumo e seu paladar.</p>
           </div>
-          <label class="check-container">
-            <input type="checkbox" id="aceite-termos" required> 
-            <span>Concordo com os termos do Clube Código da Carne</span>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <h4>Informe seus Dados</h4>
+            <p>Diga-nos onde entregar e quem é o titular da assinatura.</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <h4>Pagamento Seguro</h4>
+            <p>Assine via cartão de crédito pela plataforma Asaas.</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">4</span>
+            <h4>Receba em Casa</h4>
+            <p>Aproveite cortes exclusivos todo mês sem preocupação.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="planos-clube" id="planos">
+      <div class="container">
+        <div class="clube-cards">
+          <div class="card-clube">
+            <div class="card-header">
+              <h3>Clube Bronze</h3>
+              <div class="price">R$ 229,90<span>/mês</span></div>
+            </div>
+            <div class="card-body">
+              <p>Ideal para casais ou quem busca praticidade com cortes de alta qualidade.</p>
+              <ul>
+                <li>Aprox. 2kg a 3kg de carne</li>
+                <li>Cortes variados </li>
+                <li>3% OFF em compras extras na loja</li>
+              </ul>
+              <button class="btn btn-primary btn-assinar" data-plano="Bronze">Assinar Bronze</button>
+            </div>
+          </div>
+
+          <div class="card-clube destaque">
+            <div class="card-tag">Mais Vendido</div>
+            <div class="card-header">
+              <h3>Clube Prata</h3>
+              <div class="price">R$ 329,90<span>/mês</span></div>
+            </div>
+            <div class="card-body">
+              <p>Para quem não abre mão de um churrasco premium no final de semana com a família.</p>
+              <ul>
+                <li>Aprox. 4kg a 5kg de carne</li>
+                <li>Cortes Premium</li>
+                <li>3% OFF em compras extras na loja</li>
+              </ul>
+              <button class="btn btn-primary btn-assinar" data-plano="Prata">Assinar Prata</button>
+            </div>
+          </div>
+
+          <div class="card-clube">
+            <div class="card-header">
+              <h3>Clube Ouro</h3>
+              <div class="price">R$ 429,90<span>/mês</span></div>
+            </div>
+            <div class="card-body">
+              <p>Perfeito para quem ama um bom churrasco e não quer faltar nada.</p>
+              <ul>
+                <li>Aprox. 6kg a 78kg de carne</li>
+                <li>3% OFF em compras extras na loja</li>
+                <li>Frete Grátis em Londrina e Cambé</li>
+              </ul>
+              <button class="btn btn-primary btn-assinar" data-plano="Ouro">Assinar Ouro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section section--soft">
+      <div class="container">
+        <h2 class="section-title" style="text-align: center;">Dúvidas Frequentes</h2>
+        <div class="faq-container">
+          <details class="faq-item">
+            <summary>Como funciona a entrega?</summary>
+            <div class="faq-content">As entregas ocorrem fielmente na última semana de cada mês para garantir a melhor seleção dos cortes.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Como funciona o pagamento?</summary>
+            <div class="faq-content">O pagamento é feito de forma recorrente (mensal) via cartão de crédito através da plataforma segura do Asaas.</div>
+          </details>
+          <details class="faq-item">
+            <summary>A entrega é gratuita?</summary>
+            <div class="faq-content">Sim, para assinantes do Clube Código, a entrega mensal em Londrina/PR e Cambé/PR é por conta da loja.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Posso cancelar quando quiser?</summary>
+            <div class="faq-content">Sim! O Clube Código não possui fidelidade e você pode cancelar sua assinatura quando desejar.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Os Cortes se repetem todo mês?</summary>
+            <div class="faq-content">Buscamos sempre variar! A seleção é feita pelos nossos mestres para garantir uma experiência nova a cada mês, mas os cortes clássicos e favoritos podem aparecer com mais frequência.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Posso pausar minha assinatura se for viajar?</summary>
+            <div class="faq-content">Com certeza! Você pode pausar sua assinatura por um mês sem custo. Basta nos avisar com pelo menos 5 dias de antecedência da data de cobrança.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Quando é feita a entrega?</summary>
+            <div class="faq-content">As entregas ocorrem fielmente na última semana de cada mês para garantir a melhor seleção dos cortes.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-cadastro" class="modal-overlay">
+    <div class="modal-box">
+      <span class="close-modal">&times;</span>
+      <h3>Finalizar Assinatura</h3>
+      <p id="label-plano-modal" style="text-transform: none; margin-bottom: 20px; color: var(--text-alt);"></p>
+      
+      <form id="form-clube-final" class="form-estilizado">
+        <input type="hidden" id="plano-slug">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" id="nome" required placeholder="Seu nome completo">
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>CPF</label><input type="text" id="cpf" required placeholder="000.000.000-00" maxlength="14"></div>
+          <div class="form-group"><label>WhatsApp</label><input type="tel" id="whatsapp" required placeholder="(43) 99999-9999"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>CEP</label><input type="text" id="cep" required placeholder="00000-000"></div>
+          <div class="form-group" style="flex: 2;"><label>Endereço</label><input type="text" id="endereco" required placeholder="Rua, número, bairro"></div>
+        </div>
+        <div class="form-check" style="margin-bottom: 20px;">
+          <label style="text-transform: none; font-size: var(--fz-sm); cursor: pointer; display: flex; gap: 8px;">
+            <input type="checkbox" required style="margin-top: 3px;"> 
+            <span>Li e aceito os <a id="abrir-termos" href="#" style="color: var(--text-alt); font-weight: bold;">termos de adesão</a>.</span>
           </label>
         </div>
-        
-        <button type="submit" class="btn btn-primary btn-block">Confirmar e Ir para Pagamento</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Ir para Pagamento</button>
       </form>
     </div>
   </div>
-</Layout>
 
-<script is:inline src="/js/clube.js"></script>
+  <div id="modal-termos" class="modal-overlay">
+    <div class="modal-box termos-scroll">
+      <span class="close-termos">&times;</span>
+      <h3>Termos de Adesão</h3>
+      <div id="texto-termos" style="text-transform: none; font-size: var(--fz); line-height: 1.5;">Carregando...</div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="/css/clube.css" />
+  <script is:inline src="/js/clube.js"></script>
+</Layout>
